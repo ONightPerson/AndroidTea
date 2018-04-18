@@ -17,7 +17,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         initViews();
     }
 
@@ -28,6 +28,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        
         if (v == mClickLaunchBtn) {
             Intent intent = new Intent(this, AccessibilityTestActivity.class);
             AccessibilityJumpActivity.show(this, intent);
