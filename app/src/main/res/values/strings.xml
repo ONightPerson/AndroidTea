@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidTea</string>
+    <string name="accessibility_service_label">AndroidTea 辅助功能</string>
+    <string name="accessibility_service_description">用于帮助用户开启权限等</string>
+    <string name="accessibility_click_to_launch">点击进入下一个页面</string>
+    <string name="accessibility_auto_click">自动点击按钮</string>
+
+    <string name="accessibility_auto_click_toast">辅助功能点击</string>
 </resources>
