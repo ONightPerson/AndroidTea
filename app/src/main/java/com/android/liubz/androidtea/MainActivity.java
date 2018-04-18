@@ -30,6 +30,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v == mClickLaunchBtn) {
             Intent intent = new Intent(this, AccessibilityTestActivity.class);
+            
             AccessibilityJumpActivity.show(this, intent);
         }
     }
