@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.liubz.androidtea">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
-        android:allowBackup="true"
+        android:name=".TeaApplication"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -16,26 +28,86 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".service.accessibility.AccessibilityTestActivity"/>
-
-        <activity android:name=".service.accessibility.AccessibilityJumpActivity"
+        <activity android:name=".socket.SocketTestActivity" />
+        <activity android:name=".fragmentv1.FragmentV1Activity" />
+        <activity android:name=".fragmentv1.LoginActivity" />
+        <activity android:name=".fragmentv2.FragmentV2Activity" />
+        <activity android:name=".broadcasttest.BroadcastTestActivity" />
+        <activity android:name=".service.accessibility.AccessibilityTestActivity" />
+        <activity android:name=".persistence.PersistenceTestActivity" />
+        <activity android:name=".persistence.litepal.LitePalTestActivity" />
+        <activity android:name=".contentprovider.ContactsTestActivity" />
+        <activity android:name="network.NetworkTestActivity" />
+        <activity android:name=".music.client.MusicPlayActivity"/>
+        <activity android:name="info.lamatricexiste.network.ActivityMain"/>
+        <activity android:name="info.lamatricexiste.network.ActivityDiscovery"/>
+        <activity android:name="info.lamatricexiste.network.ActivityPortscan"/>
+        <activity android:name=".material.recycler.RecyclerViewTestActivity"/>
+        <activity android:name=".material.recycler.CardViewTestActivity"/>
+        <activity android:name=".material.toolbar.ToolbarTestActivity"/>
+        <activity android:name=".permissions.DangerousPermissionTestActivity"/>
+        <activity android:name=".material.MaterialTestActivity"/>
+        <activity android:name=".material.tablayout.TabLayoutTestActivity"/>
+        <activity android:name=".material.CoordinatorLayoutTestActivity"/>
+        <activity android:name=".material.CollapsingToolbarLayoutTestActivity"/>
+        <activity android:name=".material.CustomBehaviorTestActivity"/>
+        <activity android:name=".threadlearn.AsyncTaskTestActivity"/>
+        <activity android:name=".threadlearn.serialize.SerializableTestActivity"/>
+        <activity android:name=".interprocess.SecondActivity"
+            android:excludeFromRecents="true"
+            android:process=":background"
+            android:theme="@style/AppTheme.Transparent"/>
+        <activity android:name=".interprocess.ThirdActivity"
+            android:process="com.zhuzi.remote"/>
+        <activity
+            android:name=".service.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Transparent">
-
-        </activity>
+            android:theme="@style/AppTheme.Transparent" />
+        <activity android:name=".network.SignalStrengthTestActivity"/>
+        <activity android:name=".customview.ArcTestActivity"/>
+        <activity android:name=".customview.DrawDemo"/>
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
-                <action android:name="android.accessibilityservice.AccessibilityService"/>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
             </intent-filter>
 
             <meta-data
                 android:name="android.accessibilityservice"
-                android:resource="@xml/accessibilityservice"/>
+                android:resource="@xml/accessibilityservice" />
+        </service>
+
+        <service android:name=".threadlearn.MyIntentService"/>
+
+        <receiver
+            android:name=".broadcasttest.BootCompleteReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.android.liubz.androidtea"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:name=".music.MusicPlayService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":bg">
+
         </service>
     </application>
 

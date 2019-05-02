@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/create_db"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="创建数据库"/>
+
+    <Button
+        android:id="@+id/add_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="插入表数据"/>
+
+    <Button
+        android:id="@+id/delete_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="删除表数据"/>
+
+    <Button
+        android:id="@+id/update_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="更新表"/>
+
+    <Button
+        android:id="@+id/query_table"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查询表"/>
+
+</LinearLayout>
