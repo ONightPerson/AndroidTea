@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="custom_view_arc_width">11dp</dimen>
+    <dimen name="custom_view_inner_progress_width">36.5dp</dimen>
+    <dimen name="custom_view_bg_width">270dp</dimen>
+    <dimen name="custom_view_outer_progress_width">2.5dp</dimen>
+
+
+</resources>
