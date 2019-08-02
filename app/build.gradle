@@ -12,10 +12,24 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     useLibrary 'org.apache.http.legacy'
+
+    flavorDimensions "version"
+    productFlavors {
+        user {
+            applicationId "com.android.liubz.androidtea.user"
+            dimension = 'version'
+            signingConfig signingConfigs.debug
+        }
+
+        developer {
+            applicationId "com.android.liubz.androidtea.developer"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     buildToolsVersion '28.0.3'

@@ -7,15 +7,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.liubz.androidtea.customview.ArcTestActivity;
-import com.android.liubz.androidtea.network.SignalStrengthTestActivity;
+import com.android.liubz.androidtea.customview.ViewPropertyActivity;
+import com.android.liubz.androidtea.music.MusicPlayService;
+import com.android.liubz.androidtea.socket.SocketTestActivity;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Calendar;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -27,10 +33,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e(TAG, "onCreate: begin");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        startActivity(new Intent(this, SocketTestActivity.class));
         initViews();
+        Log.e(TAG, "onCreate: end");
+
     }
 
     private void initViews() {
@@ -42,6 +52,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
+            startService(new Intent(this, MusicPlayService.class));
 //            Intent intent = new Intent(this, AccessibilityTestActivity.class);
 //
 //            AccessibilityJumpActivity.show(this, intent);
@@ -51,8 +62,34 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            Intent intent = new Intent(this, AccessibilityTestActivity.class);
 //            AccessibilityJumpActivity.show(this, intent);
 
-            Intent intent = new Intent(this, ArcTestActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(this, ViewPropertyActivity.class);
+//
+//            Log.e(TAG, "onClick: " + Environment.getExternalStorageDirectory().getAbsolutePath());
+//
+//            Worker worker = new Worker();
+//            worker.name = "j";
+//            Log.i(TAG, "onClick: worker: " + worker);
+//            intent.putExtra("extra.worker", worker);
+//            startActivity(intent);
+//
+//            Calendar calendar = Calendar.getInstance();
+//            Log.i(TAG, "onClick: calendar: " + "\n"
+//                    + "era: " + calendar.get(Calendar.ERA) + "\n"
+//                    + "year: " + calendar.get(Calendar.YEAR) + "\n"
+//                    + "month: " + calendar.get(Calendar.MONTH) + "\n"
+//                    + "week of year: " + calendar.get(Calendar.WEEK_OF_YEAR) + "\n"
+//                    + "week of month: " + calendar.get(Calendar.WEEK_OF_MONTH) + "\n"
+//                    + "date: " + calendar.get(Calendar.DATE) + "\n" // same as DAY_OF_MONTH
+//                    + "day of month: " + calendar.get(Calendar.DAY_OF_MONTH) + "\n"
+//                    + "day of year: " + calendar.get(Calendar.DAY_OF_YEAR) + "\n"
+//                    + "day of week: " + calendar.get(Calendar.DAY_OF_WEEK) + "\n"
+//                    + "day of week in month: " + calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) + "\n"
+//                    + "am or pm: " + calendar.get(Calendar.AM_PM) + "\n"
+//                    + "hour: " + calendar.get(Calendar.HOUR) + "\n"
+//                    + "hour of day: " + calendar.get(Calendar.HOUR_OF_DAY) + "\n"
+//                    + "MINUTE: " + calendar.get(Calendar.MINUTE) + "\n"
+//                    + "second: " + calendar.get(Calendar.SECOND) + "\n"
+//                    + "MILLISECOND: " + calendar.get(Calendar.MILLISECOND) + "\n");
 //            Log.i(TAG, "bluetooth address: " + getBtAddressByReflection());
 //            Log.e(TAG, "bluetooth address: " + BluetoothAdapter.getDefaultAdapter().getAddress());
 
@@ -93,6 +130,10 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //            intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
 //            startActivityForResult(intent, TAKE_PHOTO);
+
+//            validateFilePathNull();
+//            Log.i(TAG, "onClick: path1: " + getExternalFilesDir(null)
+//                    + ", path2: " + getExternalFilesDir(Environment.DIRECTORY_MOVIES));
 
         }
     }
@@ -143,5 +184,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    private void validateFilePathNull() {
+        String path = null;
+        File file = new File(path);
+        if (file.exists()) {
+            return;
+        }
     }
 }

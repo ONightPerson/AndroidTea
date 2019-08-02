@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.android.liubz.androidtea.R;
+import com.android.liubz.androidtea.Worker;
 import com.android.liubz.androidtea.interprocess.SecondActivity;
 
 public class ArcTestActivity extends Activity implements View.OnClickListener {
@@ -23,6 +24,9 @@ public class ArcTestActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_arc_test);
 
+        Worker worker = (Worker) getIntent().getSerializableExtra("extra.worker");
+
+        Log.i(TAG, "onCreate: worker: " + worker);
         initViews();
     }
 

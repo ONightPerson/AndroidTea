@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.android.liubz.androidtea">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,14 +20,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".socket.SocketTestActivity" />
+        <activity android:name=".socket.SocketTestActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".fragmentv1.FragmentV1Activity" />
         <activity android:name=".fragmentv1.LoginActivity" />
         <activity android:name=".fragmentv2.FragmentV2Activity" />
@@ -64,8 +65,10 @@
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Transparent" />
         <activity android:name=".network.SignalStrengthTestActivity"/>
-        <activity android:name=".customview.ArcTestActivity"/>
+        <activity android:name=".customview.ArcTestActivity"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".customview.DrawDemo"/>
+        <activity android:name=".customview.ViewPropertyActivity"/>
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"

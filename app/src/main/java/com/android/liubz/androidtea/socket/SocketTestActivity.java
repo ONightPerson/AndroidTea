@@ -1,6 +1,7 @@
 package com.android.liubz.androidtea.socket;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,11 +25,12 @@ public class SocketTestActivity extends Activity implements View.OnClickListener
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.e(TAG, "onCreate: begin");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_socket_test);
-
         initViews();
         startServer();
+        Log.e(TAG, "onCreate: end");
     }
 
     private void initViews() {
