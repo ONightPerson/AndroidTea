@@ -7,23 +7,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.liubz.androidtea.customview.ViewPropertyActivity;
-import com.android.liubz.androidtea.music.MusicPlayService;
-import com.android.liubz.androidtea.safeurl.SafeUrlActivity;
-import com.android.liubz.androidtea.safeurl.SafeUrlConstants;
-import com.android.liubz.androidtea.socket.SocketTestActivity;
-
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Calendar;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -54,7 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, SafeUrlActivity.class));
+//            startActivity(new Intent(this, SafeUrlActivity.class));
 //            startService(new Intent(this, MusicPlayService.class));
 //            Intent intent = new Intent(this, AccessibilityTestActivity.class);
 //
