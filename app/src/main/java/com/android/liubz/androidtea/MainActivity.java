@@ -14,6 +14,8 @@ import android.widget.Button;
 
 import com.android.liubz.androidtea.customview.ViewPropertyActivity;
 import com.android.liubz.androidtea.music.MusicPlayService;
+import com.android.liubz.androidtea.safeurl.SafeUrlActivity;
+import com.android.liubz.androidtea.safeurl.SafeUrlConstants;
 import com.android.liubz.androidtea.socket.SocketTestActivity;
 
 import java.io.File;
@@ -52,7 +54,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startService(new Intent(this, MusicPlayService.class));
+            startActivity(new Intent(this, SafeUrlActivity.class));
+//            startService(new Intent(this, MusicPlayService.class));
 //            Intent intent = new Intent(this, AccessibilityTestActivity.class);
 //
 //            AccessibilityJumpActivity.show(this, intent);

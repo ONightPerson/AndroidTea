@@ -69,6 +69,8 @@
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name=".customview.DrawDemo"/>
         <activity android:name=".customview.ViewPropertyActivity"/>
+        <activity android:name=".TVDemoActivity"/>
+        <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"
