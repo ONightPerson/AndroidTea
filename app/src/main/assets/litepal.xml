@@ -24,7 +24,7 @@
     <!--
     	Define your models in the list with mapping tag, LitePal will
     	create tables for each mapping class. The supported fields
-    	defined in models will be mapped into columns.
+    	defined in models will be mapped into exercises.
     	For example:
     	<list>
     		<mapping class="com.test.model.Reader" />
