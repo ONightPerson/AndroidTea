@@ -21,6 +21,7 @@ public class Teacher implements Runnable {
             while (!Thread.currentThread().isInterrupted()) {
                 synchronized (mClassRoom.buffer) {
                     while (mClassRoom.buffer.isExercisesFull()) {
+                        // 当该对象无其他线程持有监视器锁时，首次该线程可获取该锁
                         mClassRoom.buffer.wait();
                     }
                     boolean isTestAreaEmpty = mClassRoom.buffer.isExercisesEmpty();
