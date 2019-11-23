@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import com.android.liubz.androidtea.java.decrypt.DecryptUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -128,7 +130,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            validateFilePathNull();
 //            Log.i(TAG, "onClick: path1: " + getExternalFilesDir(null)
 //                    + ", path2: " + getExternalFilesDir(Environment.DIRECTORY_MOVIES));
-
+//            DecryptUtils.decryptData(this);
+            Log.i(TAG, "onClick: " + getExternalFilesDir(Environment.DIRECTORY_MUSIC));
         }
     }
 
