@@ -1,18 +1,36 @@
 package com.android.liubz.androidtea.java.concurrent.lock;
 
-import java.util.concurrent.locks.LockSupport;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by liubaozhu on 2019-11-04
  */
 public class LockTest {
 
-    public void testPark() {
-        LockSupport.park(this);
-    }
     public static void main(String[] args) throws InterruptedException {
 
-        LockTest test = new LockTest();
-        test.testPark();
+
+
+
+    }
+
+    private static void print() {
+        ReentrantLock lock = new ReentrantLock(true);
+        Condition condition = lock.newCondition();
+
+        lock.lock();  // 上锁
+        try {
+            System.out.println("begin waiting");
+            condition.await();
+            System.out.println("finish waiting");
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
+
+        lock.lock();
+
     }
 }

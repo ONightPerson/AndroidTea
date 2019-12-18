@@ -173,6 +173,7 @@
     <string name="network_signal_strength_task_cancel">强度测试取消</string>
     <string name="network_signal_strength_time_remain">剩余时间: %d s</string>
     <string name="get_model_from_tv">获取型号</string>
+    <string name="notification_channel_default_name">默认</string>
 
 
     <string-array name="method_discover_name">

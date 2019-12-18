@@ -8,10 +8,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.android.liubz.androidtea.java.decrypt.DecryptUtils;
+import com.android.liubz.androidtea.interprocess.ThirdActivity;
+import com.android.liubz.androidtea.multimedia.NotificationUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -25,6 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     private Button mClickLaunchBtn;
     private Uri mImageUri;
+
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +135,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            Log.i(TAG, "onClick: path1: " + getExternalFilesDir(null)
 //                    + ", path2: " + getExternalFilesDir(Environment.DIRECTORY_MOVIES));
 //            DecryptUtils.decryptData(this);
-            Log.i(TAG, "onClick: " + getExternalFilesDir(Environment.DIRECTORY_MUSIC));
+//            Intent intent = new Intent(this, ThirdActivity.class);
+//            startActivity(intent);
+//            NotificationUtils.sendNotification(this);
+            String encodedString = Base64.encodeToString("whoislcj".getBytes(), Base64.DEFAULT);
+            Log.e("Base64", "Base64---->" + encodedString);
+
+            String decodedString =new String(Base64.decode(encodedString,Base64.DEFAULT));
+            Log.e("Base64", "Base64---->" + decodedString);
         }
     }
 
