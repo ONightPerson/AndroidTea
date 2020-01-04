@@ -20,7 +20,7 @@ public class Ping {
             // TODO: Use ProcessBuilder ?
             Runtime.getRuntime().exec(String.format(CMD, host));
         } catch (Exception e) {
-            Log.e(TAG, "Can't use native ping: " + e.getMessage());
+            Log.e(TAG, "Can'first use native ping: " + e.getMessage());
             try {
                 if (InetAddress.getByName(host).isReachable(TIMEOUT)) {
                     Log.i(TAG, "Using Java ICMP request instead ...");

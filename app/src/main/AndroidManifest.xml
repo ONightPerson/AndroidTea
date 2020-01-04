@@ -73,6 +73,7 @@
         <activity android:name=".customview.ViewPropertyActivity"/>
         <activity android:name=".TVDemoActivity"/>
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
+        <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs"/>
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"

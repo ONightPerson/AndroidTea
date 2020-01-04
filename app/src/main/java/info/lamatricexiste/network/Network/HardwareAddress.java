@@ -57,7 +57,7 @@ public class HardwareAddress {
                 Log.e(TAG, "ip is null");
             }
         } catch (IOException e) {
-            Log.e(TAG, "Can't open/read file ARP: " + e.getMessage());
+            Log.e(TAG, "Can'first open/read file ARP: " + e.getMessage());
             return hw;
         } finally {
             try {

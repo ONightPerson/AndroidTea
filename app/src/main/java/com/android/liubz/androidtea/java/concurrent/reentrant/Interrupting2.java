@@ -14,7 +14,7 @@ public class Interrupting2 {
         ExecutorService exec = Executors.newSingleThreadExecutor();
         Future<?> f = exec.submit(new ReentrantBlocked());
         TimeUnit.SECONDS.sleep(3);
-        System.out.println("Issuing t.interrupt()");
+        System.out.println("Issuing first.interrupt()");
         f.cancel(true);
     }
 }

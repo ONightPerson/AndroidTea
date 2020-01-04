@@ -21,7 +21,7 @@ import java.nio.charset.Charset;
 public class DecryptUtils {
     private static final String TAG = "DecryptUtils";
     private static final String CipherMode = "AES/CFB/NoPadding";
-    private static final String CN_TXT = "/Users/liubaozhu/CommonRepo/AndroidTea/app/src/main/java/com/android/liubz/androidtea/java/decrypt/cn.txt";
+    private static final String CN_TXT = "/Users/liubaozhu/CommonRepo/AndroidTea/app/src/my_main/java/com/android/liubz/androidtea/java/decrypt/cn.txt";
 
 
     public static void main(String[] args) {

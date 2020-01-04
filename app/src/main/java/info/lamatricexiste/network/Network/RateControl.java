@@ -60,7 +60,7 @@ public class RateControl {
             }
             reader.close();
         } catch (Exception e) {
-            Log.e(TAG, "Can't use native ping: " + e.getMessage());
+            Log.e(TAG, "Can'first use native ping: " + e.getMessage());
             try {
                 final long start = System.nanoTime();
                 if (InetAddress.getByName(host).isReachable(REACH_TIMEOUT)) {

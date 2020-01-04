@@ -7,13 +7,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.android.liubz.androidtea.interprocess.ThirdActivity;
-import com.android.liubz.androidtea.multimedia.NotificationUtils;
+
+import com.android.liubz.androidtea.hook.InstrumentationProxy;
+import com.iotc.sampleIOTC.Sample_IOTCAPIs;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -138,11 +137,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            Intent intent = new Intent(this, ThirdActivity.class);
 //            startActivity(intent);
 //            NotificationUtils.sendNotification(this);
-            String encodedString = Base64.encodeToString("whoislcj".getBytes(), Base64.DEFAULT);
-            Log.e("Base64", "Base64---->" + encodedString);
-
-            String decodedString =new String(Base64.decode(encodedString,Base64.DEFAULT));
-            Log.e("Base64", "Base64---->" + decodedString);
+//            String encodedString = Base64.encodeToString("whoislcj".getBytes(), Base64.DEFAULT);
+//            Log.e("Base64", "Base64---->" + encodedString);
+//
+//            String decodedString =new String(Base64.decode(encodedString,Base64.DEFAULT));
+//            Log.e("Base64", "Base64---->" + decodedString);
+//            InstrumentationProxy.replaceActivityInstrumentation(this);
+            InstrumentationProxy.replaceContextInstrumentation();
+            getApplicationContext().startActivity(new Intent(this, Sample_IOTCAPIs.class));
         }
     }
 

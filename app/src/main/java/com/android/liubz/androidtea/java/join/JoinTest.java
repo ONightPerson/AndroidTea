@@ -40,7 +40,7 @@ public class JoinTest {
         try {
             threadA.join();
         } catch (InterruptedException e) {
-            System.out.println("main thread: " + e);
+            System.out.println("my_main thread: " + e);
         }
 
     }

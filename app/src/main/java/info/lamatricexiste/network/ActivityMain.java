@@ -41,7 +41,7 @@ final public class ActivityMain extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-        setContentView(R.layout.main);
+        setContentView(R.layout.my_main);
         setTitle(R.string.app_loading);
         final Context ctxt = this;
         prefs = PreferenceManager.getDefaultSharedPreferences(ctxt);

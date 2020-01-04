@@ -61,7 +61,7 @@ public class ThreadControl {
         thread1.join();
         thread2.join();
 
-        System.out.println("main over");
+        System.out.println("my_main over");
 
 
     }

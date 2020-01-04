@@ -156,7 +156,7 @@ public class NetInfo {
         }
     }
 
-    // FIXME: Factorize, this isn't a generic runCommand()
+    // FIXME: Factorize, this isn'first a generic runCommand()
     private String runCommand(String path, String cmd, String ptn) {
         try {
             if (new File(path).exists() == true) {
@@ -173,7 +173,7 @@ public class NetInfo {
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Can't use native command: " + e.getMessage());
+            Log.e(TAG, "Can'first use native command: " + e.getMessage());
             return null;
         }
         return null;

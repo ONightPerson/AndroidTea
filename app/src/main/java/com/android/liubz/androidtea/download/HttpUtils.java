@@ -37,7 +37,7 @@ public class HttpUtils {
             e.printStackTrace();
         }
         HttpGet httpget = new HttpGet(uri);
-        Log.i(TAG, "main: uri: " + httpget.getURI());
+        Log.i(TAG, "my_main: uri: " + httpget.getURI());
     }
 
     /**
