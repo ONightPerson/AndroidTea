@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class GoldProblem {
 
     public static void main(String[] args) {
-        Pair<Integer, Integer> result = getMinMaxWeights(new int[] {333, 4, 3, 232, 563, 89});
+        Pair<Integer, Integer> result = getMinMaxWeights(new int[]{333, 4, 3, 232, 563, 89});
         System.out.println(result);
     }
 

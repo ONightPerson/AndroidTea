@@ -74,6 +74,9 @@
         <activity android:name=".TVDemoActivity"/>
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
         <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs"/>
+        <activity android:name="com.philips.lighting.quickstart.MyApplicationActivity"/>
+        <activity android:name="com.philips.lighting.quickstart.PHHomeActivity"/>
+        <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity"/>
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"

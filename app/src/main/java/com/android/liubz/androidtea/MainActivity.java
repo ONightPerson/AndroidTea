@@ -7,12 +7,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.android.liubz.androidtea.hook.InstrumentationProxy;
 import com.iotc.sampleIOTC.Sample_IOTCAPIs;
+import com.philips.lighting.quickstart.MyApplicationActivity;
+import com.philips.lighting.quickstart.PHHomeActivity;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -143,8 +146,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //            String decodedString =new String(Base64.decode(encodedString,Base64.DEFAULT));
 //            Log.e("Base64", "Base64---->" + decodedString);
 //            InstrumentationProxy.replaceActivityInstrumentation(this);
-            InstrumentationProxy.replaceContextInstrumentation();
-            getApplicationContext().startActivity(new Intent(this, Sample_IOTCAPIs.class));
+//            InstrumentationProxy.replaceContextInstrumentation();
+//            getApplicationContext().startActivity(new Intent(this, Sample_IOTCAPIs.class));
+
+            // Hue Bridge
+//            startActivity(new Intent(this, PHHomeActivity.class));
+
+            Log.i(TAG, "onClick: " + Environment.getExternalStorageDirectory());
         }
     }
 
