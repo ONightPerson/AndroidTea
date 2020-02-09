@@ -12,7 +12,9 @@ public class SortUtils {
 //        shellSort(new int[] {5, 8, 9, 3, 6});
 //        mergeSort(new int[] {5, 8, 9, 3, 6});
 //        heapSort(new int[] {5, 8, 9, 3, 6});
-        countingSort(new int[] {5, 8, 9, 3, 6});
+//        countingSort(new int[] {5, 8, 9, -3, 6});
+//        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
+        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
     }
 
     /**
@@ -279,6 +281,81 @@ public class SortUtils {
             }
         }
         return new int[] {min, max};
+    }
+
+    /**
+     *
+     * @param arr 待排序数组
+     * @param bucketSize 桶大小
+     */
+    public static void bucketSort(int[] arr, int bucketSize) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+        int[] minMax = getMinMax(arr);
+        doBucketSort(arr, bucketSize, minMax[0], minMax[1]);
+        output(arr);
+    }
+
+    private static void doBucketSort(int[] arr, int bucketSize, int min, int max) {
+        int bucketLen = (max - min) / bucketSize + 1; // 获取桶数量
+        int[][] bucket = new int[bucketLen][0]; // 组装桶
+
+        // 向各个桶发送数字
+        for (int i = 0; i < arr.length; i++) {
+            int index = (max - arr[i]) / bucketSize;
+            bucket[index] = extendArr(bucket[index], arr[i]);
+        }
+
+        int startIndex = 0;
+        for (int i = 0; i < bucketLen; i++) {
+            int[] eleArr = bucket[i];
+            if (eleArr.length <= 0) {
+                continue;
+            }
+            insertionSort(eleArr);
+            for (int j = 0; j < eleArr.length; j++) {
+                arr[startIndex++] = eleArr[j];
+            }
+        }
+    }
+
+    private static int[] extendArr(int[] arr, int value) {
+        int[] result = Arrays.copyOf(arr, arr.length + 1);
+        result[arr.length] = value;
+        return result;
+    }
+
+    /**
+     * 基数排序
+     * @param arr
+     */
+    public static void radixSort(int[] arr, int digit) {
+        if (arr == null || arr.length == 0) {
+            return;
+        }
+        int total = digit;
+        while (digit != 0) {
+            int[][] bucket = new int[10][0];
+            for (int i = 0; i < arr.length; i++) {
+                int index = arr[i] / ((int) Math.pow(10, total - digit)) % 10;
+                bucket[index] = extendArr(bucket[index], arr[i]);
+            }
+
+
+            int startIndex = 0;
+            for (int i = 0; i < 10; i++) {
+                int subLen = bucket[i].length;
+                if (subLen <= 0) {
+                    continue;
+                }
+                for (int j = 0; j < subLen; j++) {
+                    arr[startIndex++] = bucket[i][j];
+                }
+            }
+            digit--;
+        }
+        output(arr);
     }
 
 
