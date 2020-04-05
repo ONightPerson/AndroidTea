@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.android.liubz.androidtea.hook.InstrumentationProxy;
+import com.android.liubz.androidtea.plugin.ClassLoaderTestActivity;
 import com.iotc.sampleIOTC.Sample_IOTCAPIs;
 import com.philips.lighting.quickstart.MyApplicationActivity;
 import com.philips.lighting.quickstart.PHHomeActivity;
@@ -53,106 +54,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-//            startActivity(new Intent(this, SafeUrlActivity.class));
-//            startService(new Intent(this, MusicPlayService.class));
-//            Intent intent = new Intent(this, AccessibilityTestActivity.class);
-//
-//            AccessibilityJumpActivity.show(this, intent);
-//            Intent intent = new Intent(Intent.ACTION_VIEW);
-//            intent.setData(Uri.parse("https://www.baidu.com"));
-//            startActivity(intent);
-//            Intent intent = new Intent(this, AccessibilityTestActivity.class);
-//            AccessibilityJumpActivity.show(this, intent);
+            startActivity(new Intent(this, ClassLoaderTestActivity.class));
 
-//            Intent intent = new Intent(this, ViewPropertyActivity.class);
-//
-//            Log.e(TAG, "onClick: " + Environment.getExternalStorageDirectory().getAbsolutePath());
-//
-//            Worker worker = new Worker();
-//            worker.name = "j";
-//            Log.i(TAG, "onClick: worker: " + worker);
-//            intent.putExtra("extra.worker", worker);
-//            startActivity(intent);
-//
-//            Calendar calendar = Calendar.getInstance();
-//            Log.i(TAG, "onClick: calendar: " + "\n"
-//                    + "era: " + calendar.get(Calendar.ERA) + "\n"
-//                    + "year: " + calendar.get(Calendar.YEAR) + "\n"
-//                    + "month: " + calendar.get(Calendar.MONTH) + "\n"
-//                    + "week of year: " + calendar.get(Calendar.WEEK_OF_YEAR) + "\n"
-//                    + "week of month: " + calendar.get(Calendar.WEEK_OF_MONTH) + "\n"
-//                    + "date: " + calendar.get(Calendar.DATE) + "\n" // same as DAY_OF_MONTH
-//                    + "day of month: " + calendar.get(Calendar.DAY_OF_MONTH) + "\n"
-//                    + "day of year: " + calendar.get(Calendar.DAY_OF_YEAR) + "\n"
-//                    + "day of week: " + calendar.get(Calendar.DAY_OF_WEEK) + "\n"
-//                    + "day of week in month: " + calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH) + "\n"
-//                    + "am or pm: " + calendar.get(Calendar.AM_PM) + "\n"
-//                    + "hour: " + calendar.get(Calendar.HOUR) + "\n"
-//                    + "hour of day: " + calendar.get(Calendar.HOUR_OF_DAY) + "\n"
-//                    + "MINUTE: " + calendar.get(Calendar.MINUTE) + "\n"
-//                    + "second: " + calendar.get(Calendar.SECOND) + "\n"
-//                    + "MILLISECOND: " + calendar.get(Calendar.MILLISECOND) + "\n");
-//            Log.i(TAG, "bluetooth address: " + getBtAddressByReflection());
-//            Log.e(TAG, "bluetooth address: " + BluetoothAdapter.getDefaultAdapter().getAddress());
-
-//            Log.i(TAG, "onClick: filepath:" + getFilesDir().getAbsolutePath() + "/");
-
-//            Intent intent = new Intent(this, SignalStrengthTestActivity.class);
-//            startActivity(intent);
-//
-//            String IP = "192.168.31.143";
-//            try {
-//                Process p = Runtime.getRuntime().exec("ping -c 1 -W 1 " + IP);
-//                int status = p.waitFor();
-//                Log.e(TAG, "status: " + status);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
-//            Intent intent = new Intent(this, MyIntentService.class);
-//            intent.putExtra("task_action", "task1");
-//            startService(intent);
-//
-//            Intent intent1 = new Intent(this, MyIntentService.class);
-//            intent1.putExtra("task_action", "task2");
-//            startService(intent1);
-//
-//
-//            Intent intent2 = new Intent(this, MyIntentService.class);
-//            intent2.putExtra("task_action", "task3");
-//            startService(intent2);
-
-
-//            UDPScanner.doScan(this);
-
-//            mImageUri = ImageUtils.getImageUri(this, "output_image.jpg");
-//            // 启动相机程序
-//            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-//            startActivityForResult(intent, TAKE_PHOTO);
-
-//            validateFilePathNull();
-//            Log.i(TAG, "onClick: path1: " + getExternalFilesDir(null)
-//                    + ", path2: " + getExternalFilesDir(Environment.DIRECTORY_MOVIES));
-//            DecryptUtils.decryptData(this);
-//            Intent intent = new Intent(this, ThirdActivity.class);
-//            startActivity(intent);
-//            NotificationUtils.sendNotification(this);
-//            String encodedString = Base64.encodeToString("whoislcj".getBytes(), Base64.DEFAULT);
-//            Log.e("Base64", "Base64---->" + encodedString);
-//
-//            String decodedString =new String(Base64.decode(encodedString,Base64.DEFAULT));
-//            Log.e("Base64", "Base64---->" + decodedString);
-//            InstrumentationProxy.replaceActivityInstrumentation(this);
-//            InstrumentationProxy.replaceContextInstrumentation();
-//            getApplicationContext().startActivity(new Intent(this, Sample_IOTCAPIs.class));
-
-            // Hue Bridge
-//            startActivity(new Intent(this, PHHomeActivity.class));
-
-            Log.i(TAG, "onClick: " + Environment.getExternalStorageDirectory());
         }
     }
 

@@ -1,9 +1,19 @@
 package com.android.liubz.androidtea.java.interview.sort;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SortUtils {
 
+    private static final int KEY = 171;
+
+    private static final String SYSTEM_GET_SYSINFO = "\"system\":{\"get_sysinfo\":{}}";
+    private static final String GET_SYSINFO = "{" + SYSTEM_GET_SYSINFO + "}";
+
+    private static final String pjlink_DISCOVERY_MSG = "2532535243480d";
+
+    private static final String ONKYO_DISCOVERY_MSG = "49534350000000100000000901000000217845434e5153544e";
     public static void main(String[] args) {
 //        bubbleSort(new int[] {5, 8, 9, 3, 6});
 //        selectionSort(new int[] {5, 8, 9, 3, 6});
@@ -14,7 +24,51 @@ public class SortUtils {
 //        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
-        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
+//        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
+        test();
+        test1();
+    }
+
+    private static void test1() {
+        String s = new String(hexStringToByteArray(ONKYO_DISCOVERY_MSG));
+        System.out.println(s);
+    }
+
+    public static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i + 1), 16));
+        }
+        return data;
+    }
+
+    /**
+     * Encrypts the string into a byte array.
+     *
+     * @param string String to encrypt
+     * @return byte array with encrypted string
+     */
+    public static byte[] encrypt(String string) {
+        byte[] buffer = new byte[string.length()];
+        byte key = (byte) KEY;
+        for (int i = 0; i < string.length(); i++) {
+            buffer[i] = (byte) (string.charAt(i) ^ key);
+            key = buffer[i];
+        }
+        return buffer;
+    }
+
+    private static void test() {
+        String s = " ";
+        System.out.println("char:" + (s.charAt(0) - 0) + "fefe");
+
+        String[][] DICT =  {{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+            {"", "M", "MM", "MMM"}};
+        System.out.println(DICT[3][3]);
     }
 
     /**

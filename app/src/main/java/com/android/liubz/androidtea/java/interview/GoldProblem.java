@@ -9,8 +9,13 @@ import java.util.Arrays;
 public class GoldProblem {
 
     public static void main(String[] args) {
-        Pair<Integer, Integer> result = getMinMaxWeights(new int[]{333, 4, 3, 232, 563, 89});
-        System.out.println(result);
+//        Pair<Integer, Integer> result = getMinMaxWeights(new int[]{333, 4, 3, 232, 563, 89});
+//        System.out.println(result);
+        String a = "sslbd";
+        String b = "lbd";
+        System.out.println(a.indexOf(b));
+
+        System.out.println(null + "fefe");
     }
 
 

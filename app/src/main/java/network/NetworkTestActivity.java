@@ -12,7 +12,7 @@ public class NetworkTestActivity extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_network_test);
+        setContentView(R.layout.activity_classloader_test);
 
         WebView webView = findViewById(R.id.webview);
         NetWorkUtils.show(webView, "http://www.baidu.com");
