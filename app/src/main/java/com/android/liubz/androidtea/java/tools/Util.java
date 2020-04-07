@@ -23,7 +23,7 @@ public final class Util {
 
     public static void main(String[] args) {
         try {
-            System.out.println(readApkModifyTime(new FileInputStream(new File("/Users/liubaozhu/baidu/mobilesecurity/YhdsSafeUrl/app/build/outputs/apk/release/app-release.apk"))));
+            System.out.println(readApkModifyTime(new FileInputStream(new File("ff"))));
         } catch (IOException e) {
             e.printStackTrace();
         }
