@@ -13,7 +13,7 @@ public class LastMotifiedTest {
 
         System.out.println("--------------------");
         // Read the file
-        File file = new File("/Users/liubaozhu/baidu/mobilesecurity/YhdsSafeUrl/app/build/outputs/apk/release/app-release.apk");
+        File file = new File("/Users/liubaozhu/Downloads/app-release.apk");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateFormat = sdf.format(file.lastModified());
 

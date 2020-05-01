@@ -4,12 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#FF0000"
     tools:context="com.android.liubz.androidtea.MainActivity">
 
-    <Button
-        android:id="@+id/click_to_launch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/accessibility_click_to_launch"/>
+    <View
+        android:id="@+id/title_bar"
+        style="@style/MyWidget.TitleBarContent"
+        android:background="#ff0000"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_white" >
+
+        <Button
+            android:id="@+id/click_to_launch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/accessibility_click_to_launch"/>
+    </LinearLayout>
 </LinearLayout>

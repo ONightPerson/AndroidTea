@@ -19,14 +19,10 @@ import java.util.Map;
  * 
  * @since 2013-5-22
  */
-public final class Util {
+public final class Utils {
 
     public static void main(String[] args) {
-        try {
-            System.out.println(readApkModifyTime(new FileInputStream(new File("ff"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
     
     private static ApplicationInfo sAppInfo = null;
@@ -36,7 +32,7 @@ public final class Util {
     /**
      * 构造函数
      */
-    private Util() {
+    private Utils() {
         // empty
     }
     

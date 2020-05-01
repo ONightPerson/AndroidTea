@@ -22,10 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"
+            android:theme="@style/MainTheme"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -78,6 +78,9 @@
         <activity android:name="com.philips.lighting.quickstart.PHHomeActivity"/>
         <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity"/>
         <activity android:name="com.android.liubz.androidtea.plugin.ClassLoaderTestActivity"/>
+        <activity android:name="com.android.liubz.androidtea.layout.PercentLayoutTestActivity"/>
+        <activity android:name="com.android.liubz.androidtea.network.WebViewTestActivity" />
+        <activity android:name="com.android.liubz.androidtea.network.HttpUrlConnectionTestActivity" />
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"
