@@ -1,12 +1,6 @@
 package com.android.liubz.androidtea.network;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
-import android.widget.TextView;
-
-import com.android.liubz.androidtea.R;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,27 +10,31 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 /**
- * author: created by liubaozhu on 2020/5/1
+ * author: created by liubaozhu on 2020/5/2
  * email: liubaozhu@baidu.com
  */
-public class HttpUrlConnectionTestActivity extends Activity {
+public class HttpUtils {
+    private static final String TAG = "HttpUtils";
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_httpurlconnection_test);
+    public interface HttpRequestListener {
+        void onSuc(String response);
+        void onError(Exception e);
     }
 
-    public void getUrlContent(View view) {
-
+    public static void sendUrlConnRequest(String addr, HttpRequestListener listener) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 HttpURLConnection connection = null;
-                BufferedReader reader = null;
+                BufferedReader reader;
                 try {
-                    URL url = new URL("https://www.itranslater.com/qa/details/2122519459813393408");
+                    URL url = new URL(addr);
                     connection = (HttpURLConnection) url.openConnection();
                     connection.setRequestMethod("GET");
                     connection.setConnectTimeout(5000);
@@ -49,24 +47,29 @@ public class HttpUrlConnectionTestActivity extends Activity {
                     while ((line = reader.readLine()) != null) {
                         builder.append(line);
                     }
-                    showResponse(builder.toString());
-                } catch (MalformedURLException e) {
+                    listener.onSuc(builder.toString());
+                } catch (Exception e) {
                     e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    listener.onError(e);
+                } finally {
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
                 }
             }
         }).start();
-
     }
 
-    private void showResponse(String response) {
-        runOnUiThread(new Runnable() {
+    public static void sendOkHttpRequest(String url, Callback callback) {
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                TextView tv = findViewById(R.id.content);
-                tv.setText(response);
+                OkHttpClient client = new OkHttpClient();
+                Request.Builder builder = new Request.Builder();
+                builder.url(url).build();
+
+                client.newCall(builder.build()).enqueue(callback);
             }
-        });
+        }).start();
     }
 }

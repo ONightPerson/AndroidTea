@@ -3,10 +3,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+    configurations {
+        implementation.exclude group: 'org.jetbrains', module: 'annotations'
+    }
     defaultConfig {
         applicationId "com.android.liubz.androidtea"
         minSdkVersion 15
         targetSdkVersion 26
+
+        multiDexEnabled true
         versionCode 2
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -55,4 +60,7 @@ dependencies {
     //    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
     //    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
     implementation 'com.android.support:design:26.1.0'
+    // okhttp
+    implementation "com.squareup.okhttp3:okhttp:4.6.0"
+    implementation 'com.google.code.gson:gson:2.8.6'
 }

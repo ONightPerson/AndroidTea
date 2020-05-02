@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,9 +22,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.android.liubz.androidtea.layout.PercentLayoutTestActivity;
-import com.android.liubz.androidtea.network.HttpUrlConnectionTestActivity;
-import com.android.liubz.androidtea.network.WebViewTestActivity;
+import com.android.liubz.androidtea.network.HttpRequestTestActivity;
+import com.android.liubz.androidtea.threadlearn.AsyncTaskTestActivity;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -127,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, HttpUrlConnectionTestActivity.class));
+            startActivity(new Intent(this, AsyncTaskTestActivity.class));
 
         }
     }

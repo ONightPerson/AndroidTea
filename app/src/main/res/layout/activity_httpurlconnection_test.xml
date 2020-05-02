@@ -4,13 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.liubz.androidtea.network.HttpUrlConnectionTestActivity">
+    tools:context="com.android.liubz.androidtea.network.HttpRequestTestActivity">
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="获取内容"
-        android:onClick="getUrlContent" />
+        android:text="HttpUrlConnection获取内容"
+        android:onClick="httpUrlConnectionGetContent" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OkHttp获取内容"
+        android:onClick="okHttpGetContent"/>
 
     <ScrollView
         android:layout_width="match_parent"

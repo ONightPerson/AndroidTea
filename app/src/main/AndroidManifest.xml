@@ -80,7 +80,7 @@
         <activity android:name="com.android.liubz.androidtea.plugin.ClassLoaderTestActivity"/>
         <activity android:name="com.android.liubz.androidtea.layout.PercentLayoutTestActivity"/>
         <activity android:name="com.android.liubz.androidtea.network.WebViewTestActivity" />
-        <activity android:name="com.android.liubz.androidtea.network.HttpUrlConnectionTestActivity" />
+        <activity android:name="com.android.liubz.androidtea.network.HttpRequestTestActivity" />
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"
