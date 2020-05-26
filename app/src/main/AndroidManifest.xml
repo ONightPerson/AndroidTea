@@ -81,6 +81,8 @@
         <activity android:name="com.android.liubz.androidtea.layout.PercentLayoutTestActivity"/>
         <activity android:name="com.android.liubz.androidtea.network.WebViewTestActivity" />
         <activity android:name="com.android.liubz.androidtea.network.HttpRequestTestActivity" />
+        <activity android:name=".screenrecord.ScreenRecordDemo" />
+        <activity android:name=".screenrecord.ScreenRecordDemoActivity" />
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"

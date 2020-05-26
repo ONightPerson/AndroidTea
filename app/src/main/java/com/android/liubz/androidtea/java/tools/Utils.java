@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +24,6 @@ import java.util.Map;
 public final class Utils {
 
     public static void main(String[] args) {
-
     }
     
     private static ApplicationInfo sAppInfo = null;
@@ -43,7 +44,7 @@ public final class Utils {
      * 对于 eclipse 插件打包的 apk 不适用。文件 entry顺序不确定。
      * 
      * @param fis 
-     * @throws IOException 
+     * @throws IOException
      * @return 返回 {@link SimpleDateTime}
      */
     public static SimpleDateTime readApkModifyTime(InputStream fis) throws IOException {
@@ -58,9 +59,12 @@ public final class Utils {
         byte[] magicNumer = new byte[4]; // SUPPRESS CHECKSTYLE magic number
         fis.read(magicNumer);
         fis.read(hdrBuf, 0, hdrBuf.length);
+        System.out.println("magicNumer: " + Arrays.toString(magicNumer));
+        System.out.println("hdrBuf: " + Arrays.toString(hdrBuf));
         
         int time = peekShort(hdrBuf, LOCTIM - LOCVER);
         int modDate = peekShort(hdrBuf, LOCTIM - LOCVER + 2);
+        System.out.println("time: " + time + ", modDate: " + modDate);
         
         SimpleDateTime cal = new SimpleDateTime();
         /*

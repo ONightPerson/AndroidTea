@@ -62,5 +62,5 @@ dependencies {
     implementation 'com.android.support:design:26.1.0'
     // okhttp
     implementation "com.squareup.okhttp3:okhttp:4.6.0"
-    implementation 'com.google.code.gson:gson:2.8.6'
+//    implementation 'com.google.code.gson:gson:2.8.6'
 }

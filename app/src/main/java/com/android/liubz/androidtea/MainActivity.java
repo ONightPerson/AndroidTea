@@ -24,6 +24,8 @@ import android.widget.Button;
 
 import com.android.liubz.androidtea.network.HttpRequestTestActivity;
 import com.android.liubz.androidtea.threadlearn.AsyncTaskTestActivity;
+import com.android.liubz.androidtea.screenrecord.ScreenRecordDemo;
+import com.android.liubz.androidtea.screenrecord.ScreenRecordDemoActivity;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -63,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initViews();
         Log.e(TAG, "onCreate: end");
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i(TAG, "onStop: ");
     }
 
     private void initViews() {
@@ -125,8 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, AsyncTaskTestActivity.class));
-
+            startActivity(new Intent(this, ScreenRecordDemoActivity.class));
         }
     }
 
