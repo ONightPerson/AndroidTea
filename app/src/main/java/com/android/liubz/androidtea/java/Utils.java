@@ -1,5 +1,8 @@
 package com.android.liubz.androidtea.java;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Created by liubaozhu on 2019-12-16
  */
@@ -27,5 +30,18 @@ public class Utils {
             result[i / 2] = (byte) (Character.digit(hex.charAt(i), 16) << 4 + Character.digit(hex.charAt(i+1), 16));
         }
         return result;
+    }
+
+    public static String convertUrlToFilename(String str) {
+        // 只允许字母和数字
+        String regEx = "[^a-zA-Z0-9]";
+        // 清除掉所有特殊字
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.replaceAll("").trim();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(convertUrlToFilename("http://fewfefe.jpg"));
     }
 }
