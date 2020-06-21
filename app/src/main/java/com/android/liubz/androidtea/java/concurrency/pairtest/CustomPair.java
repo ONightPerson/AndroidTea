@@ -40,14 +40,14 @@ class CustomPair {
 
     public class PairNotEqualException extends RuntimeException {
 
-        public PairNotEqualException() {
-            super("Pair values not equal: " + CustomPair.this);
+        public PairNotEqualException(PairSafeManager pm) {
+            super(pm + " Pair values not equal: " + CustomPair.this);
         }
     }
 
-    public void checkState() {
+    public void checkState(PairSafeManager pm) {
         if (x != y) {
-            throw new PairNotEqualException();
+            throw new PairNotEqualException(pm);
         }
     }
 }

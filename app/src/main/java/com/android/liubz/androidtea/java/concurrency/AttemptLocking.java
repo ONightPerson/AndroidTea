@@ -53,7 +53,11 @@ public class AttemptLocking {
                 System.out.println("lock acquired");
             }
         }.start();
-        Thread.yield();
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         al.untimed();
         al.timed();
     }

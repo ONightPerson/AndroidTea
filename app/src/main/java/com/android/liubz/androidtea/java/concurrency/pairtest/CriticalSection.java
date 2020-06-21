@@ -3,6 +3,8 @@ package com.android.liubz.androidtea.java.concurrency.pairtest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created by liubaozhu on 2019-08-28
@@ -22,7 +24,7 @@ public class CriticalSection {
         exec.execute(checker2);
 
         try {
-            TimeUnit.MILLISECONDS.sleep(5000);
+            TimeUnit.SECONDS.sleep(5);
         } catch (InterruptedException e) {
             System.out.println("Sleep interrupted");
         }

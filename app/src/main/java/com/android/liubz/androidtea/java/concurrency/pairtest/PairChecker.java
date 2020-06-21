@@ -13,7 +13,7 @@ public class PairChecker implements Runnable {
     public void run() {
         while (true) {
             pm.checkCounter.incrementAndGet();
-            pm.getPair().checkState();
+            pm.getPair().checkState(pm);
         }
     }
 

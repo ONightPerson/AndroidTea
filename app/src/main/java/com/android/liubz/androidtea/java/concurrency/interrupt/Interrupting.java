@@ -21,7 +21,7 @@ public class Interrupting {
 
     public static void main(String[] args) throws Exception {
         test(new SleepBlocked());
-        test(new IOBlocked(System.in));
+        test(new IOTask(System.in));
         test(new SynchronizedBlocked());
         TimeUnit.SECONDS.sleep(3);
         System.out.println("Aborting with System.exit(0)");

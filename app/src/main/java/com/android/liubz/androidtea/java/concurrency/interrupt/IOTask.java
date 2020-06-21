@@ -1,23 +1,29 @@
 package com.android.liubz.androidtea.java.concurrency.interrupt;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by liubaozhu on 2019-09-07
  */
-class IOBlocked implements Runnable {
+class IOTask implements Runnable {
     private InputStream mIn;
 
-    public IOBlocked(InputStream in) {
+    public IOTask(InputStream in) {
         mIn = in;
     }
 
     @Override
     public void run() {
-        System.out.println("Waiting for read from System.in");
+        System.out.println("Waiting for read from input stream");
         try {
-            mIn.read();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(mIn));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println("read line: " + line);
+            }
         } catch (IOException e) {
             System.out.println(e);
             if (Thread.currentThread().isInterrupted()) {

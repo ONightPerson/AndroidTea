@@ -7,7 +7,7 @@ public class SerialNumberGenerator {
 
     private static volatile int mSerialNumber = 0;
 
-    public static int nextSerialNumber() {
+    public synchronized static int nextSerialNumber() {
         return mSerialNumber++; // Not thread-safe
     }
 }

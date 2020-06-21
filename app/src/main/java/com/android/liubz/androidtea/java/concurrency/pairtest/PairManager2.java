@@ -7,12 +7,12 @@ public class PairManager2 extends PairSafeManager {
 
     @Override
     public void increment() {
-//        CustomPair tmp;
+        CustomPair tmp;
         synchronized (this) {
             cp.incrementX();
             cp.incrementY();
-//            tmp = getPair();
+            tmp = getPair();
         }
-        store(getPair());
+        store(tmp);
     }
 }

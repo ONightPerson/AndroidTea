@@ -1,5 +1,6 @@
 package com.android.liubz.androidtea.java.concurrency.pairtest;
 
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -7,7 +8,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class ExplicitPairManager2 extends PairSafeManager {
 
-    private ReentrantLock mLock = new ReentrantLock();
+    private Lock mLock = new ReentrantLock();
+
     @Override
     public void increment() {
         CustomPair tmp;

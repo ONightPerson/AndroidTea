@@ -7,7 +7,7 @@ public class EvenGenerator extends IntGenerator {
     private int mCurValue = 0;
 
     @Override
-    public synchronized int next() {
+    public int next() {
         ++mCurValue;
         Thread.yield();
         ++mCurValue;
