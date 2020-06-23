@@ -2,7 +2,7 @@ package com.android.liubz.androidtea.layout;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.android.liubz.androidtea.R;
 

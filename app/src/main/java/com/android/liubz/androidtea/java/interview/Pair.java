@@ -1,6 +1,6 @@
 package com.android.liubz.androidtea.java.interview;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by liubaozhu on 2020-01-04

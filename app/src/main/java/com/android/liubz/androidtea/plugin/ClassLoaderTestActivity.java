@@ -2,12 +2,10 @@ package com.android.liubz.androidtea.plugin;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.TextView;
 
 import com.android.liubz.androidtea.R;
-
-import dalvik.system.DexClassLoader;
 
 /**
  * Created by liubaozhu on 2020-03-13

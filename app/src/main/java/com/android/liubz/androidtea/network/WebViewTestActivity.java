@@ -2,11 +2,10 @@ package com.android.liubz.androidtea.network;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.Base64;
 import android.view.KeyEvent;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.android.liubz.androidtea.R;
 

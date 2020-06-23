@@ -10,9 +10,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,9 +22,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.android.liubz.androidtea.network.HttpRequestTestActivity;
-import com.android.liubz.androidtea.threadlearn.AsyncTaskTestActivity;
-import com.android.liubz.androidtea.screenrecord.ScreenRecordDemo;
 import com.android.liubz.androidtea.screenrecord.ScreenRecordDemoActivity;
 
 import java.io.File;

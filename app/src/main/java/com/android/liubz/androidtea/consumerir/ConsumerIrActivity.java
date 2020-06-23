@@ -2,7 +2,7 @@ package com.android.liubz.androidtea.consumerir;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Created by liubaozhu on 2020/5/9
