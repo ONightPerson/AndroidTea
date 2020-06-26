@@ -5,16 +5,16 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by liubaozhu on 2019-08-06
  */
-public class LiftOffRunnable implements Runnable {
+public class LiftOff implements Runnable {
 
     protected int countDown = 10; // default
     private static int taskCount = 0;
     private final int id = taskCount++;
 
-    public LiftOffRunnable() {
+    public LiftOff() {
     }
 
-    public LiftOffRunnable(int countDown) {
+    public LiftOff(int countDown) {
         this.countDown = countDown;
     }
 
@@ -36,7 +36,7 @@ public class LiftOffRunnable implements Runnable {
     }
 
     public static void main(String[] args) {
-        new Thread(new LiftOffRunnable()).start();
-        new Thread(new LiftOffRunnable()).start();
+        new Thread(new LiftOff()).start();
+        new Thread(new LiftOff()).start();
     }
 }

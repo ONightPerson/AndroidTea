@@ -1,7 +1,5 @@
 package com.android.liubz.androidtea.java.concurrency.exercise;
 
-import com.android.liubz.androidtea.java.concurrency.LiftOffRunnable;
-
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

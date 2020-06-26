@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
  * author: created by liubaozhu on 2020/6/10
  * email: liubaozhu@baidu.com
  */
-public class SleepingTask extends LiftOffRunnable {
+public class SleepingTask extends LiftOff {
 
     @Override
     public void run() {
