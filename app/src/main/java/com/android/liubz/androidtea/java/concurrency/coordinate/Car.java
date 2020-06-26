@@ -7,32 +7,32 @@ import java.util.concurrent.TimeUnit;
  */
 public class Car {
 
-    public boolean waxOn;
+    private boolean waxOn;
 
     public synchronized void wax() throws InterruptedException {
         waxOn = true;
-//        System.out.println("waxing car");
+        System.out.println("start waxing");
         TimeUnit.MILLISECONDS.sleep(200);
+        System.out.println("finish waxing, ready to polish.");
         notifyAll();
     }
 
     public synchronized void polish() throws InterruptedException {
         waxOn = false;
-//        System.out.println("polishing car");
+        System.out.println("start polishing");
         TimeUnit.MILLISECONDS.sleep(150);
+        System.out.println("finish polishing, ready to wax.");
         notifyAll();
     }
 
     public synchronized void waitingToWax() throws InterruptedException {
-        if (waxOn == false) {
-//            System.out.println("waiting for waxing");
+        while (waxOn == false) {
             wait();
         }
     }
 
     public synchronized void waitingToPolish() throws InterruptedException {
-        if (waxOn = true) {
-//            System.out.println("waiting for polishing");
+        while (waxOn = true) {
             wait();
         }
     }

@@ -3,10 +3,10 @@ package com.android.liubz.androidtea.java.concurrency.coordinate;
 /**
  * Created by liubaozhu on 2019-09-08
  */
-public class Wax implements Runnable {
+public class PolishTask implements Runnable {
     private Car mCar;
 
-    public Wax(Car car) {
+    public PolishTask(Car car) {
         mCar = car;
     }
 
@@ -14,14 +14,11 @@ public class Wax implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                System.out.println("wax");
-                mCar.wax();
-                mCar.waitingToPolish();
+                mCar.waitingToWax();
+                mCar.polish();
             }
         } catch (InterruptedException e) {
-            System.out.println("exiting waxing operation via interrupt");
+            System.out.println("Exception occurs and exiting polishing task");
         }
-
-        System.out.println("Ending waxing task");
     }
 }

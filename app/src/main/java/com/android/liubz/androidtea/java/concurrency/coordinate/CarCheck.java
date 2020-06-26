@@ -12,10 +12,10 @@ public class CarCheck {
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
         Car car = new Car();
-        exec.execute(new Wax(car));
-        exec.execute(new Polish(car));
+        exec.execute(new WaxTask(car));
+        exec.execute(new PolishTask(car));
 
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
         exec.shutdownNow();
     }
 }
