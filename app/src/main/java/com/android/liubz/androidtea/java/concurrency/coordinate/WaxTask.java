@@ -1,5 +1,7 @@
 package com.android.liubz.androidtea.java.concurrency.coordinate;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by liubaozhu on 2019-09-08
  */
@@ -14,8 +16,12 @@ public class WaxTask implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                mCar.wax();
-                mCar.waitingToPolish();
+
+                System.out.println("start waxing");
+                TimeUnit.MILLISECONDS.sleep(200);
+                System.out.println("finish waxing");
+                mCar.notifyPolishing();
+                mCar.waitingForWaxing();
             }
         } catch (InterruptedException e) {
             System.out.println("exiting waxing operation via interrupt");

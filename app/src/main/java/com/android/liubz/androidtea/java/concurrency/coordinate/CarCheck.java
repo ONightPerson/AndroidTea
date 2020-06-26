@@ -11,11 +11,11 @@ public class CarCheck {
 
     public static void main(String[] args) throws InterruptedException {
         ExecutorService exec = Executors.newCachedThreadPool();
-        Car car = new Car();
+        Car car = new LockCar();
         exec.execute(new WaxTask(car));
         exec.execute(new PolishTask(car));
 
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(10);
         exec.shutdownNow();
     }
 }
