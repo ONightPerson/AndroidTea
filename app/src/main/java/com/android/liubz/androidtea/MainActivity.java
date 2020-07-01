@@ -22,6 +22,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.android.liubz.androidtea.launcher.DefaultLauncherTest;
 import com.android.liubz.androidtea.screenrecord.ScreenRecordDemoActivity;
 
 import java.io.File;
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, ScreenRecordDemoActivity.class));
+            startActivity(new Intent(this, DefaultLauncherTest.class));
         }
     }
 
