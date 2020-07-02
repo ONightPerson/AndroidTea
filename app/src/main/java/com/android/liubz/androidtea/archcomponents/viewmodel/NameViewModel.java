@@ -1,4 +1,4 @@
-package com.android.liubz.androidtea.archcomponents;
+package com.android.liubz.androidtea.archcomponents.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

@@ -9,6 +9,7 @@ versions.percentlayout = '1.0.0'
 versions.material = '1.1.0'
 versions.coordinatorlayout = '1.1.0'
 versions.lifecycle = '2.2.0'
+versions.room = '2.2.5'
 
 def androidx = [:]
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
