@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'android-apt'
 
 android {
     compileSdkVersion 29
@@ -46,24 +45,22 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation 'junit:junit:4.12'
+
+    implementation configs.androidx.appcompat
+    implementation configs.androidx.recyclerview
+    implementation configs.androidx.cardview
+    implementation configs.androidx.palette
+    implementation configs.androidx.percentlayout
+    implementation configs.androidx.coordinatorlayout
+    implementation configs.androidx.material
+    implementation configs.androidx.lifecycle_livedata
+    implementation configs.androidx.lifecycle_livedata_core
+    implementation configs.androidx.lifecycle_runtime
+    implementation configs.androidx.lifecycle_viewmodel
+
     implementation 'org.jetbrains:annotations-java5:15.0'
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.palette:palette:1.0.0'
-    implementation 'androidx.percentlayout:percentlayout:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-
     implementation 'org.litepal.android:java:3.0.0'
-    //    implementation "org.permissionsdispatcher:permissionsdispatcher:4.3.0"
-    //    annotationProcessor "org.permissionsdispatcher:permissionsdispatcher-processor:4.3.0"
-    implementation 'com.google.android.material:material:1.0.0'
-    // okhttp
     implementation "com.squareup.okhttp3:okhttp:4.6.0"
-//    implementation 'com.google.code.gson:gson:2.8.6'
+
+    testImplementation 'junit:junit:4.12'
 }

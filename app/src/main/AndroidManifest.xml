@@ -84,6 +84,7 @@
         <activity android:name=".screenrecord.ScreenRecordDemo" />
         <activity android:name=".screenrecord.ScreenRecordDemoActivity" />
         <activity android:name=".launcher.DefaultLauncherTest"/>
+        <activity android:name=".archcomponents.ShowNameActivity"/>
 
         <service
             android:name=".service.accessibility.MyAccessibilityService"

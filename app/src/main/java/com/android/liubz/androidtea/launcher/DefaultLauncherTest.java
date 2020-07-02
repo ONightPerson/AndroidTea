@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -18,10 +19,12 @@ public class DefaultLauncherTest extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
         ResolveInfo resolveInfo = getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
         String currentHomePackage = resolveInfo.activityInfo.packageName;
         Log.i(TAG, "onCreate: currentHomePackage " + currentHomePackage);
+        Toast.makeText(this, currentHomePackage, Toast.LENGTH_LONG).show();
     }
 }

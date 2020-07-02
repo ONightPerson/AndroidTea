@@ -1,0 +1,26 @@
+ext.configs = [:]
+
+def versions = [:]
+versions.appcompat = '1.1.0'
+versions.recyclerview = '1.1.0'
+versions.cardview = '1.0.0'
+versions.palette = '1.0.0'
+versions.percentlayout = '1.0.0'
+versions.material = '1.1.0'
+versions.coordinatorlayout = '1.1.0'
+versions.lifecycle = '2.2.0'
+
+def androidx = [:]
+androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
+androidx.recyclerview = "androidx.recyclerview:recyclerview:$versions.recyclerview"
+androidx.cardview = "androidx.cardview:cardview:$versions.cardview"
+androidx.palette = "androidx.palette:palette:$versions.palette"
+androidx.percentlayout = "androidx.percentlayout:percentlayout:$versions.percentlayout"
+androidx.material = "com.google.android.material:material:$versions.material"
+androidx.coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:$versions.coordinatorlayout"
+androidx.lifecycle_livedata = "androidx.lifecycle:lifecycle-livedata:2.2.0"
+androidx.lifecycle_livedata_core = "androidx.lifecycle:lifecycle-livedata-core:2.2.0"
+androidx.lifecycle_runtime = "androidx.lifecycle:lifecycle-runtime:2.2.0"
+androidx.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+
+configs.androidx = androidx

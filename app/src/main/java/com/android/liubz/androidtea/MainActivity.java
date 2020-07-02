@@ -10,9 +10,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,8 +19,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.android.liubz.androidtea.launcher.DefaultLauncherTest;
-import com.android.liubz.androidtea.screenrecord.ScreenRecordDemoActivity;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.liubz.androidtea.archcomponents.ShowNameActivity;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -137,7 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, DefaultLauncherTest.class));
+            startActivity(new Intent(this, ShowNameActivity.class));
         }
     }
 
