@@ -19,7 +19,7 @@ public class JoinTest {
             }
         });
 
-        Thread threadMain = Thread.currentThread();
+        final Thread threadMain = Thread.currentThread();
 
         Thread threadB = new Thread(new Runnable() {
             @Override

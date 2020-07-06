@@ -32,7 +32,7 @@
     	</list>
     -->
     <list>
-        <mapping class="com.android.liubz.androidtea.persistence.litepal.Student"></mapping>
+        <mapping class="com.liubz.androidtea.persistence.litepal.Student"></mapping>
     </list>
 
     <!--

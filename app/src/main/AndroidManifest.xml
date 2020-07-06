@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.liubz.androidtea">
+    package="com.liubz.androidtea">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -77,10 +77,10 @@
         <activity android:name="com.philips.lighting.quickstart.MyApplicationActivity"/>
         <activity android:name="com.philips.lighting.quickstart.PHHomeActivity"/>
         <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity"/>
-        <activity android:name="com.android.liubz.androidtea.plugin.ClassLoaderTestActivity"/>
+        <activity android:name=".plugin.ClassLoaderTestActivity"/>
         <activity android:name=".modules.ui.layout.PercentLayoutTestActivity"/>
-        <activity android:name="com.android.liubz.androidtea.network.WebViewTestActivity" />
-        <activity android:name="com.android.liubz.androidtea.network.HttpRequestTestActivity" />
+        <activity android:name=".network.WebViewTestActivity" />
+        <activity android:name=".network.HttpRequestTestActivity" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemo" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
         <activity android:name=".modules.launcher.DefaultLauncherTest"/>

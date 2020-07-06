@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.android.liubz.androidtea"
+        applicationId "com.liubz.androidtea"
         minSdkVersion 15
         targetSdkVersion 26
         buildToolsVersion '28.0.3'
@@ -43,9 +43,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
-    annotationProcessor project(':LogAnnotation')
-    implementation project(':LogAnnotation')
 
     implementation configs.androidx.appcompat
     implementation configs.androidx.recyclerview
