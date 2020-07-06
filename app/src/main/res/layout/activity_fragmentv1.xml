@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/left_fragment"
-        android:name="com.android.liubz.androidtea.fragmentv1.LeftFragment"
+        android:name="com.android.liubz.androidtea.modules.ui.fragmentv1.LeftFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"/>

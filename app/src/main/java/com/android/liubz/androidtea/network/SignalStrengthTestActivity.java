@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.liubz.androidtea.CommonHandler;
+import com.android.liubz.androidtea.utils.CommonHandler;
 import com.android.liubz.androidtea.Constants;
 import com.android.liubz.androidtea.R;
 

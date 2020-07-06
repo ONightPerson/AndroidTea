@@ -1,2 +1,4 @@
+include ':interview'
+include ':cherish'
 include ':LogAnnotation'
 include ':app'

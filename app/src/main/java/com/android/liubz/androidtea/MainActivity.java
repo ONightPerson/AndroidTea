@@ -24,6 +24,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.liubz.androidtea.archcomponents.ShowNameActivity;
+import com.android.liubz.androidtea.java.annotation.LogHello;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -137,7 +138,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, ShowNameActivity.class));
+//            startActivity(new Intent(this, ShowNameActivity.class));
+            LogHello.printMsg();
         }
     }
 

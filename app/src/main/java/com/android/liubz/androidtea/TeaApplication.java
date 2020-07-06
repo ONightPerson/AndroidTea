@@ -9,7 +9,8 @@ import android.os.Process;
 import androidx.multidex.MultiDex;
 import android.util.Log;
 
-import com.android.liubz.androidtea.multimedia.NotificationUtils;
+import com.android.liubz.androidtea.modules.multimedia.NotificationUtils;
+import com.android.liubz.androidtea.utils.ApplicationUtils;
 
 import org.litepal.LitePal;
 

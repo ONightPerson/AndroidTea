@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:hint="输入名字"/>
     
-    <com.android.liubz.androidtea.customview.CustomCircle
+    <com.android.liubz.androidtea.modules.ui.customview.CustomCircle
         android:id="@+id/custom_arc_view"
         android:layout_width="300dp"
         android:layout_height="300dp"

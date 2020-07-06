@@ -29,13 +29,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".socket.SocketTestActivity"
+        <activity android:name=".network.socket.SocketTestActivity"
             android:launchMode="singleTop"/>
-        <activity android:name=".fragmentv1.FragmentV1Activity" />
-        <activity android:name=".fragmentv1.LoginActivity" />
-        <activity android:name=".fragmentv2.FragmentV2Activity" />
-        <activity android:name=".broadcasttest.BroadcastTestActivity" />
-        <activity android:name=".service.accessibility.AccessibilityTestActivity" />
+        <activity android:name=".modules.ui.fragmentv1.FragmentV1Activity" />
+        <activity android:name=".modules.ui.fragmentv1.LoginActivity" />
+        <activity android:name=".modules.ui.fragmentv2.FragmentV2Activity" />
+        <activity android:name=".broadcast.BroadcastTestActivity" />
+        <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
         <activity android:name=".persistence.litepal.LitePalTestActivity" />
         <activity android:name=".contentprovider.ContactsTestActivity" />
@@ -47,14 +47,14 @@
         <activity android:name=".material.recycler.RecyclerViewTestActivity"/>
         <activity android:name=".material.recycler.CardViewTestActivity"/>
         <activity android:name=".material.toolbar.ToolbarTestActivity"/>
-        <activity android:name=".permissions.DangerousPermissionTestActivity"/>
+        <activity android:name=".material.permissions.DangerousPermissionTestActivity"/>
         <activity android:name=".material.MaterialTestActivity"/>
         <activity android:name=".material.tablayout.TabLayoutTestActivity"/>
         <activity android:name=".material.CoordinatorLayoutTestActivity"/>
         <activity android:name=".material.CollapsingToolbarLayoutTestActivity"/>
         <activity android:name=".material.CustomBehaviorTestActivity"/>
-        <activity android:name=".threadlearn.AsyncTaskTestActivity"/>
-        <activity android:name=".threadlearn.serialize.SerializableTestActivity"/>
+        <activity android:name=".thread.AsyncTaskTestActivity"/>
+        <activity android:name=".thread.serialize.SerializableTestActivity"/>
         <activity android:name=".interprocess.SecondActivity"
             android:excludeFromRecents="true"
             android:process=":background"
@@ -63,14 +63,14 @@
                   android:process=":my_process"
             />
         <activity
-            android:name=".service.accessibility.AccessibilityJumpActivity"
+            android:name=".modules.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Transparent" />
         <activity android:name=".network.SignalStrengthTestActivity"/>
-        <activity android:name=".customview.ArcTestActivity"
+        <activity android:name=".modules.ui.customview.ArcTestActivity"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".customview.DrawDemo"/>
-        <activity android:name=".customview.ViewPropertyActivity"/>
+        <activity android:name=".modules.ui.customview.DrawDemo"/>
+        <activity android:name=".modules.ui.customview.ViewPropertyActivity"/>
         <activity android:name=".TVDemoActivity"/>
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
         <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs"/>
@@ -78,12 +78,12 @@
         <activity android:name="com.philips.lighting.quickstart.PHHomeActivity"/>
         <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity"/>
         <activity android:name="com.android.liubz.androidtea.plugin.ClassLoaderTestActivity"/>
-        <activity android:name="com.android.liubz.androidtea.layout.PercentLayoutTestActivity"/>
+        <activity android:name=".modules.ui.layout.PercentLayoutTestActivity"/>
         <activity android:name="com.android.liubz.androidtea.network.WebViewTestActivity" />
         <activity android:name="com.android.liubz.androidtea.network.HttpRequestTestActivity" />
-        <activity android:name=".screenrecord.ScreenRecordDemo" />
-        <activity android:name=".screenrecord.ScreenRecordDemoActivity" />
-        <activity android:name=".launcher.DefaultLauncherTest"/>
+        <activity android:name=".modules.screenrecord.ScreenRecordDemo" />
+        <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
+        <activity android:name=".modules.launcher.DefaultLauncherTest"/>
         <activity android:name=".archcomponents.ShowNameActivity"/>
 
 <!--        <activity-->
@@ -113,7 +113,7 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
 
-        <activity  android:name=".launcher.Launcher"
+        <activity  android:name=".modules.launcher.Launcher"
             android:enabled="true"
             android:clearTaskOnLaunch="true"
             android:stateNotNeeded="true"
@@ -135,7 +135,7 @@
         </activity>
 
         <service
-            android:name=".service.accessibility.MyAccessibilityService"
+            android:name=".modules.accessibility.MyAccessibilityService"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
@@ -147,10 +147,10 @@
                 android:resource="@xml/accessibilityservice" />
         </service>
 
-        <service android:name=".threadlearn.MyIntentService"/>
+        <service android:name=".thread.MyIntentService"/>
 
         <receiver
-            android:name=".broadcasttest.BootCompleteReceiver"
+            android:name=".broadcast.BootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
