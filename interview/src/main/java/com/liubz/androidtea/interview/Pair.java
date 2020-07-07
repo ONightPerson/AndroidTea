@@ -1,7 +1,5 @@
 package com.liubz.androidtea.interview;
 
-import androidx.annotation.NonNull;
-
 /**
  * Created by liubaozhu on 2020-01-04
  */
@@ -14,7 +12,6 @@ public class Pair<T, U> {
         this.second = u;
     }
 
-    @NonNull
     @Override
     public String toString() {
         return "[" + this.first + ", " + this.second + "]";

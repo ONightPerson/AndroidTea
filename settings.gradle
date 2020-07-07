@@ -1,4 +1,7 @@
+include ':parcelapp'
+include ':adapter'
+include ':AutoParcelCompiler'
 include ':interview'
 include ':cherish'
-include ':LogAnnotation'
+include ':AutoParcel'
 include ':app'
