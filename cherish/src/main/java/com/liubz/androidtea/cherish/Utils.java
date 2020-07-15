@@ -13,7 +13,7 @@ public class Utils {
      */
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
 
-    public static String bytestoHex(byte[] data) {
+    public static String bytesToHex(byte[] data) {
         char[] result = new char[data.length * 2];
         for (int i = 0; i < data.length; i++) {
             int item = data[i] & 0xFF;
