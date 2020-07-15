@@ -40,8 +40,4 @@ public class Utils {
         Matcher m = p.matcher(str);
         return m.replaceAll("").trim();
     }
-
-    public static void main(String[] args) {
-        System.out.println(convertUrlToFilename("http://fewfefe.jpg"));
-    }
 }
