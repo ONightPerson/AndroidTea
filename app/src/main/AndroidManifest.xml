@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".TeaApplication"
@@ -21,16 +21,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
-            android:theme="@style/MainTheme"
-            android:launchMode="singleTop">
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".network.socket.SocketTestActivity"
-            android:launchMode="singleTop"/>
+        <activity
+            android:name=".network.socket.SocketTestActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".modules.ui.fragmentv1.FragmentV1Activity" />
         <activity android:name=".modules.ui.fragmentv1.LoginActivity" />
         <activity android:name=".modules.ui.fragmentv2.FragmentV2Activity" />
@@ -40,97 +42,101 @@
         <activity android:name=".persistence.litepal.LitePalTestActivity" />
         <activity android:name=".contentprovider.ContactsTestActivity" />
         <activity android:name="network.NetworkTestActivity" />
-        <activity android:name=".music.client.MusicPlayActivity"/>
-        <activity android:name="info.lamatricexiste.network.ActivityMain"/>
-        <activity android:name="info.lamatricexiste.network.ActivityDiscovery"/>
-        <activity android:name="info.lamatricexiste.network.ActivityPortscan"/>
-        <activity android:name=".material.recycler.RecyclerViewTestActivity"/>
-        <activity android:name=".material.recycler.CardViewTestActivity"/>
-        <activity android:name=".material.toolbar.ToolbarTestActivity"/>
-        <activity android:name=".material.permissions.DangerousPermissionTestActivity"/>
-        <activity android:name=".material.MaterialTestActivity"/>
-        <activity android:name=".material.tablayout.TabLayoutTestActivity"/>
-        <activity android:name=".material.CoordinatorLayoutTestActivity"/>
-        <activity android:name=".material.CollapsingToolbarLayoutTestActivity"/>
-        <activity android:name=".material.CustomBehaviorTestActivity"/>
-        <activity android:name=".thread.AsyncTaskTestActivity"/>
-        <activity android:name=".thread.serialize.SerializableTestActivity"/>
-        <activity android:name=".interprocess.SecondActivity"
+        <activity android:name=".music.client.MusicPlayActivity" />
+        <activity android:name="info.lamatricexiste.network.ActivityMain" />
+        <activity android:name="info.lamatricexiste.network.ActivityDiscovery" />
+        <activity android:name="info.lamatricexiste.network.ActivityPortscan" />
+        <activity android:name=".material.recycler.RecyclerViewTestActivity" />
+        <activity android:name=".material.recycler.CardViewTestActivity" />
+        <activity android:name=".material.toolbar.ToolbarTestActivity" />
+        <activity android:name=".material.permissions.DangerousPermissionTestActivity" />
+        <activity android:name=".material.MaterialTestActivity" />
+        <activity android:name=".material.tablayout.TabLayoutTestActivity" />
+        <activity android:name=".material.CoordinatorLayoutTestActivity" />
+        <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
+        <activity android:name=".material.CustomBehaviorTestActivity" />
+        <activity android:name=".thread.AsyncTaskTestActivity" />
+        <activity android:name=".thread.serialize.SerializableTestActivity" />
+        <activity
+            android:name=".interprocess.SecondActivity"
             android:excludeFromRecents="true"
             android:process=":background"
-            android:theme="@style/AppTheme.Transparent"/>
-        <activity android:name=".interprocess.ThirdActivity"
-                  android:process=":my_process"
-            />
+            android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".interprocess.ThirdActivity"
+            android:process=":my_process" />
         <activity
             android:name=".modules.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.Transparent" />
-        <activity android:name=".network.SignalStrengthTestActivity"/>
-        <activity android:name=".modules.ui.customview.ArcTestActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".modules.ui.customview.DrawDemo"/>
-        <activity android:name=".modules.ui.customview.ViewPropertyActivity"/>
-        <activity android:name=".TVDemoActivity"/>
+        <activity android:name=".network.SignalStrengthTestActivity" />
+        <activity
+            android:name=".modules.ui.customview.ArcTestActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".modules.ui.customview.DrawDemo" />
+        <activity android:name=".modules.ui.customview.ViewPropertyActivity" />
+        <activity android:name=".TVDemoActivity" />
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
-        <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs"/>
-        <activity android:name="com.philips.lighting.quickstart.MyApplicationActivity"/>
-        <activity android:name="com.philips.lighting.quickstart.PHHomeActivity"/>
-        <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity"/>
-        <activity android:name=".plugin.ClassLoaderTestActivity"/>
-        <activity android:name=".modules.ui.layout.PercentLayoutTestActivity"/>
+        <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs" />
+        <activity android:name="com.philips.lighting.quickstart.MyApplicationActivity" />
+        <activity android:name="com.philips.lighting.quickstart.PHHomeActivity" />
+        <activity android:name="com.philips.lighting.quickstart.PHPushlinkActivity" />
+        <activity android:name=".plugin.ClassLoaderTestActivity" />
+        <activity android:name=".modules.ui.layout.PercentLayoutTestActivity" />
         <activity android:name=".network.WebViewTestActivity" />
         <activity android:name=".network.HttpRequestTestActivity" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemo" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
-        <activity android:name=".modules.launcher.DefaultLauncherTest"/>
-        <activity android:name=".archcomponents.ShowNameActivity"/>
+        <activity android:name=".modules.launcher.DefaultLauncherTest" />
+        <activity android:name=".archcomponents.ShowNameActivity" />
 
-<!--        <activity-->
-<!--            android:name=".launcher.Launcher"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"-->
-<!--            android:taskAffinity=".launcher"-->
-<!--            android:clearTaskOnLaunch="true"-->
-<!--            android:stateNotNeeded="true"-->
-<!--            android:excludeFromRecents="true"-->
-<!--            android:launchMode="singleTask"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:configChanges="keyboard|keyboardHidden|navigation|orientation"-->
-<!--            android:windowSoftInputMode="adjustPan"-->
-<!--            android:resumeWhilePausing="true"-->
-<!--            android:resizeableActivity="false">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN"/>-->
-<!--                <category android:name="android.intent.category.HOME"/>-->
-<!--                <category android:name="android.intent.category.DEFAULT"/>-->
-<!--                <category android:name="android.intent.category.MONKEY"/>-->
-<!--                <category android:name="android.intent.category.LAUNCHER_APP"/>-->
-<!--            </intent-filter>-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.android.liubz.androidtea.DESKTOP_LAUNCHER"/>-->
-<!--                <category android:name="android.intent.category.DEFAULT"/>-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
+        <!--        <activity-->
+        <!--            android:name=".launcher.Launcher"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true"-->
+        <!--            android:taskAffinity=".launcher"-->
+        <!--            android:clearTaskOnLaunch="true"-->
+        <!--            android:stateNotNeeded="true"-->
+        <!--            android:excludeFromRecents="true"-->
+        <!--            android:launchMode="singleTask"-->
+        <!--            android:screenOrientation="portrait"-->
+        <!--            android:configChanges="keyboard|keyboardHidden|navigation|orientation"-->
+        <!--            android:windowSoftInputMode="adjustPan"-->
+        <!--            android:resumeWhilePausing="true"-->
+        <!--            android:resizeableActivity="false">-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.MAIN"/>-->
+        <!--                <category android:name="android.intent.category.HOME"/>-->
+        <!--                <category android:name="android.intent.category.DEFAULT"/>-->
+        <!--                <category android:name="android.intent.category.MONKEY"/>-->
+        <!--                <category android:name="android.intent.category.LAUNCHER_APP"/>-->
+        <!--            </intent-filter>-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="com.android.liubz.androidtea.DESKTOP_LAUNCHER"/>-->
+        <!--                <category android:name="android.intent.category.DEFAULT"/>-->
+        <!--            </intent-filter>-->
+        <!--        </activity>-->
 
-        <activity  android:name=".modules.launcher.Launcher"
-            android:enabled="true"
+        <activity
+            android:name=".modules.launcher.Launcher"
             android:clearTaskOnLaunch="true"
-            android:stateNotNeeded="true"
+            android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|fontScale"
+            android:enabled="true"
             android:excludeFromRecents="true"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|fontScale"
-            android:windowSoftInputMode="adjustPan"
-            android:resumeWhilePausing="true"
             android:resizeableActivity="false"
-            android:supportsPictureInPicture="false">
+            android:resumeWhilePausing="true"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:supportsPictureInPicture="false"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.HOME"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.MONKEY"/>
-                <category android:name="android.intent.category.LAUNCHER_APP"/>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.HOME" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.MONKEY" />
+                <category android:name="android.intent.category.LAUNCHER_APP" />
             </intent-filter>
         </activity>
 
@@ -147,7 +153,7 @@
                 android:resource="@xml/accessibilityservice" />
         </service>
 
-        <service android:name=".thread.MyIntentService"/>
+        <service android:name=".thread.MyIntentService" />
 
         <receiver
             android:name=".broadcast.BootCompleteReceiver"

@@ -23,7 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.archcomponents.ShowNameActivity;
+import com.liubz.androidtea.utils.PhoneSmsUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             actionBar.hide();
         }
 
-//        startActivity(new Intent(this, SocketTestActivity.class));
         initViews();
         Log.e(TAG, "onCreate: end");
 
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     protected void onSetDefaultStatusBarColor() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int sbHeight = getStatusBarHeight(this);
             Log.i(TAG, "onSetDefaultStatusBarColor: sbHeight: " + sbHeight);
             if (adjustTitleBarHeight(sbHeight)) {
@@ -109,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * adjust TitleBar height
+     *
      * @param statusBarHeight height of status bar of mobile device.
      * @return true: adjust TitleBar height success, false otherwise.
      */
@@ -137,7 +137,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, ShowNameActivity.class));
+//            startActivity(new Intent(this, ShowNameActivity.class));
+            String phonePkg = PhoneSmsUtils.getPhoneAppPkg(this);
+            String smsPkg = PhoneSmsUtils.getSmsPkg(this);
+            String smsPkg1 = PhoneSmsUtils.getSmsPkgScheme1(this);
+            String smsPkg2 = PhoneSmsUtils.getSmsPkgScheme2(this);
+            String smsList = PhoneSmsUtils.getSmsListScheme1(this);
+            Log.i(TAG, "onClick: phonePkg: " + phonePkg
+                    + ", smsPkg: " + smsPkg + ", smsPkg1: " + smsPkg1
+                    + ", smsPkg2: " + smsPkg2 + ", smsList: " + smsList);
         }
     }
 
@@ -172,9 +180,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 return null;
             }
             Method method = bluetoothManagerService.getClass().getMethod("getAddress");
-            if(method != null) {
+            if (method != null) {
                 Object obj = method.invoke(bluetoothManagerService);
-                if(obj != null) {
+                if (obj != null) {
                     return obj.toString();
                 }
             }

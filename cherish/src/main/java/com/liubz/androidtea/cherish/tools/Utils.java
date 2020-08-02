@@ -3,15 +3,9 @@
  */
 package com.liubz.androidtea.cherish.tools;
 
-import android.app.Activity;
-import android.content.pm.ApplicationInfo;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.ref.WeakReference;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 工具类
@@ -23,9 +17,6 @@ public final class Utils {
     public static void main(String[] args) {
     }
     
-    private static ApplicationInfo sAppInfo = null;
-
-    private static Map<String, WeakReference<Activity>> startContextMap = new HashMap<>();
 
     /**
      * 构造函数
