@@ -74,7 +74,7 @@
             android:name=".modules.ui.customview.ArcTestActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".modules.ui.customview.DrawDemo" />
-        <activity android:name=".modules.ui.customview.ViewPropertyActivity" />
+        <activity android:name=".modules.ui.customview.CustomViewActivity" />
         <activity android:name=".TVDemoActivity" />
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
         <activity android:name="com.iotc.sampleIOTC.Sample_IOTCAPIs" />

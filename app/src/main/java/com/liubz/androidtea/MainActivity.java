@@ -23,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.liubz.androidtea.modules.ui.customview.CustomViewActivity;
 import com.liubz.androidtea.utils.PhoneSmsUtils;
 
 import java.io.File;
@@ -137,15 +138,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-//            startActivity(new Intent(this, ShowNameActivity.class));
-            String phonePkg = PhoneSmsUtils.getPhoneAppPkg(this);
-            String smsPkg = PhoneSmsUtils.getSmsPkg(this);
-            String smsPkg1 = PhoneSmsUtils.getSmsPkgScheme1(this);
-            String smsPkg2 = PhoneSmsUtils.getSmsPkgScheme2(this);
-            String smsList = PhoneSmsUtils.getSmsListScheme1(this);
-            Log.i(TAG, "onClick: phonePkg: " + phonePkg
-                    + ", smsPkg: " + smsPkg + ", smsPkg1: " + smsPkg1
-                    + ", smsPkg2: " + smsPkg2 + ", smsList: " + smsList);
+            startActivity(new Intent(this, CustomViewActivity.class));
+//            String phonePkg = PhoneSmsUtils.getPhoneAppPkg(this);
+//            String smsPkg = PhoneSmsUtils.getSmsPkg(this);
+//            String smsPkg1 = PhoneSmsUtils.getSmsPkgScheme1(this);
+//            String smsPkg2 = PhoneSmsUtils.getSmsPkgScheme2(this);
+//            String smsList = PhoneSmsUtils.getSmsListScheme1(this);
+//            Log.i(TAG, "onClick: phonePkg: " + phonePkg
+//                    + ", smsPkg: " + smsPkg + ", smsPkg1: " + smsPkg1
+//                    + ", smsPkg2: " + smsPkg2 + ", smsList: " + smsList);
         }
     }
 
