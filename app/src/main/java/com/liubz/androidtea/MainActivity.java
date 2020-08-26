@@ -2,6 +2,7 @@ package com.liubz.androidtea;
 
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -23,8 +24,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.modules.ui.customview.CustomViewActivity;
-import com.liubz.androidtea.utils.PhoneSmsUtils;
+import com.liubz.androidtea.crypt.CryptUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -138,7 +138,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         if (v == mClickLaunchBtn) {
-            startActivity(new Intent(this, CustomViewActivity.class));
+            String key = CryptUtils.getRandomString(24);
+            Log.i(TAG, "get key: " + key);
+            Log.i(TAG, "onClick: timestamp: " + CryptUtils.getTimeStamp());
+            // 获取当前线程的堆栈
+            for (StackTraceElement i : Thread.currentThread().getStackTrace()) {
+                Log.i(TAG, i.toString());
+            }
+//            ClipboardManager manager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+//            boolean hasClip = manager.hasPrimaryClip();
+//            Log.i(TAG, "onClick: hasClip: " + hasClip);
+//            NotificationUtils.sendNotification(this);
+
+//            startActivity(new Intent(this, CustomViewActivity.class));
 //            String phonePkg = PhoneSmsUtils.getPhoneAppPkg(this);
 //            String smsPkg = PhoneSmsUtils.getSmsPkg(this);
 //            String smsPkg1 = PhoneSmsUtils.getSmsPkgScheme1(this);

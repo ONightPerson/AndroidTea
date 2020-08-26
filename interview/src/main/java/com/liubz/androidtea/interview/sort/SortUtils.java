@@ -18,13 +18,13 @@ public class SortUtils {
 //        quickSort(new int[] {5, 8, 9, 3, 6});
 //        insertionSort(new int[] {5, 8, 9, 3, 6});
 //        shellSort(new int[] {5, 8, 9, 3, 6});
-//        mergeSort(new int[] {5, 8, 9, 3, 6});
+        mergeSort(new int[] {5, 8, 9, 3, 6});
 //        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
 //        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
-        test();
-        test1();
+//        test();
+//        test1();
     }
 
     private static void test1() {
@@ -164,26 +164,21 @@ public class SortUtils {
      * @param arr
      */
     public static void insertionSort(int[] arr) {
-        if (arr == null) {
+        if (arr == null || arr.length < 2) {
             return;
         }
         int len = arr.length;
-        if (len < 1) {
-            return;
-        }
+        // 遍历未排序的数据下标
         for (int i = 1; i < len; i++) {
             int cur = arr[i];
             int j = i;
-            // 此处，需要注意，如果条件不满足，必须立即停止，否则会过度执行，导致赋值错误
+            // 与已排序的数据进行比较，注意临界点
             while (j > 0 && cur > arr[j-1]) {
                 arr[j] = arr[j-1];
                 j--;
             }
             arr[j] = cur;
-            System.out.println("i = " + i);
-            output(arr);
         }
-        output(arr);
     }
 
     /**
@@ -221,30 +216,42 @@ public class SortUtils {
         if (arr == null || arr.length == 1) {
             return;
         }
-        int[] result = doMergeSort(arr, 0, arr.length - 1);
-        output(result);
+        doMergeSort(arr, 0, arr.length - 1);
+        output(arr);
     }
 
-    private static int[] doMergeSort(int[] arr, int low, int high) {
-        if (low == high) {
-            return new int[] {arr[low]};
+    private static void doMergeSort(int[] arr, int low, int high) {
+        if (low >= high) {
+            return;
         }
-        int mid = low + (high - low) / 2;
-        int[] left = doMergeSort(arr, low, mid);
-        int[] right = doMergeSort(arr, mid+1, high);
-        int[] newArr = new int[left.length + right.length];
+        int mid = (low + high) >> 1;
+        doMergeSort(arr, low, mid);
+        doMergeSort(arr, mid+1, high);
 
-        int m = 0, i = 0, j = 0;
-        while (i < left.length && j < right.length) {
-            newArr[m++] = left[i] < right[j] ? right[j++] : left[i++];
+        int i = low;
+        int j = mid + 1;
+        int k = 0;
+        int num = high - low + 1;
+        int[] tmp = new int[num];
+
+        while (i <= mid && j <= high) {
+            if (arr[i] < arr[j]) {
+                tmp[k++] = arr[i++];
+            } else {
+                tmp[k++] = arr[j++];
+            }
         }
-        while (i < left.length) {
-            newArr[m++] = left[i++];
+        while (i <= mid) {
+            tmp[k++] = arr[i++];
         }
-        while (j < right.length) {
-            newArr[m++] = right[j++];
+        while (j <= high) {
+            tmp[k++] = arr[j++];
         }
-        return newArr;
+
+
+        for (int m = 0; m < num; m++) {
+            arr[low++] = tmp[m];
+        }
     }
 
     /**
@@ -409,6 +416,8 @@ public class SortUtils {
         }
         output(arr);
     }
+
+
 
 
     private static void output(int[]  input) {

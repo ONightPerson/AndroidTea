@@ -28,8 +28,6 @@ public class NotificationUtils {
                 .setContentText(context.getString(R.string.notification_content_text))
                 .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SecondActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setWhen(System.currentTimeMillis())
-                .setAutoCancel(true)
-                .setOngoing(true)
                 .setSmallIcon(R.drawable.my_ic_launcher)
                 .build();
         nm.notify(NOTIFICATION_ID, notification);

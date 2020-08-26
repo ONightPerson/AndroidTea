@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.liubz.androidtea"
+        applicationId "cn.opda.a.phonoalbumshoushou"
         minSdkVersion 15
         targetSdkVersion 26
         buildToolsVersion '28.0.3'
@@ -23,7 +23,7 @@ android {
         }
 
         developer {
-            applicationId "com.android.liubz.androidtea.developer"
+            applicationId "cn.opda.a.phonoalbumshoushou"
         }
     }
 
