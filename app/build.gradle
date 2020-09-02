@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId "cn.opda.a.phonoalbumshoushou"
-        minSdkVersion 15
+        applicationId "com.liubz.androidtea"
+        minSdkVersion 22
         targetSdkVersion 26
         buildToolsVersion '28.0.3'
 
@@ -17,13 +17,13 @@ android {
     flavorDimensions "version"
     productFlavors {
         user {
-            applicationId "com.android.liubz.androidtea.user"
+            applicationId "com.liubz.androidtea.user"
             dimension = 'version'
             signingConfig signingConfigs.debug
         }
 
         developer {
-            applicationId "cn.opda.a.phonoalbumshoushou"
+            applicationId "com.liubz.androidtea.developer"
         }
     }
 
@@ -59,6 +59,7 @@ dependencies {
     implementation 'org.litepal.android:java:3.0.0'
     implementation "com.squareup.okhttp3:okhttp:4.6.0"
     implementation 'com.google.code.gson:gson:2.8.6'
+    implementation project(path: ':flutter')
 
     testImplementation 'junit:junit:4.12'
 }
