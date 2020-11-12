@@ -12,3 +12,5 @@ include ':AutoParcel'
 include ':app'
 
 include ':flutter'
+
+include ':flutter_module'
