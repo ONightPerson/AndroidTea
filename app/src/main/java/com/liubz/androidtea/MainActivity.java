@@ -3,7 +3,6 @@ package com.liubz.androidtea;
 import java.util.Map;
 import java.util.Set;
 
-import com.liubz.androidtea.classloader.ClassLoaderUtils;
 import com.liubz.androidtea.modules.usage.UsageUtils;
 import com.liubz.androidtea.utils.TimeUtils;
 
@@ -16,7 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button mClickLaunchBtn;
     private Uri mImageUri;
+    private View mScrollView;
 
     private int count = 0;
 
@@ -57,12 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void initViews() {
         mClickLaunchBtn = findViewById(R.id.click_to_launch);
         mClickLaunchBtn.setOnClickListener(this);
+        mScrollView = findViewById(R.id.scroll_view);
+        mScrollView.setAnimation(AnimationUtils.loadAnimation(this, R.anim.translate));
+//        mScrollView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == mClickLaunchBtn) {
-            ClassLoaderUtils.showClassLoaderRelations(this);
+//            ClassLoaderUtils.showClassLoaderRelations(this);
+            String name = "liu";
+            assert name != "liu";
+        } else if (v == mScrollView) {
+            Toast.makeText(this, "scroll view clicked", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -18,15 +18,8 @@
         android:layout_height="wrap_content"
         android:hint="输入名字"/>
     
-    <com.liubz.androidtea.modules.ui.customview.CustomCircle
-        android:id="@+id/custom_arc_view"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_centerInParent="true"
-        android:background="@color/grey"/>
-
     <TextView
-        android:layout_below="@id/custom_arc_view"
+        android:layout_below="@id/play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
