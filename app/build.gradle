@@ -59,7 +59,6 @@ dependencies {
     implementation 'org.litepal.android:java:3.0.0'
     implementation "com.squareup.okhttp3:okhttp:4.9.0"
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation project(path: ':flutter')
 
     testImplementation 'junit:junit:4.13.1'
 }

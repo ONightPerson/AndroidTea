@@ -7,9 +7,6 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Process;
 import android.util.Log;
-import io.flutter.embedding.engine.FlutterEngine;
-import io.flutter.embedding.engine.FlutterEngineCache;
-import io.flutter.embedding.engine.dart.DartExecutor;
 
 import com.liubz.androidtea.modules.multimedia.NotificationUtils;
 import com.liubz.androidtea.utils.ApplicationUtils;
@@ -31,7 +28,6 @@ public class TeaApplication extends Application {
 
         LitePal.initialize(this);
 
-        initFlutterEngine();
         Log.i(TAG, "onCreate: pid: " + Process.myPid());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -42,14 +38,5 @@ public class TeaApplication extends Application {
             channel.enableVibration(false);
             nm.createNotificationChannel(channel);
         }
-    }
-
-    private void initFlutterEngine() {
-        FlutterEngine engine = new FlutterEngine(this);
-        // set initial route before executing dart entry point
-        engine.getNavigationChannel().setInitialRoute("/my_route");
-        // start executing Dart code to pre-warm the FlutterEngine
-        engine.getDartExecutor().executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault());
-        FlutterEngineCache.getInstance().put("flutter_engine", engine);
     }
 }
