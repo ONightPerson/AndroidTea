@@ -27,7 +27,7 @@ public class TcpServer {
 
     private static class IOTask implements Runnable {
 
-        private Socket client;
+        private final Socket client;
 
         public IOTask(Socket client) {
             this.client = client;

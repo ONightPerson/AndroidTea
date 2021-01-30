@@ -16,8 +16,6 @@ import java.net.Socket;
 public class TcpClient {
 
     private Socket mClient;
-    private BufferedReader mReader;
-    private BufferedWriter mWriter;
 
     public static void main(String[] args) throws IOException {
         TcpClient client = new TcpClient();
@@ -31,78 +29,71 @@ public class TcpClient {
         mClient = new Socket( "192.168.3.104", 13333);
     }
 
-    private void startWriting() throws IOException {
-        OutputStream os = mClient.getOutputStream();
-        mWriter = new BufferedWriter(new OutputStreamWriter(os));
-        new Thread(new WriteTask(mWriter)).start();
+    private void startWriting() {
+
+        new Thread(new WriteTask(mClient)).start();
     }
 
-    private void startReading() throws IOException {
-        InputStream is = mClient.getInputStream();
-        mReader = new BufferedReader(new InputStreamReader(is));
-        new Thread(new ReadTask(mReader)).start();
+    private void startReading() {
+        new Thread(new ReadTask(mClient)).start();
     }
 
     private static class ReadTask implements Runnable {
-        private BufferedReader reader;
+        private Socket client;
 
-        public ReadTask(BufferedReader reader) {
-            this.reader = reader;
+        public ReadTask(Socket client) {
+            this.client = client;
         }
 
         @Override
         public void run() {
-            String line;
-            while (true) {
-                try {
-                    if (!((line = reader.readLine()) != null)) {
-                        break;
-                    }
-                    System.out.println(line);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+            try {
+                doRead();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+        private void doRead() throws IOException {
+            InputStream is = client.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while (!client.isClosed() && ((line = reader.readLine()) != null)) {
+                System.out.println(line);
             }
         }
     }
 
     private static class WriteTask implements Runnable {
 
-        private BufferedWriter writer;
+        private final Socket client;
 
-        public WriteTask(BufferedWriter writer) {
-            this.writer = writer;
+        public WriteTask(Socket client) {
+            this.client = client;
         }
 
         @Override
         public void run() {
+            try {
+                doWrite();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void doWrite() throws IOException {
+            OutputStream os = client.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os));
             BufferedReader localReader = new BufferedReader(new InputStreamReader(System.in));
             String line;
-            while (true) {
-                try {
-                    if (((line = localReader.readLine()) == null)) {
-                        break;
-                    }
-                    writer.write(line);
-                    writer.newLine();
-                    writer.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
+            while (((line = localReader.readLine()) != null)) {
+                writer.write(line);
+                writer.newLine();
+                writer.flush();
             }
+            localReader.close();
+            writer.close();
+            client.close();
         }
     }
 }
