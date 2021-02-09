@@ -51,6 +51,12 @@ public class TcpClient {
                 doRead();
             } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    client.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
