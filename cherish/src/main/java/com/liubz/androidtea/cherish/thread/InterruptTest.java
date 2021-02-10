@@ -6,8 +6,43 @@ package com.liubz.androidtea.cherish.thread;
 public class InterruptTest {
 
     public static void main(String[] args) {
+        interruptJoinThread();
+    }
+
+    private static void interruptSleepThread() {
         Thread task = startCalTask();
         endCalTask(task);
+    }
+
+    private static void interruptJoinThread() {
+        Thread taskOne = new Thread(new Runnable() {
+            @Override
+            public void run() {
+               while (true) {
+
+               }
+            }
+        });
+        final Thread mainThread = Thread.currentThread();
+        Thread taskTwo = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000L);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                mainThread.interrupt();
+            }
+        });
+        taskOne.start();
+        taskTwo.start();
+
+        try {
+            taskOne.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private static Thread startCalTask() {
