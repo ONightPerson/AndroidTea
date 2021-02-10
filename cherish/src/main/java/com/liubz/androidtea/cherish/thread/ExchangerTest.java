@@ -1,7 +1,5 @@
 package com.liubz.androidtea.cherish.thread;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Exchanger;
@@ -23,25 +21,25 @@ public class ExchangerTest {
 
     static class Producer implements Runnable {
 
-        private CopyOnWriteArrayList<Integer> dataBuffer;
+        private CopyOnWriteArrayList<Integer> dataHolder;
         private final Exchanger<CopyOnWriteArrayList<Integer>> exchanger;
 
         public Producer(Exchanger<CopyOnWriteArrayList<Integer>> exchanger) {
-            dataBuffer = new CopyOnWriteArrayList<>();
+            dataHolder = new CopyOnWriteArrayList<>();
             this.exchanger = exchanger;
         }
 
         @Override
         public void run() {
             try {
-                while (dataBuffer != null && !Thread.interrupted()) {
+                while (!Thread.interrupted()) {
                     Random random = new Random();
                     for (int i = 0; i < 10; i++) {
-                        dataBuffer.add(random.nextInt(5000));
+                        dataHolder.add(random.nextInt(5000));
                     }
                     System.out.println("生产者队列已满，等待交换");
-                    dataBuffer = exchanger.exchange(dataBuffer);
-                    System.out.println("producer receive consumer buffer: " + dataBuffer.size());
+                    dataHolder = exchanger.exchange(dataHolder);
+                    System.out.println("producer receive consumer buffer: " + dataHolder.size());
                 }
 
             } catch (InterruptedException e) {
@@ -52,27 +50,32 @@ public class ExchangerTest {
 
     static class Consumer implements Runnable {
 
-        private CopyOnWriteArrayList<Integer> dataBuffer;
+        private CopyOnWriteArrayList<Integer> dataHolder;
         private final Exchanger<CopyOnWriteArrayList<Integer>> exchanger;
+        private volatile Integer value;
 
         public Consumer(Exchanger<CopyOnWriteArrayList<Integer>> exchanger) {
-            dataBuffer = new CopyOnWriteArrayList<>();
+            dataHolder = new CopyOnWriteArrayList<>();
             this.exchanger = exchanger;
         }
 
         @Override
         public void run() {
             try {
-                while (dataBuffer != null && !Thread.interrupted()) {
-                    for ()
-                    System.out.println("生产者队列已满，等待交换");
-                    dataBuffer = exchanger.exchange(dataBuffer);
-                    System.out.println("producer receive consumer buffer: " + dataBuffer.size());
+                while (!Thread.interrupted()) {
+                    System.out.println("消费者已准备好，等待交换");
+                    dataHolder = exchanger.exchange(dataHolder);
+                    System.out.println("consumer receive producer buffer: " + dataHolder.size());
+                    for (Integer data : dataHolder) {
+                        value = data;
+                        dataHolder.remove(data);
+                    }
                 }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            System.out.println("Final value: " + value);
         }
     }
 }
