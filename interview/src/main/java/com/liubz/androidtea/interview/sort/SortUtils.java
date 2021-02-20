@@ -18,8 +18,8 @@ public class SortUtils {
 //        quickSort(new int[] {5, 8, 9, 3, 6});
 //        insertionSort(new int[] {5, 8, 9, 3, 6});
 //        shellSort(new int[] {5, 8, 9, 3, 6});
-        mergeSort(new int[] {5, 8, 9, 3, 6});
-//        heapSort(new int[] {5, 8, 9, 3, 6});
+//        mergeSort(new int[] {5, 8, 9, 3, 6});
+        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
 //        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
@@ -255,40 +255,46 @@ public class SortUtils {
     }
 
     /**
-     * 堆排序，降序排列（小顶堆）
+     * 向下堆化（大顶堆）
      * @param arr
+     * @param index 当前待堆化的节点
+     * @param len 堆节点个数
      */
+    private static void siftDown(int [] arr, int index, int len) {
+        int item = arr[index]; // 当前待堆化的节点值
+        for (int i = 2 * index + 1; i < len; i = 2 * i + 1) {
+            if (i + 1 < len && arr[i] < arr[i + 1]) {
+                i++;
+            }
+            // 当前i为子节点较大的节点，若当前节点大于子节点，则堆化完成
+            if (item >= arr[i]) {
+                break;
+            }
+            arr[index] = arr[i];
+            index = i; // 将要比较的节点转移到子节点
+        }
+        arr[index] = item;
+    }
+
     public static void heapSort(int[] arr) {
-        if (arr == null) {
+        int len;
+        if (arr == null || (len = arr.length) < 2) {
             return;
         }
-        // 先调整对，形成小顶堆
-        int len = arr.length;
-        int finNoLeaf = len/2 - 1;
-        for (int i = finNoLeaf; i >= 0; i--) {
-           simplyHeapify(arr, i, len);
-        }
+        createHeap(arr, len);
+        // i 既表示最后一个节点，又表示下次堆化的堆长度
         for (int i = len - 1; i > 0; i--) {
             swap(arr, 0, i);
-            simplyHeapify(arr, 0, i);
+            siftDown(arr, 0, i);
         }
         output(arr);
     }
 
-    private static void simplyHeapify(int[] arr, int node, int len) {
-        int tmp = arr[node];
-        for (int i = 2 * node + 1; i < len; i = 2 * i + 1) {
-            if (i+1 < len && arr[i+1] < arr[i]) {
-                i++;
-            }
-            if (tmp > arr[i]) {
-                arr[node] = arr[i];
-                node = i;
-            } else {
-                break;
-            }
+    private static void createHeap(int[] arr, int len) {
+        int lastNoLeaf = len / 2 - 1; // 最后一个非叶子节点
+        for (int i = lastNoLeaf; i >= 0; i--) {
+            siftDown(arr, i, len);
         }
-        arr[node] = tmp;
     }
 
     private static void swap(int[] arr, int i, int j) {
