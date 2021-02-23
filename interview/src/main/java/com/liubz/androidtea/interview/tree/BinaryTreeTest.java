@@ -7,8 +7,8 @@ package com.liubz.androidtea.interview.tree;
 public class BinaryTreeTest {
 
     public static void main(String[] args) {
-        BinaryTreeNode<String> root = new BinaryTreeNode("+");
-        BinaryTree<String> tree = new BinaryTree(root);
+        BinaryTreeNode<String> root = new BinaryTreeNode<>("+");
+        BinaryTree<String> tree = new BinaryTree<>(root);
         BinaryTreeNode<String> leftChild = new BinaryTreeNode<>("+");
         BinaryTreeNode<String> rightChild = new BinaryTreeNode<>("d");
         // 添加根节点的孩子结点
@@ -24,13 +24,15 @@ public class BinaryTreeTest {
         leftChild1.setLeftChild(new BinaryTreeNode<>("a"));
         leftChild1.setRightChild(new BinaryTreeNode<>("b"));
 
-        tree.preOrderTraverse();
+        tree.inOrder();
         System.out.println();
-        tree.inOrderTraverse();
+        tree.inOrderNonRecursive();
         System.out.println();
-        tree.postOrderTraverse();
+        tree.postOrder();
         System.out.println();
-        tree.levelOrderTraverse();
+        tree.postOrderNonRecursive();
+        System.out.println();
+        tree.levelOrder();
     }
 
 }

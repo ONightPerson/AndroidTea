@@ -1,6 +1,5 @@
 package com.liubz.androidtea.interview.tree;
 
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -9,7 +8,6 @@ public class BinaryTree<T> {
     private BinaryTreeNode<T> mRoot; // 根节点
 
     public BinaryTree() {
-
     }
 
     public BinaryTree(BinaryTreeNode<T> root) {
@@ -41,45 +39,107 @@ public class BinaryTree<T> {
     }
 
     /**
-     * 前序遍历
+     * 前序遍历（递归）
      */
-    public void preOrderTraverse() {
-        if (mRoot == null) {
-            System.out.println("Tree is empty.");
-        }
+    public void preOrder() {
+        checkTreeEmpty();
 
         doPreOrderTraverse(mRoot);
     }
 
     /**
-     * 中序遍历
+     * 前序遍历（非递归）
      */
-    public void inOrderTraverse() {
-        if (mRoot == null) {
-            System.out.println("Tree is empty.");
+    public void preOrderNonRecursive() {
+        checkTreeEmpty();
+        LinkedList<BinaryTreeNode<T>> stack = new LinkedList<>();
+        BinaryTreeNode<T> p = mRoot;
+        while (p != null || !stack.isEmpty()) {
+            while (p != null) {
+                visit(p);
+                stack.push(p);
+                p = p.getLeftChild();
+            }
+            if (!stack.isEmpty()) {
+                BinaryTreeNode<T> node = stack.poll();
+                p = node.getRightChild();
+            }
         }
+    }
+
+    /**
+     * 中序遍历（递归）
+     */
+    public void inOrder() {
+        checkTreeEmpty();
 
         doInOrderTraverse(mRoot);
     }
 
     /**
-     * 后续遍历
+     * 中序遍历（非递归）
      */
-    public void postOrderTraverse() {
-        if (mRoot == null) {
-            System.out.println("Tree is empty.");
+    public void inOrderNonRecursive() {
+        checkTreeEmpty();
+
+        LinkedList<BinaryTreeNode<T>> stack = new LinkedList<>();
+        BinaryTreeNode<T> p = mRoot;
+        while (p != null || !stack.isEmpty()) {
+            while (p != null) {
+                stack.push(p);
+                p = p.getLeftChild();
+            }
+            if (!stack.isEmpty()) {
+                BinaryTreeNode<T> node = stack.poll();
+                visit(node);
+                p = node.getRightChild();
+            }
         }
+    }
+
+    /**
+     * 后序遍历（递归）
+     */
+    public void postOrder() {
+        checkTreeEmpty();
 
         doPostOrderTraverse(mRoot);
     }
 
     /**
+     * 中序遍历（非递归）
+     */
+    public void postOrderNonRecursive() {
+        checkTreeEmpty();
+
+        LinkedList<BinaryTreeNode<T>> stack = new LinkedList<>();
+        stack.push(mRoot);
+        BinaryTreeNode<T> pre = null;
+        while (!stack.isEmpty()) {
+            BinaryTreeNode<T> cur = stack.peek();
+            if ((cur.getLeftChild() == null && cur.getLeftChild() == null) ||
+                    (pre != null && pre == cur.getLeftChild() || pre == cur.getRightChild())) {
+                visit(cur);
+                stack.poll();
+                pre = cur;
+            } else {
+                BinaryTreeNode<T> rChild = cur.getRightChild();
+                if (rChild != null) {
+                    stack.push(rChild);
+                }
+                BinaryTreeNode<T> lChild = cur.getLeftChild();
+                if (lChild != null) {
+                    stack.push(lChild);
+                }
+            }
+        }
+    }
+
+    /**
      * 层序遍历（队列实现）
      */
-    public void levelOrderTraverse() {
-        if (mRoot == null) {
-            System.out.println("Tree is empty.");
-        }
+    public void levelOrder() {
+        checkTreeEmpty();
         Queue<BinaryTreeNode<T>> queue = new LinkedList<>();
         queue.offer(mRoot); // same as add
 
@@ -116,7 +176,6 @@ public class BinaryTree<T> {
 
         }
 
-
     }
 
     private void doPostOrderTraverse(BinaryTreeNode<T> tNode) {
@@ -137,11 +196,9 @@ public class BinaryTree<T> {
 
     private void doInOrderTraverse(BinaryTreeNode<T> tNode) {
         if (tNode != null) {
-            System.out.print("(");
             doInOrderTraverse(tNode.getLeftChild());
             visit(tNode);
             doInOrderTraverse(tNode.getRightChild());
-            System.out.print(")");
         }
     }
 

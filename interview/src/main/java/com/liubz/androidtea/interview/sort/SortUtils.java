@@ -24,12 +24,15 @@ public class SortUtils {
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
 //        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
 //        test();
-//        test1();
+        test1();
     }
 
-    private static void test1() {
-        String s = new String(hexStringToByteArray(ONKYO_DISCOVERY_MSG));
-        System.out.println(s);
+    public static void test1() {
+        String st1 = "ab";
+        String st2 = "abc";
+        String st3 = st1 + "c";
+        System.out.println(st2 == st3);
+        System.out.println(st2.equals(st3));
     }
 
     public static byte[] hexStringToByteArray(String s) {
