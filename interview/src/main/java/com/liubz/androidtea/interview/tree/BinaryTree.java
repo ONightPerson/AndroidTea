@@ -173,9 +173,24 @@ public class BinaryTree<T> {
                 increCount = 0;
                 changeLevel++;
             }
-
         }
+    }
 
+    /**
+     * 获取树的深度
+     * @return 树深度
+     */
+    public int getDepth() {
+        return getDepth(mRoot);
+    }
+
+    private int getDepth(BinaryTreeNode<T> node) {
+        if (node == null) {
+            return 0;
+        }
+        int leftChildDepth = getDepth(node.getLeftChild());
+        int rightChildDepth = getDepth(node.getRightChild());
+        return leftChildDepth > rightChildDepth ? leftChildDepth + 1 : rightChildDepth + 1;
     }
 
     private void doPostOrderTraverse(BinaryTreeNode<T> tNode) {
@@ -203,6 +218,6 @@ public class BinaryTree<T> {
     }
 
     private void visit(BinaryTreeNode<T> tNode) {
-        System.out.print(tNode.getData());
+        System.out.print(tNode.getData() + " ");
     }
 }
