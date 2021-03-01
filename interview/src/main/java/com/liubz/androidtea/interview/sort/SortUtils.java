@@ -15,11 +15,11 @@ public class SortUtils {
     public static void main(String[] args) {
 //        bubbleSort(new int[] {5, 8, 9, 3, 6});
 //        selectionSort(new int[] {5, 8, 9, 3, 6});
-//        quickSort(new int[] {5, 8, 9, 3, 6});
+        quickSort(new int[] {7, 15, 13, 8, 4, 2, 8, 17, 6, 3});
 //        insertionSort(new int[] {5, 8, 9, 3, 6});
 //        shellSort(new int[] {5, 8, 9, 3, 6});
 //        mergeSort(new int[] {5, 8, 9, 3, 6});
-        heapSort(new int[] {5, 8, 9, 3, 6});
+//        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
 //        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
@@ -145,6 +145,7 @@ public class SortUtils {
             while (i < j && arr[i] > pivot) {
                 i++;
             }
+            System.out.println("i: " + i + ", j: " + j);
             if (arr[i] == arr[j] && i < j) {
                 i++;
             } else {
@@ -154,8 +155,9 @@ public class SortUtils {
             }
         }
 
+        System.out.println("i - 1: " + (i - 1) + ", low: " + low + ", j + 1： " + (j + 1) + ", high: " + high);
         if (i - 1 > low) {
-            doQuickSort(arr, 0, i - 1);
+            doQuickSort(arr, low, i - 1);
         }
         if (j + 1 < high) {
             doQuickSort(arr, j + 1, high);
