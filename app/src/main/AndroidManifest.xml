@@ -39,6 +39,7 @@
             android:name=".network.socket.SocketTestActivity"
             android:launchMode="singleTop" />
         <activity android:name=".broadcast.BroadcastTestActivity" />
+        <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
         <activity android:name=".persistence.litepal.LitePalTestActivity" />
@@ -76,7 +77,6 @@
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
         <activity android:name=".modules.launcher.DefaultLauncherTest" />
         <activity android:name=".archcomponents.ShowNameActivity" />
-        <activity android:name=".modules.ui.MyActivity"/>
 
         <activity
             android:name=".modules.launcher.Launcher"

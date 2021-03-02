@@ -3,11 +3,13 @@ package com.liubz.androidtea;
 import java.util.Map;
 import java.util.Set;
 
+import com.liubz.androidtea.broadcast.InteractiveStateActivity;
 import com.liubz.androidtea.modules.usage.UsageUtils;
 import com.liubz.androidtea.utils.TimeUtils;
 
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -55,21 +57,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     private void initViews() {
         mClickLaunchBtn = findViewById(R.id.click_to_launch);
         mClickLaunchBtn.setOnClickListener(this);
         mScrollView = findViewById(R.id.scroll_view);
         mScrollView.setAnimation(AnimationUtils.loadAnimation(this, R.anim.translate));
-//        mScrollView.setOnClickListener(this);
+        //        mScrollView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v == mClickLaunchBtn) {
-//            ClassLoaderUtils.showClassLoaderRelations(this);
-            String name = "liu";
-            assert name != "liu";
+            startActivity(new Intent(this, InteractiveStateActivity.class));
         } else if (v == mScrollView) {
             Toast.makeText(this, "scroll view clicked", Toast.LENGTH_SHORT).show();
         }
