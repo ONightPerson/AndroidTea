@@ -12,19 +12,20 @@ public class SortUtils {
     private static final String pjlink_DISCOVERY_MSG = "2532535243480d";
 
     private static final String ONKYO_DISCOVERY_MSG = "49534350000000100000000901000000217845434e5153544e";
+
     public static void main(String[] args) {
 //        bubbleSort(new int[] {5, 8, 9, 3, 6});
 //        selectionSort(new int[] {5, 8, 9, 3, 6});
-        quickSort(new int[] {7, 15, 13, 8, 4, 2, 8, 17, 6, 3});
+//        quickSort(new int[]{7, 15, 13, 8, 4, 2, 8, 17, 6, 3});
 //        insertionSort(new int[] {5, 8, 9, 3, 6});
 //        shellSort(new int[] {5, 8, 9, 3, 6});
-//        mergeSort(new int[] {5, 8, 9, 3, 6});
+        mergeSort(new int[]{5, 8, 9, 3, 6});
 //        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
 //        radixSort(new int[] {818, 954, 672, 826, 981}, 3);
 //        test();
-        test1();
+//        test1();
     }
 
     public static void test1() {
@@ -65,15 +66,16 @@ public class SortUtils {
         String s = " ";
         System.out.println("char:" + (s.charAt(0) - 0) + "fefe");
 
-        String[][] DICT =  {{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
-            {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
-            {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
-            {"", "M", "MM", "MMM"}};
+        String[][] DICT = {{"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+                {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+                {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+                {"", "M", "MM", "MMM"}};
         System.out.println(DICT[3][3]);
     }
 
     /**
      * 冒泡，降序排列
+     *
      * @param input
      */
     public static void bubbleSort(int[] input) {
@@ -82,12 +84,12 @@ public class SortUtils {
         }
 
         int len = input.length;
-        for (int i = 0; i < len-1; i++) {
-            for (int j = 0; j < len-i-1; j++) {
-                if (input[j] < input[j+1]) {
+        for (int i = 0; i < len - 1; i++) {
+            for (int j = 0; j < len - i - 1; j++) {
+                if (input[j] < input[j + 1]) {
                     int tmp = input[j];
-                    input[j] = input[j+1];
-                    input[j+1] = tmp;
+                    input[j] = input[j + 1];
+                    input[j + 1] = tmp;
                 }
             }
         }
@@ -96,6 +98,7 @@ public class SortUtils {
 
     /**
      * 选择排序，降序排列
+     *
      * @param input
      */
     public static void selectionSort(int[] input) {
@@ -106,7 +109,7 @@ public class SortUtils {
         for (int i = 0; i < len; i++) {
             int max = input[i];
             int maxIndex = i;
-            for (int j = i+1; j < len; j++) {
+            for (int j = i + 1; j < len; j++) {
                 if (max < input[j]) {
                     max = input[j];
                     maxIndex = j;
@@ -123,49 +126,48 @@ public class SortUtils {
 
     /**
      * 快速排序，降序排列
+     *
      * @param arr
      */
     public static void quickSort(int[] arr) {
         if (arr == null || arr.length < 1) {
             return;
         }
+        recur(arr, 0, arr.length - 1);
 
-        doQuickSort(arr, 0, arr.length - 1);
         output(arr);
     }
 
-    private static void doQuickSort(int[] arr, int low, int high) {
-        int i = low;
+    private static void recur(int[] arr, int low, int high) {
+        if (high > low) {
+            int mid = partition(arr, low, high);
+            recur(arr, low, mid - 1);
+            recur(arr, mid + 1, high);
+        }
+    }
+
+    private static int partition(int[] arr, int low, int high) {
+        int i = low + 1;
         int j = high;
         int pivot = arr[low];
-        while (i < j) {
-            while (i < j && arr[j] < pivot) {
+        while (i <= j) {
+            while (i <= j && arr[j] < pivot) {
                 j--;
             }
-            while (i < j && arr[i] > pivot) {
+            while (i <= j && arr[i] >= pivot) {
                 i++;
             }
-            System.out.println("i: " + i + ", j: " + j);
-            if (arr[i] == arr[j] && i < j) {
-                i++;
-            } else {
-                int tmp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = tmp;
+            if (i < j) {
+                swap(arr, i, j);
             }
         }
-
-        System.out.println("i - 1: " + (i - 1) + ", low: " + low + ", j + 1： " + (j + 1) + ", high: " + high);
-        if (i - 1 > low) {
-            doQuickSort(arr, low, i - 1);
-        }
-        if (j + 1 < high) {
-            doQuickSort(arr, j + 1, high);
-        }
+        swap(arr, low, j);
+        return j;
     }
 
     /**
      * 插入排序，降序排列
+     *
      * @param arr
      */
     public static void insertionSort(int[] arr) {
@@ -178,8 +180,8 @@ public class SortUtils {
             int cur = arr[i];
             int j = i;
             // 与已排序的数据进行比较，注意临界点
-            while (j > 0 && cur > arr[j-1]) {
-                arr[j] = arr[j-1];
+            while (j > 0 && cur > arr[j - 1]) {
+                arr[j] = arr[j - 1];
                 j--;
             }
             arr[j] = cur;
@@ -188,6 +190,7 @@ public class SortUtils {
 
     /**
      * 希尔排序，降序排列
+     *
      * @param arr
      */
     public static void shellSort(int[] arr) {
@@ -215,57 +218,53 @@ public class SortUtils {
 
     /**
      * 归并排序，降序排列
+     *
      * @param arr
      */
     public static void mergeSort(int[] arr) {
         if (arr == null || arr.length == 1) {
             return;
         }
-        doMergeSort(arr, 0, arr.length - 1);
+        int[] tmp = new int[arr.length];
+        doMergeSort(arr, 0, arr.length - 1, tmp);
         output(arr);
     }
 
-    private static void doMergeSort(int[] arr, int low, int high) {
+    private static void doMergeSort(int[] arr, int low, int high, int[] tmp) {
         if (low >= high) {
             return;
         }
-        int mid = (low + high) >> 1;
-        doMergeSort(arr, low, mid);
-        doMergeSort(arr, mid+1, high);
+        int mid = low + ((high - low) >>> 1);
+        doMergeSort(arr, low, mid, tmp);
+        doMergeSort(arr, mid + 1, high, tmp);
+        merge(arr, low, mid, high, tmp);
+    }
 
+    private static void merge(int[] arr, int low, int mid, int high, int[] tmp) {
+        System.arraycopy(arr, low, tmp, low, high - low + 1);
         int i = low;
         int j = mid + 1;
-        int k = 0;
-        int num = high - low + 1;
-        int[] tmp = new int[num];
-
-        while (i <= mid && j <= high) {
-            if (arr[i] < arr[j]) {
-                tmp[k++] = arr[i++];
+        for (int k = low; k <= high; k++) {
+            if (i == mid + 1) {
+                arr[k] = tmp[j++];
+            } else if (j == high + 1) {
+                arr[k] = tmp[i++];
+            } else if (tmp[i] <= tmp[j]) {
+                arr[k] = tmp[i++];
             } else {
-                tmp[k++] = arr[j++];
+                arr[k] = tmp[j++];
             }
-        }
-        while (i <= mid) {
-            tmp[k++] = arr[i++];
-        }
-        while (j <= high) {
-            tmp[k++] = arr[j++];
-        }
-
-
-        for (int m = 0; m < num; m++) {
-            arr[low++] = tmp[m];
         }
     }
 
     /**
      * 向下堆化（大顶堆）
+     *
      * @param arr
      * @param index 当前待堆化的节点
-     * @param len 堆节点个数
+     * @param len   堆节点个数
      */
-    private static void siftDown(int [] arr, int index, int len) {
+    private static void siftDown(int[] arr, int index, int len) {
         int item = arr[index]; // 当前待堆化的节点值
         for (int i = 2 * index + 1; i < len; i = 2 * i + 1) {
             if (i + 1 < len && arr[i] < arr[i + 1]) {
@@ -310,6 +309,7 @@ public class SortUtils {
 
     /**
      * 计数排序，降序排列
+     *
      * @param arr 原数组
      */
     public static void countingSort(int[] arr) {
@@ -350,12 +350,11 @@ public class SortUtils {
                 max = arr[i];
             }
         }
-        return new int[] {min, max};
+        return new int[]{min, max};
     }
 
     /**
-     *
-     * @param arr 待排序数组
+     * @param arr        待排序数组
      * @param bucketSize 桶大小
      */
     public static void bucketSort(int[] arr, int bucketSize) {
@@ -398,6 +397,7 @@ public class SortUtils {
 
     /**
      * 基数排序
+     *
      * @param arr
      */
     public static void radixSort(int[] arr, int digit) {
@@ -429,9 +429,7 @@ public class SortUtils {
     }
 
 
-
-
-    private static void output(int[]  input) {
+    private static void output(int[] input) {
         System.out.println(Arrays.toString(input));
     }
 }
