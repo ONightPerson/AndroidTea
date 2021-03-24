@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/collapse_page_background"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop"
+                tools:ignore="ContentDescription" />
 
 
             <androidx.appcompat.widget.Toolbar
@@ -35,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         <com.google.android.material.tabs.TabLayout
@@ -43,38 +44,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabIndicatorColor="#ADBE107E"
-            app:tabMode="scrollable"/>
+            app:tabMode="scrollable" />
     </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-   <!--<android.support.design.widget.FloatingActionButton-->
-       <!--android:layout_width="wrap_content"-->
-       <!--android:layout_height="wrap_content"-->
-       <!--android:onClick="checkIn"-->
-       <!--android:layout_margin="10dp"-->
-       <!--android:src="@drawable/float_msg"-->
-       <!--app:layout_anchor="@id/viewpager"-->
-       <!--app:layout_anchorGravity="bottom|right|end"-->
-       <!--app:layout_behavior="com.liubz.androidtea.material.behavior.FooterBehavior"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/holo_blue_dark"
         android:layout_gravity="bottom"
+        android:background="@android:color/holo_blue_dark"
         android:gravity="center_horizontal"
         app:layout_behavior=".material.behavior.FooterBehavior">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="hello"/>
-
+            android:text="hello" />
     </LinearLayout>
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

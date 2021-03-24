@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".HomeActivity"
             android:launchMode="singleTop"
             android:theme="@style/MainTheme">
             <intent-filter>
@@ -45,12 +45,11 @@
         <activity android:name=".persistence.litepal.LitePalTestActivity" />
         <activity android:name=".contentprovider.ContactsTestActivity" />
         <activity android:name=".music.client.MusicPlayActivity" />
-        <activity android:name=".material.recycler.RecyclerViewTestActivity" />
+        <activity android:name=".material.recycler.RecyclerViewActivity" />
         <activity android:name=".material.recycler.CardViewTestActivity" />
-        <activity android:name=".material.toolbar.ToolbarTestActivity" />
         <activity android:name=".material.permissions.DangerousPermissionTestActivity" />
         <activity android:name=".material.MaterialTestActivity" />
-        <activity android:name=".material.tablayout.TabLayoutTestActivity" />
+        <activity android:name=".material.tablayout.TabLayoutActivity" />
         <activity android:name=".material.CoordinatorLayoutTestActivity" />
         <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
         <activity android:name=".material.CustomBehaviorTestActivity" />

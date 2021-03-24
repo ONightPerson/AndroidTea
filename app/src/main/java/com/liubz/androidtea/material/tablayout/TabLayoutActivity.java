@@ -19,7 +19,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TabLayoutTestActivity extends AppCompatActivity {
+public class TabLayoutActivity extends AppCompatActivity {
 
     private DrawerLayout mDrawerLayout;
     private ViewPager mViewPager;
@@ -45,7 +45,7 @@ public class TabLayoutTestActivity extends AppCompatActivity {
             navView.setNavigationItemSelectedListener(item -> {
                 item.setChecked(true);
                 String title = item.getTitle().toString();
-                Toast.makeText(TabLayoutTestActivity.this,
+                Toast.makeText(TabLayoutActivity.this,
                         title, Toast.LENGTH_SHORT).show();
                 mDrawerLayout.closeDrawers();
                 return true;
@@ -87,7 +87,7 @@ public class TabLayoutTestActivity extends AppCompatActivity {
         // 将TabLayout和ViewPager关联起来
         mTabLayout.setupWithViewPager(mViewPager);
 //        // 给TabLayout设置适配器
-//        mTabLayout.setTabsFromPagerAdapter(fragmentAdapter);
+        mTabLayout.setTabsFromPagerAdapter(fragmentAdapter);
     }
 
     // 监听Toolbar的菜单选项回调，否则抽屉出不来

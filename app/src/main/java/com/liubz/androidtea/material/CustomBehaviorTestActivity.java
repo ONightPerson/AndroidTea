@@ -1,31 +1,24 @@
 package com.liubz.androidtea.material;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.snackbar.Snackbar;
 import com.liubz.androidtea.R;
-import com.liubz.androidtea.material.recycler.DividerItemDecoration;
-import com.liubz.androidtea.material.recycler.HomeAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomBehaviorTestActivity extends AppCompatActivity implements HomeAdapter.OnItemClickListener {
+public class CustomBehaviorTestActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private HomeAdapter mHomeAdapter;
     private CoordinatorLayout mCoordinatorLayout;
 
     private List<String> mList = new ArrayList<>();
@@ -69,19 +62,6 @@ public class CustomBehaviorTestActivity extends AppCompatActivity implements Hom
 
         mCoordinatorLayout = findViewById(R.id.cl_coordinator_layout);
 
-        initViewPager();
-    }
-
-    private void initViewPager() {
-        mRecyclerView = findViewById(R.id.my_recycler_view);
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(4,
-                StaggeredGridLayoutManager.VERTICAL));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
-
-        mHomeAdapter = new HomeAdapter(this, mList);
-        mHomeAdapter.setOnItemClickListener(this);
-        mRecyclerView.setAdapter(mHomeAdapter);
     }
 
     public void checkIn(View view) {
@@ -90,15 +70,5 @@ public class CustomBehaviorTestActivity extends AppCompatActivity implements Hom
                     Toast.makeText(CustomBehaviorTestActivity.this,
                             "Snackbar appear", Toast.LENGTH_SHORT).show();
                 }).show();
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-
-    }
-
-    @Override
-    public void onItemLongClick(View view, int position) {
-
     }
 }

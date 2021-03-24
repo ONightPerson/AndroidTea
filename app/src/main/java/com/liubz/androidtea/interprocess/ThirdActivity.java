@@ -31,7 +31,7 @@ public class ThirdActivity extends Activity {
         notification.icon = R.drawable.icon;
         notification.tickerText = "hello";
         notification.contentView =  new RemoteViews(getPackageName(),
-                R.layout.activity_main);
+                R.layout.home_activity);
         notification.contentIntent = PendingIntent.getActivity(this, 0,
                 new Intent(this, ThirdActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         notification.when = 0;

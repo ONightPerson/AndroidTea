@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,9 +29,6 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     public DividerItemDecoration(Context context, int orientation) {
         final TypedArray ta = context.obtainStyledAttributes(ATTRS);
         mDivider = ta.getDrawable(0);
-        Log.i(TAG, "DividerItemDecoration: mDivider intrinsic height"
-                + mDivider.getIntrinsicHeight() + ", intrinsic width: "
-                + mDivider.getIntrinsicWidth());
         ta.recycle();
         mOrientation = orientation;
     }
@@ -59,18 +57,17 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
     @SuppressLint("LongLogTag")
     private void drawVertical(Canvas c, RecyclerView parent) {
-        c.drawColor(Color.BLUE);
         final int left = parent.getPaddingLeft();
         final int right = parent.getPaddingRight();
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
             RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
-            Log.i(TAG, "drawHorizontal: current child#" + i + " bottom position: " + child.getBottom());
             final int top = child.getBottom() + params.bottomMargin;
             final int bottom = top + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
+            mDivider.setColorFilter(new ColorFilter());
         }
     }
 
