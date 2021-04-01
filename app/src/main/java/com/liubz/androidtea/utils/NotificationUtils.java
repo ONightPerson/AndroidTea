@@ -1,4 +1,4 @@
-package com.liubz.androidtea.modules.multimedia;
+package com.liubz.androidtea.utils;
 
 import android.app.Notification;
 import android.app.NotificationManager;

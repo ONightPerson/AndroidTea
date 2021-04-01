@@ -232,4 +232,7 @@
     <string name="error_start_recording">Something went wrong starting the recording</string>
 
     <string name="material_recycler_control_card_radius">控制圆角大小</string>
+    <string name="network_websocket_connect">建立连接</string>
+    <string name="network_websocket_send">发送消息</string>
+    <string name="network_websocket_login">登录</string>
 </resources>

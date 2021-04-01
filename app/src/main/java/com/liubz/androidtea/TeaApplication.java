@@ -8,7 +8,9 @@ import android.os.Build;
 import android.os.Process;
 import android.util.Log;
 
-import com.liubz.androidtea.modules.multimedia.NotificationUtils;
+import com.liubz.androidtea.network.websocket.WebSocketConfig;
+import com.liubz.androidtea.network.websocket.WebSocketHelper;
+import com.liubz.androidtea.utils.NotificationUtils;
 import com.liubz.androidtea.utils.ApplicationUtils;
 
 import org.litepal.LitePal;
@@ -38,5 +40,16 @@ public class TeaApplication extends Application {
             channel.enableVibration(false);
             nm.createNotificationChannel(channel);
         }
+
+        initHelper();
+        initConfig();
+    }
+
+    private void initHelper() {
+        WebSocketHelper.init(new WebSocketConfig());
+    }
+
+    private void initConfig() {
+        WebSocketHelper.initConfig();
     }
 }

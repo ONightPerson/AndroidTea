@@ -1,5 +1,8 @@
 package com.liubz.androidtea;
 
+import com.liubz.androidtea.databinding.HomeActivityBinding;
+import com.liubz.androidtea.network.websocket.WebSocketActivity;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -7,13 +10,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.liubz.androidtea.databinding.HomeActivityBinding;
-import com.liubz.androidtea.material.tablayout.TabLayoutActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -55,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mBinding.clickToLaunch) {
-            startActivity(new Intent(this, TabLayoutActivity.class));
+            startActivity(new Intent(this, WebSocketActivity.class));
         }
     }
 }
