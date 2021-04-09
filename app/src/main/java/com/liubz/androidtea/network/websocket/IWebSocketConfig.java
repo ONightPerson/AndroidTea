@@ -17,4 +17,8 @@ public interface IWebSocketConfig {
 
     void reConnect();
 
+    void setSocketIOCallBack(WebSocketCallback callBack);
+
+    void removeSocketIOCallBack();
+
 }

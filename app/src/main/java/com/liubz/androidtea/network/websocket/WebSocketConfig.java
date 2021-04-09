@@ -183,10 +183,12 @@ public class WebSocketConfig extends WebSocketListener implements IWebSocketConf
 
     private WebSocketCallback mSocketIOCallback;
 
+    @Override
     public void setSocketIOCallBack(WebSocketCallback callBack) {
         mSocketIOCallback = callBack;
     }
 
+    @Override
     public void removeSocketIOCallBack() {
         mSocketIOCallback = null;
     }

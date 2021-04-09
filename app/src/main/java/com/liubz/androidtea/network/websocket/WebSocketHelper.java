@@ -43,4 +43,14 @@ public class WebSocketHelper {
         ensureConfigSetup();
         sConfig.close();
     }
+
+    public static void setSocketIOCallBack(WebSocketCallback callBack) {
+        ensureConfigSetup();
+        sConfig.setSocketIOCallBack(callBack);
+    }
+
+    public static void removeSocketIOCallBack() {
+        ensureConfigSetup();
+        sConfig.removeSocketIOCallBack();
+    }
 }

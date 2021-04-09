@@ -9,19 +9,30 @@
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/network_websocket_connect"
-            android:onClick="connect" />
+            android:onClick="connect"
+            android:text="@string/network_websocket_connect" />
 
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/network_websocket_login"
-            android:onClick="login" />
+            android:onClick="login"
+            android:text="@string/network_websocket_login" />
 
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/network_websocket_send"
-            android:onClick="send" />
+            android:onClick="send"
+            android:text="@string/network_websocket_send" />
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/network_websocket_clear_log"
+            android:onClick="clear"/>
+
+    <TextView
+            android:id="@+id/show_log_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </LinearLayout>

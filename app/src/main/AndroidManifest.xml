@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="UnusedAttribute">
         <activity
-                android:name=".HomeActivity"
+                android:name=".network.websocket.WebSocketActivity"
                 android:launchMode="singleTop"
                 android:theme="@style/MainTheme">
             <intent-filter>
@@ -78,7 +78,6 @@
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
         <activity android:name=".modules.launcher.DefaultLauncherTest" />
         <activity android:name=".archcomponents.ShowNameActivity" />
-        <activity android:name=".network.websocket.WebSocketActivity" />
 
         <activity
                 android:name=".modules.launcher.Launcher"
