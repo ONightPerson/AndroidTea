@@ -1,7 +1,7 @@
 package com.liubz.androidtea;
 
+import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.databinding.HomeActivityBinding;
-import com.liubz.androidtea.network.websocket.WebSocketActivity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -54,7 +54,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mBinding.clickToLaunch) {
-            startActivity(new Intent(this, WebSocketActivity.class));
+            startActivity(new Intent(this, CommunicationActivity.class));
         }
     }
 }
