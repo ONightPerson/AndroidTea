@@ -1,5 +1,9 @@
 include ':parcelapp'
 setBinding(new Binding([gradle: this]))
+evaluate(new File(
+  settingsDir,
+  '../../Desktop/flutter_module/.android/include_flutter.groovy'
+))
 include ':adapter'
 include ':AutoParcelCompiler'
 include ':interview'

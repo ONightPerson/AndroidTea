@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import io.flutter.embedding.android.FlutterActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
@@ -54,7 +55,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mBinding.clickToLaunch) {
-            startActivity(new Intent(this, CommunicationActivity.class));
+//            startActivity(new Intent(this, CommunicationActivity.class));
+//            startActivity(FlutterActivity.createDefaultIntent(this));
+            startActivity(FlutterActivity.withCachedEngine("my_engine_id").build(this));
         }
     }
 }

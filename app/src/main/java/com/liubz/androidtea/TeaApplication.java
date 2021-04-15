@@ -7,6 +7,9 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Process;
 import android.util.Log;
+import io.flutter.embedding.engine.FlutterEngine;
+import io.flutter.embedding.engine.FlutterEngineCache;
+import io.flutter.embedding.engine.dart.DartExecutor;
 
 import com.liubz.androidtea.network.websocket.WebSocketConfig;
 import com.liubz.androidtea.network.websocket.WebSocketHelper;
@@ -17,6 +20,8 @@ import org.litepal.LitePal;
 
 public class TeaApplication extends Application {
     private static final String TAG = "TeaApplication";
+
+    private FlutterEngine mFlutterEngine;
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -40,6 +45,9 @@ public class TeaApplication extends Application {
             channel.enableVibration(false);
             nm.createNotificationChannel(channel);
         }
+        mFlutterEngine = new FlutterEngine(this);
+        mFlutterEngine.getDartExecutor().executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault());
+        FlutterEngineCache.getInstance().put("my_engine_id", mFlutterEngine);
 
         initHelper();
         initConfig();
