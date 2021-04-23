@@ -1,7 +1,7 @@
 package com.liubz.androidtea;
 
-import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.databinding.HomeActivityBinding;
+import com.liubz.androidtea.rx.RxActivity;
 
 import android.content.Intent;
 import android.os.Build;
@@ -13,11 +13,9 @@ import android.view.animation.AnimationUtils;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import io.flutter.embedding.android.FlutterActivity;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";
-
 
     private HomeActivityBinding mBinding;
 
@@ -55,9 +53,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mBinding.clickToLaunch) {
-//            startActivity(new Intent(this, CommunicationActivity.class));
-//            startActivity(FlutterActivity.createDefaultIntent(this));
-            startActivity(FlutterActivity.withCachedEngine("my_engine_id").build(this));
+            //            startActivity(new Intent(this, CommunicationActivity.class));
+            //            startActivity(FlutterActivity.createDefaultIntent(this));
+            //            startActivity(FlutterActivity.withCachedEngine("my_engine_id").build
+            //            (this));
+            //            long endTime = System.currentTimeMillis();
+            //            long startTime = TimeUtils.getGivenMidnightTime(endTime);
+            //            UsageUtils.queryUsageEvents(this, startTime, endTime);
+            startActivity(new Intent(this, RxActivity.class));
+
         }
     }
 }

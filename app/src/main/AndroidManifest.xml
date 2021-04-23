@@ -80,6 +80,7 @@
         <activity android:name=".archcomponents.ShowNameActivity" />
         <activity android:name=".communicate.eventbus.EventBusActivity"/>
         <activity android:name=".communicate.CommunicationActivity"/>
+        <activity android:name="com.liubz.androidtea.rx.RxActivity" />
         <activity
                 android:name="io.flutter.embedding.android.FlutterActivity"
                 android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

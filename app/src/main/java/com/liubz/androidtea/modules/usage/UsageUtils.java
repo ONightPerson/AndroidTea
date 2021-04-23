@@ -92,45 +92,40 @@ public class UsageUtils {
         UsageEvents usageEvents = mUsageStatsManager.queryEvents(startTime, endTime);
         //capturing all events in a array to compare with next element
         Map<String, Long> statsMap = new HashMap<>();
-        Map<String, Integer> eventTypeMap = new HashMap<>();
         long resumeTime = 0;
         while (usageEvents.hasNextEvent()) {
             currentEvent = new UsageEvents.Event();
             usageEvents.getNextEvent(currentEvent);
             String pkgName = currentEvent.getPackageName();
-//            if (!pkgName.equals("com.tencent.mm")) {
-//                continue;
-//            }
             int eventType = currentEvent.getEventType();
-//            if (eventType != UsageEvents.Event.ACTIVITY_RESUMED
-//                    && currentEvent.getEventType() != UsageEvents.Event.ACTIVITY_PAUSED) {
-//                continue;
-//            }
+            if (eventType != UsageEvents.Event.ACTIVITY_RESUMED
+                    && currentEvent.getEventType() != UsageEvents.Event.ACTIVITY_PAUSED) {
+                continue;
+            }
             Log.i(TAG, "queryUsageEvents: pkg: " + pkgName
                     + ", eventType: " + currentEvent.getEventType()
                     + ", time: " + TimeUtils.getLocalDateTimeString(currentEvent.getTimeStamp()));
-//            if (!statsMap.containsKey(pkgName)) {
-//                statsMap.put(pkgName, 0L);
-//            }
-//            if (eventType == UsageEvents.Event.ACTIVITY_RESUMED) {
-//                resumeTime = currentEvent.getTimeStamp();
-//            } else if (eventType == UsageEvents.Event.ACTIVITY_PAUSED) {
-//                if (resumeTime == 0) {
-//                    continue;
-//                }
-//                long delta = currentEvent.getTimeStamp() - resumeTime;
-//                if (delta > 30 * 60 * 60 * 1000L) {
-//                    Log.e(TAG, "queryUsageEvents: interval: " + delta);
-//                }
-//                statsMap.put(pkgName,
-//                        statsMap.get(pkgName) + delta);
-//            }
+            if (!statsMap.containsKey(pkgName)) {
+                statsMap.put(pkgName, 0L);
+            }
+            if (eventType == UsageEvents.Event.ACTIVITY_RESUMED) {
+                resumeTime = currentEvent.getTimeStamp();
+            } else if (eventType == UsageEvents.Event.ACTIVITY_PAUSED) {
+                if (resumeTime == 0) {
+                    continue;
+                }
+                long delta = currentEvent.getTimeStamp() - resumeTime;
+                if (delta > 30 * 60 * 60 * 1000L) {
+                    Log.e(TAG, "queryUsageEvents: interval: " + delta);
+                }
+                statsMap.put(pkgName, statsMap.get(pkgName) + delta);
+            }
         }
-//        if (statsMap.containsKey("com.tencent.mm")) {
-//            Log.i(TAG, "queryUsageEvents --> consume time: "
-//                    + TimeUtils.getUTCTimeString(statsMap.get("com.tencent.mm")));
-//
-//        }
+        if (statsMap.containsKey("com.android.settings")) {
+            Log.i(TAG, "queryUsageEvents --> consume time: "
+                    + statsMap.get("com.android.settings"));
+
+        }
     }
 
     /**
