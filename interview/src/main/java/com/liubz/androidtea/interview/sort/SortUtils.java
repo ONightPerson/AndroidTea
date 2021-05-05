@@ -19,7 +19,7 @@ public class SortUtils {
 //        quickSort(new int[]{7, 15, 13, 8, 4, 2, 8, 17, 6, 3});
 //        insertionSort(new int[] {5, 8, 9, 3, 6});
 //        shellSort(new int[] {5, 8, 9, 3, 6});
-        mergeSort(new int[]{5, 8, 9, 3, 6});
+        mergeSort(new int[]{5, 8, 9, 3, 6, 2});
 //        heapSort(new int[] {5, 8, 9, 3, 6});
 //        countingSort(new int[] {5, 8, 9, -3, 6});
 //        bucketSort(new int[] {5, 8, 9, -3, 6}, 3);
@@ -151,7 +151,7 @@ public class SortUtils {
         int j = high;
         int pivot = arr[low];
         while (i <= j) {
-            while (i <= j && arr[j] < pivot) {
+            while (i <= j && arr[j] <= pivot) {
                 j--;
             }
             while (i <= j && arr[i] >= pivot) {
@@ -189,7 +189,7 @@ public class SortUtils {
     }
 
     /**
-     * 希尔排序，降序排列
+     * 希尔排序，降序排列（插入排序的一种）
      *
      * @param arr
      */
@@ -200,6 +200,7 @@ public class SortUtils {
         int len = arr.length;
         int gap = arr.length;
         while ((gap /= 2) > 0) {
+            System.out.println("gap: " + gap);
             for (int i = 0; i < gap; i += 1) {
                 for (int j = i + gap; j < len; j += gap) {
                     int k = j; // 待插入位置
@@ -217,7 +218,7 @@ public class SortUtils {
     }
 
     /**
-     * 归并排序，降序排列
+     * 归并排序，升序排列
      *
      * @param arr
      */

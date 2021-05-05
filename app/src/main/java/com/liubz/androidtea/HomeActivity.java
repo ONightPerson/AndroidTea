@@ -1,31 +1,35 @@
 package com.liubz.androidtea;
 
-import com.liubz.androidtea.databinding.HomeActivityBinding;
-import com.liubz.androidtea.rx.RxActivity;
-
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.liubz.androidtea.databinding.HomeActivityBinding;
+
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "HomeActivity";
 
     private HomeActivityBinding mBinding;
-
-    private int count = 0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "onStart");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -40,28 +44,48 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         if (actionBar != null) {
             actionBar.hide();
         }
+        Log.d(TAG, "onCreate");
 
         initViews();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy");
     }
 
     private void initViews() {
-        mBinding.clickToLaunch.setOnClickListener(this);
-        mBinding.scrollView.setAnimation(AnimationUtils.loadAnimation(this, R.anim.translate));
+//        mBinding.clickToLaunch.setOnClickListener(this);
+        String[] listOne = {"Hello", "World"};
+        String[] listTwo = {"好好学习", "天天向上"};
+        ArrayAdapter<String> adapterOne = new ArrayAdapter<>(this,
+                android.R.layout.simple_expandable_list_item_1, listOne);
+        ArrayAdapter<String> adapterTwo = new ArrayAdapter<>(this,
+                android.R.layout.simple_expandable_list_item_1, listTwo);
+        mBinding.listOne.setAdapter(adapterOne);
+        mBinding.listTwo.setAdapter(adapterTwo);
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mBinding.clickToLaunch) {
-            //            startActivity(new Intent(this, CommunicationActivity.class));
-            //            startActivity(FlutterActivity.createDefaultIntent(this));
-            //            startActivity(FlutterActivity.withCachedEngine("my_engine_id").build
-            //            (this));
-            //            long endTime = System.currentTimeMillis();
-            //            long startTime = TimeUtils.getGivenMidnightTime(endTime);
-            //            UsageUtils.queryUsageEvents(this, startTime, endTime);
-            startActivity(new Intent(this, RxActivity.class));
-
-        }
     }
 }
