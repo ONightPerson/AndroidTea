@@ -16,6 +16,12 @@ package com.liubz.androidtea.autoparcelcompiler.codegen;
  * limitations under the License.
  */
 
+import static javax.lang.model.element.Modifier.FINAL;
+import static javax.lang.model.element.Modifier.PRIVATE;
+import static javax.lang.model.element.Modifier.PUBLIC;
+import static javax.lang.model.element.Modifier.STATIC;
+
+import com.google.auto.service.AutoService;
 import com.google.common.base.CaseFormat;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
@@ -50,6 +56,7 @@ import java.util.Set;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.ProcessingEnvironment;
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.lang.model.SourceVersion;
@@ -66,11 +73,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 
-import static javax.lang.model.element.Modifier.FINAL;
-import static javax.lang.model.element.Modifier.PRIVATE;
-import static javax.lang.model.element.Modifier.PUBLIC;
-import static javax.lang.model.element.Modifier.STATIC;
-
+@AutoService(Processor.class)
 @SupportedAnnotationTypes("com.liubz.androidtea.autoparcel.AutoParcel")
 public final class AutoParcelProcessor extends AbstractProcessor {
     private ErrorReporter mErrorReporter;
@@ -123,6 +126,10 @@ public final class AutoParcelProcessor extends AbstractProcessor {
         }
     }
 
+    /**
+     * ProcessingEnvironment提供很多有用的工具类，比如Elements、Types、Filter和Messager等
+     * @param processingEnv
+     */
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
         super.init(processingEnv);
@@ -135,6 +142,12 @@ public final class AutoParcelProcessor extends AbstractProcessor {
         return SourceVersion.latestSupported();
     }
 
+    /**
+     * 扫描、评估和处理注解的代码
+     * @param annotations
+     * @param env
+     * @return
+     */
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment env) {
         Collection<? extends Element> annotatedElements =
@@ -160,10 +173,12 @@ public final class AutoParcelProcessor extends AbstractProcessor {
         if (type.getKind() != ElementKind.CLASS) {
             mErrorReporter.abortWithError("@" + AutoParcel.class.getName() + " only applies to classes", type);
         }
+
         if (ancestorIsAutoParcel(type)) {
             mErrorReporter.abortWithError("One @AutoParcel class shall not extend another", type);
         }
 
+         // 处理内部类
         checkModifiersIfNested(type);
 
         // get the fully-qualified class name

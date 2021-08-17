@@ -66,13 +66,13 @@ dependencies {
     implementation configs.androidx.lifecycle_viewmodel
 
     implementation 'org.litepal.android:java:3.0.0'
-    implementation "com.squareup.okhttp3:okhttp:4.9.0"
-    implementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
-    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2'
+    implementation 'com.google.code.gson:gson:2.8.7'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'org.greenrobot:eventbus:3.2.0'
-    implementation "io.reactivex.rxjava3:rxjava:3.0.12"
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
