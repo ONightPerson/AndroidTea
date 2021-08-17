@@ -13,10 +13,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        ndk {
-            // Filter for architectures supported by Flutter.
-            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
-        }
     }
 
     viewBinding {
@@ -74,6 +70,9 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-jackson:2.9.0'

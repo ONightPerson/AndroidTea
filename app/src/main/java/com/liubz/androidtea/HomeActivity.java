@@ -1,90 +1,33 @@
 package com.liubz.androidtea;
 
-import android.os.Build;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.databinding.HomeActivityBinding;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+@SuppressLint("NonConstantResourceId")
+public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
 
-    private HomeActivityBinding mBinding;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
+    @BindView(R.id.btn)
+    Button mBtn;
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d(TAG, "onStart");
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = HomeActivityBinding.inflate(getLayoutInflater());
-        View root = mBinding.getRoot();
-        setContentView(root);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.hide();
-        }
-        Log.d(TAG, "onCreate");
-
-        initViews();
+        setContentView(R.layout.home_activity);
+        ButterKnife.bind(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.d(TAG, "onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.d(TAG, "onDestroy");
-    }
-
-    private void initViews() {
-//        mBinding.clickToLaunch.setOnClickListener(this);
-        String[] listOne = {"Hello", "World"};
-        String[] listTwo = {"好好学习", "天天向上"};
-        ArrayAdapter<String> adapterOne = new ArrayAdapter<>(this,
-                android.R.layout.simple_expandable_list_item_1, listOne);
-        ArrayAdapter<String> adapterTwo = new ArrayAdapter<>(this,
-                android.R.layout.simple_expandable_list_item_1, listTwo);
-        mBinding.listOne.setAdapter(adapterOne);
-        mBinding.listTwo.setAdapter(adapterTwo);
-    }
-
-    @Override
-    public void onClick(View v) {
+    @OnClick(R.id.btn)
+    void onClick() {
+        Toast.makeText(this, "点击了button", Toast.LENGTH_SHORT).show();
     }
 }

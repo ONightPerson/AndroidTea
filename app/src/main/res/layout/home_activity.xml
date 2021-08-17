@@ -6,19 +6,9 @@
     android:orientation="vertical"
     tools:context="com.liubz.androidtea.HomeActivity">
 
-    <com.liubz.androidtea.view.CustomHorizontalView
+    <Button
+        android:id="@+id/btn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/list_one"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/holo_red_dark"/>
-
-        <ListView
-            android:id="@+id/list_two"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </com.liubz.androidtea.view.CustomHorizontalView>
+        android:layout_height="wrap_content"
+        android:text="@string/accessibility_click_to_launch" />
 </LinearLayout>
