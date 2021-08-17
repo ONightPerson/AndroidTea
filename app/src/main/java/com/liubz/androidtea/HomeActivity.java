@@ -18,7 +18,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     private static final String TAG = "HomeActivity";
 
     private HomeActivityBinding mBinding;
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
