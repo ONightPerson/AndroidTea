@@ -1,12 +1,20 @@
 package com.liubz.androidtea;
 
 import android.annotation.SuppressLint;
+import android.content.res.AssetFileDescriptor;
+import android.content.res.AssetManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.liubz.androidtea.codec.CodecUtils;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,8 +34,16 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @OnClick(R.id.btn)
     void onClick() {
-        Toast.makeText(this, "点击了button", Toast.LENGTH_SHORT).show();
+        AssetManager am = getAssets();
+        AssetFileDescriptor afd = null;
+        try {
+            afd = am.openFd("demo.mp4");
+            CodecUtils.showSupportedColorFormat(afd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
