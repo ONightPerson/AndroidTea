@@ -33,11 +33,13 @@ public class WebViewTestActivity extends Activity {
         // Create an unencoded HTML string
         // then convert the unencoded HTML string into bytes, encode
         // it with Base64, and load the data.
-        String unencodedHtml =
-                "&lt;html&gt;&lt;body&gt;'%23' is the percent code for ‘#‘ &lt;/body&gt;&lt;/html&gt;";
-        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
-                Base64.NO_PADDING);
-        mWebView.loadData(encodedHtml, "text/html", "base64");
+//        String unencodedHtml =
+//                "&lt;html&gt;&lt;body&gt;'%23' is the percent code for ‘#‘ &lt;/body&gt;&lt;/html&gt;";
+//        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
+//                Base64.NO_PADDING);
+//        mWebView.loadData(encodedHtml, "text/html", "base64");
+
+        mWebView.loadUrl("file:///android_asset/web/index.html");
     }
 
     @Override

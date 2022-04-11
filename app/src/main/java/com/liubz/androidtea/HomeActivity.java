@@ -1,20 +1,18 @@
 package com.liubz.androidtea;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.codec.CodecUtils;
-
-import java.io.IOException;
+import com.liubz.androidtea.network.WebViewTestActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,8 +38,9 @@ public class HomeActivity extends AppCompatActivity {
         AssetManager am = getAssets();
         AssetFileDescriptor afd = null;
         try {
-            afd = am.openFd("demo.mp4");
-            CodecUtils.showSupportedColorFormat(afd);
+//            afd = am.openFd("demo.mp4");
+//            CodecUtils.showSupportedColorFormat(afd);
+            startActivity(new Intent(this, WebViewTestActivity.class));
         } catch (Exception e) {
             e.printStackTrace();
         }
