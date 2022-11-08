@@ -1,26 +1,29 @@
 package com.liubz.androidtea;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.AssetManager;
-import android.os.Build;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.network.WebViewTestActivity;
+import com.liubz.androidtea.interprocess.SecondActivity;
+import com.liubz.androidtea.rx.RxActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-@SuppressLint("NonConstantResourceId")
 public class HomeActivity extends AppCompatActivity {
     private static final String TAG = "HomeActivity";
+
+    private SensorManager sensormanager;
+    private SensorEventListener listener;
 
     @BindView(R.id.btn)
     Button mBtn;
@@ -30,19 +33,66 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
+
+//        testSensor();
+
+        // 陀螺仪传感器
+//        DegreeSensorManager manager = new DegreeSensorManager();
+//        manager.initSensor(this);
+//        manager.registerListener();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @OnClick(R.id.btn)
     void onClick() {
-        AssetManager am = getAssets();
-        AssetFileDescriptor afd = null;
-        try {
-//            afd = am.openFd("demo.mp4");
-//            CodecUtils.showSupportedColorFormat(afd);
-            startActivity(new Intent(this, WebViewTestActivity.class));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        startActivity(new Intent(this, SecondActivity.class));
+    }
+
+    private void testSensor() {
+         /*
+        传感器的创建
+        1、先创建传感器管理器，管理所有传感器
+        2、传入参数，指定特定传感器
+        3、注册
+        4、结束，注销传感器
+         */
+        // 1、获取传感器管理服务对象
+        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        // 2、特定传观器对象获取: 方向传感器
+        Sensor accelerometersensor = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        Sensor magneticsensor = sensormanager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        // 3、注册监听器，来实时的更改操作
+        //监听器：精确度更改会立即执行onSensorChanged方法
+        listener = new SensorEventListener() {
+            private float[] accelerometer = new float[3];
+            private float[] magnetic = new float[3];
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                //判断当前是什么传感器
+                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                    //使用clone来取值
+                    accelerometer = event.values.clone();
+                }else if(event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+                    magnetic = event.values.clone();
+                }
+                float[] R = new float[9];
+                float[] values = new float[3];
+                if (accelerometer.length != 0 && magnetic.length != 0) {
+                    //根据传输的数据，计算转动角度,将结果放进长度为9的数组中
+                    sensormanager.getRotationMatrix(R, null, accelerometer, magnetic);
+                    //根据上面计算出的旋转矩阵R，在计算旋转角度，存进values中
+                    sensormanager.getOrientation(R, values);
+                    //弧度转换成角度
+                    Log.i(TAG, "onSensorChanged: " + Math.toDegrees(values[0]));
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+            }
+        };
+        //更新速率：提到游戏的规格上
+        sensormanager.registerListener(listener, magneticsensor,SensorManager.SENSOR_DELAY_GAME);
+        sensormanager.registerListener(listener, accelerometersensor, SensorManager.SENSOR_DELAY_GAME);
     }
 }

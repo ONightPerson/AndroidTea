@@ -1,67 +1,92 @@
 package com.liubz.androidtea.rx;
 
-import com.liubz.androidtea.R;
-
-import android.app.Activity;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
+
 import androidx.annotation.Nullable;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observable;
-import io.reactivex.rxjava3.core.Observer;
-import io.reactivex.rxjava3.disposables.Disposable;
+import androidx.fragment.app.FragmentActivity;
+
+import java.io.IOException;
+import java.util.Arrays;
+
+import rx.Observable;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
+
 
 /**
- * Created by liubaozhu on 2021/4/15
+ * @Desc:
+ * @Author: liubaozhu
+ * @Date: 2022/11/3 9:03 PM
  */
-public class RxActivity extends Activity {
+public class RxActivity extends FragmentActivity {
     private static final String TAG = "RxActivity";
-
-    private final Observer<String> observer = new Observer<String>() {
-        @Override
-        public void onSubscribe(@NonNull Disposable d) {
-            Log.d(TAG, "onSubscribe");
-        }
-
-        @Override
-        public void onNext(@NonNull String s) {
-            Log.d(TAG, "onNext: " + s);
-        }
-
-        @Override
-        public void onError(@NonNull Throwable e) {
-            Log.e(TAG, "onError: ", e);
-        }
-
-        @Override
-        public void onComplete() {
-            Log.d(TAG, "onComplete: ");
-        }
-    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.rx_layout);
-//        Observable<String> observable = Observable.create(new ObservableOnSubscribe<String>() {
-//            @Override
-//            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Throwable {
-//                emitter.onNext("杨思颖");
-//                emitter.onNext("月眉儿");
-//                emitter.onComplete();
-//            }
-//        });
-//        observable.subscribe(observer);
-        Observable.create(emitter -> {
-            while (!emitter.isDisposed()) {
-                long time = System.currentTimeMillis();
-                emitter.onNext(time);
-                if (time % 2 != 0) {
-                    emitter.onError(new IllegalStateException("Odd millisecond!"));
-                    break;
-                }
-            }
-        }).subscribe(System.out::println, Throwable::printStackTrace);
+
+//        handleData();
+        handleProvinces();
+    }
+
+    public interface Operator<R, T> extends Func1<Subscriber<? super R>, Subscriber<? super T>> {
+        // cover for generics insanity
+    }
+
+    class Cities {}
+
+
+    private void handleProvinces() {
+        Observable.from(new String[]{"GuangDong", "Chongqing"})
+                .flatMap(new Func1<String, Observable<? extends Cities>>() {
+                    @Override
+                    public Observable<? extends Cities> call(String s) {
+                        return null;
+                    }
+                })
+                .subscribe(new Action1<Cities>() {
+                    @Override
+                    public void call(Cities s) {
+
+                    }
+                });
+
+    }
+
+    private void handleData() {
+        AssetManager assetManager = getAssets();
+        String[] files = new String[0];
+        try {
+            files = assetManager.list("");
+            Log.i(TAG, "handleData: files," + Arrays.toString(files));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Observable.from(files)
+//                .flatMap(new Func1<String, Observable<String>>() {
+//                    @Override
+//                    public Observable<String> call(String file) {
+//                        return Observable.from(file.listFiles());
+//                    }
+//                })
+                .filter(s -> {
+                    Log.i(TAG, "call: s" + s);
+                    return s.endsWith(".png");
+                })
+                .map(file -> file)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(bitmap -> {
+                    Log.i(TAG, "bitmap: " + bitmap);
+                    ;
+                });
+
     }
 
 }
