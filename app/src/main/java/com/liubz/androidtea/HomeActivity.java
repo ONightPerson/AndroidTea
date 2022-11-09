@@ -24,6 +24,8 @@ public class HomeActivity extends AppCompatActivity {
 
     private SensorManager sensormanager;
     private SensorEventListener listener;
+    private Sensor accelerometerSensor;
+    private Sensor magneticSensor;
 
     @BindView(R.id.btn)
     Button mBtn;
@@ -40,6 +42,19 @@ public class HomeActivity extends AppCompatActivity {
 //        DegreeSensorManager manager = new DegreeSensorManager();
 //        manager.initSensor(this);
 //        manager.registerListener();
+        initSensor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerSensor();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        unregisterSensor();
     }
 
     @OnClick(R.id.btn)
@@ -47,7 +62,18 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(this, SecondActivity.class));
     }
 
-    private void testSensor() {
+    private void registerSensor() {
+        //更新速率：提到游戏的规格上
+        sensormanager.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME);
+        sensormanager.registerListener(listener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    private void unregisterSensor() {
+        sensormanager.unregisterListener(listener, magneticSensor);
+        sensormanager.unregisterListener(listener, accelerometerSensor);
+    }
+
+    private void initSensor() {
          /*
         传感器的创建
         1、先创建传感器管理器，管理所有传感器
@@ -58,20 +84,21 @@ public class HomeActivity extends AppCompatActivity {
         // 1、获取传感器管理服务对象
         sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
         // 2、特定传观器对象获取: 方向传感器
-        Sensor accelerometersensor = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        Sensor magneticsensor = sensormanager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        accelerometerSensor = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        magneticSensor = sensormanager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
         // 3、注册监听器，来实时的更改操作
         //监听器：精确度更改会立即执行onSensorChanged方法
         listener = new SensorEventListener() {
             private float[] accelerometer = new float[3];
             private float[] magnetic = new float[3];
+
             @Override
             public void onSensorChanged(SensorEvent event) {
                 //判断当前是什么传感器
-                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER){
+                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
                     //使用clone来取值
                     accelerometer = event.values.clone();
-                }else if(event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD){
+                } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
                     magnetic = event.values.clone();
                 }
                 float[] R = new float[9];
@@ -91,8 +118,5 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         };
-        //更新速率：提到游戏的规格上
-        sensormanager.registerListener(listener, magneticsensor,SensorManager.SENSOR_DELAY_GAME);
-        sensormanager.registerListener(listener, accelerometersensor, SensorManager.SENSOR_DELAY_GAME);
     }
 }

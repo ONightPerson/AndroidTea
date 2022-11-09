@@ -60,7 +60,6 @@
         <activity
             android:name=".interprocess.SecondActivity"
             android:excludeFromRecents="true"
-            android:process=":background"
             android:theme="@style/AppTheme.Transparent" />
         <activity
             android:name=".interprocess.ThirdActivity"
