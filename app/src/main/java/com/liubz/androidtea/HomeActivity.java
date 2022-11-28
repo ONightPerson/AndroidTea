@@ -5,6 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.liubz.androidtea.interprocess.SecondActivity;
+import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.rx.RxActivity;
 
 import butterknife.BindView;
@@ -27,14 +29,21 @@ public class HomeActivity extends AppCompatActivity {
     private Sensor accelerometerSensor;
     private Sensor magneticSensor;
 
-    @BindView(R.id.btn)
+    @BindView(R.id.task)
     Button mBtn;
+
+    @BindView(R.id.call_phone)
+    Button mCallPhone;
+
+    @BindView(R.id.launch_browser)
+    Button mLaunchBrowser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
         ButterKnife.bind(this);
+        Log.i(TAG, "onCreate: ");
 
 //        testSensor();
 
@@ -57,9 +66,23 @@ public class HomeActivity extends AppCompatActivity {
         unregisterSensor();
     }
 
-    @OnClick(R.id.btn)
+    @OnClick(R.id.task)
     void onClick() {
-        startActivity(new Intent(this, SecondActivity.class));
+        startActivity(new Intent(this, WebViewTestActivity.class));
+    }
+
+    @OnClick(R.id.call_phone)
+    void callPhone() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:17611490712"));
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.launch_browser)
+    void launchBrowser() {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.baidu.com"));
+        startActivity(intent);
     }
 
     private void registerSensor() {
@@ -109,7 +132,7 @@ public class HomeActivity extends AppCompatActivity {
                     //根据上面计算出的旋转矩阵R，在计算旋转角度，存进values中
                     sensormanager.getOrientation(R, values);
                     //弧度转换成角度
-                    Log.i(TAG, "onSensorChanged: " + Math.toDegrees(values[0]));
+//                    Log.i(TAG, "onSensorChanged: " + Math.toDegrees(values[0]));
                 }
             }
 

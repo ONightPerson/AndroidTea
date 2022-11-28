@@ -1,6 +1,7 @@
 package com.liubz.androidtea.interprocess;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
@@ -57,7 +58,11 @@ public class SecondActivity extends Activity {
     }
 
     public void clickToThird(View view) {
-        Intent intent = new Intent(this, ThirdActivity.class);
+//        Intent intent = new Intent(this, ThirdActivity.class);
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName("com.learnopengles.android",
+                "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

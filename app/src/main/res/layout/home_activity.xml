@@ -7,8 +7,22 @@
     tools:context="com.liubz.androidtea.HomeActivity">
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/call_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/call_phone" />
+
+    <Button
+        android:id="@+id/task"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/accessibility_click_to_launch" />
+
+    <Button
+        android:id="@+id/launch_browser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/launch_browser"/>
+
+
 </LinearLayout>

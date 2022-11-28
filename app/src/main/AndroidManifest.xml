@@ -30,7 +30,7 @@
         tools:ignore="UnusedAttribute">
         <activity
             android:name=".HomeActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleInstance"
             android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -59,11 +59,9 @@
         <activity android:name=".thread.serialize.SerializableTestActivity" />
         <activity
             android:name=".interprocess.SecondActivity"
-            android:excludeFromRecents="true"
-            android:theme="@style/AppTheme.Transparent" />
+            android:finishOnTaskLaunch="true" />
         <activity
-            android:name=".interprocess.ThirdActivity"
-            android:process=":my_process" />
+            android:name=".interprocess.ThirdActivity" />
         <activity
             android:name=".modules.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"

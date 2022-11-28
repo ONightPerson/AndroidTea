@@ -9,7 +9,7 @@
         android:id="@+id/download"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="点击"
+        android:text="跳转另一个应用"
         android:onClick="clickToThird"/>
 
 </LinearLayout>
