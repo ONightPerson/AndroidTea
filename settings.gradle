@@ -1,3 +1,5 @@
+include ':interfaceimpl'
+include ':baseinterface'
 include ':parcelapp'
 setBinding(new Binding([gradle: this]))
 include ':adapter'

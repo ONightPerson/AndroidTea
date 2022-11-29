@@ -24,5 +24,12 @@
         android:layout_height="wrap_content"
         android:text="@string/launch_browser"/>
 
+    <Button
+        android:id="@+id/service_loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="ServiceLoader" />
+
 
 </LinearLayout>

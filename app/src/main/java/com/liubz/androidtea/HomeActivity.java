@@ -8,16 +8,25 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.interprocess.SecondActivity;
+import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.network.WebViewTestActivity;
-import com.liubz.androidtea.rx.RxActivity;
 
-import butterknife.BindView;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ServiceConfigurationError;
+import java.util.ServiceLoader;
+
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -28,15 +37,6 @@ public class HomeActivity extends AppCompatActivity {
     private SensorEventListener listener;
     private Sensor accelerometerSensor;
     private Sensor magneticSensor;
-
-    @BindView(R.id.task)
-    Button mBtn;
-
-    @BindView(R.id.call_phone)
-    Button mCallPhone;
-
-    @BindView(R.id.launch_browser)
-    Button mLaunchBrowser;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -83,6 +83,74 @@ public class HomeActivity extends AppCompatActivity {
     void launchBrowser() {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.baidu.com"));
         startActivity(intent);
+    }
+
+    @OnClick(R.id.service_loader)
+    void serviceLoader() {
+        ServiceLoader<BaseInterface> sl = ServiceLoader.load(BaseInterface.class);
+        Iterator<BaseInterface> iter = sl.iterator();
+        while (iter.hasNext()) {
+            BaseInterface bi = iter.next();
+            Log.i(TAG, bi.getClass().getName() + ": " + bi.name());
+        }
+
+        try {
+            Enumeration<URL> enumeration = Thread.currentThread().getContextClassLoader().getResources("META-INF/services/" + BaseInterface.class.getName());
+            Log.i(TAG, "serviceLoader: enumeration: " + enumeration);
+            Log.i(TAG, "serviceLoader: hasMoreElements: " + enumeration.hasMoreElements());
+            parse(BaseInterface.class, enumeration.nextElement());
+            while (enumeration.hasMoreElements()) {
+                Log.i(TAG, "serviceLoader: elements: " + enumeration.nextElement());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Iterator<String> parse(Class<?> service, URL u)
+            throws ServiceConfigurationError
+    {
+        InputStream in = null;
+        BufferedReader r = null;
+        ArrayList<String> names = new ArrayList<>();
+        try {
+            in = u.openStream();
+            r = new BufferedReader(new InputStreamReader(in, "utf-8"));
+            int lc = 1;
+            while ((lc = parseLine(service, u, r, lc, names)) >= 0);
+        } catch (IOException x) {
+        } finally {
+        }
+        return names.iterator();
+    }
+
+    private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
+                          List<String> names)
+            throws IOException, ServiceConfigurationError
+    {
+        String ln = r.readLine();
+        if (ln == null) {
+            return -1;
+        }
+        int ci = ln.indexOf('#');
+        if (ci >= 0) ln = ln.substring(0, ci);
+        ln = ln.trim();
+        int n = ln.length();
+        if (n != 0) {
+//            if ((ln.indexOf(' ') >= 0) || (ln.indexOf('\t') >= 0))
+//                fail(service, u, lc, "Illegal configuration-file syntax");
+            int cp = ln.codePointAt(0);
+//            if (!Character.isJavaIdentifierStart(cp))
+//                fail(service, u, lc, "Illegal provider-class name: " + ln);
+            for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
+                cp = ln.codePointAt(i);
+//                if (!Character.isJavaIdentifierPart(cp) && (cp != '.'))
+//                    fail(service, u, lc, "Illegal provider-class name: " + ln);
+            }
+//            if (!providers.containsKey(ln) && !names.contains(ln))
+//                names.add(ln);
+        }
+        return lc + 1;
     }
 
     private void registerSensor() {
