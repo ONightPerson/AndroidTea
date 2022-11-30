@@ -107,9 +107,23 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.classloader)
+    void classLoader() {
+
+        String classpath, bootPath, extPath;
+
+        try {
+            classpath = System.getProperty("java.class.path");
+            bootPath = System.getProperty("sun.boot.class.path");
+            extPath = System.getProperty("java.ext.dirs");
+            Log.i(TAG, "classLoader-classpath: " + classpath + ", bootPath: " + bootPath + ", extPath: " + extPath);
+        } catch (SecurityException e) {
+        }
+
+    }
+
     private Iterator<String> parse(Class<?> service, URL u)
-            throws ServiceConfigurationError
-    {
+            throws ServiceConfigurationError {
         InputStream in = null;
         BufferedReader r = null;
         ArrayList<String> names = new ArrayList<>();
@@ -117,7 +131,7 @@ public class HomeActivity extends AppCompatActivity {
             in = u.openStream();
             r = new BufferedReader(new InputStreamReader(in, "utf-8"));
             int lc = 1;
-            while ((lc = parseLine(service, u, r, lc, names)) >= 0);
+            while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
         } catch (IOException x) {
         } finally {
         }
@@ -126,8 +140,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
                           List<String> names)
-            throws IOException, ServiceConfigurationError
-    {
+            throws IOException, ServiceConfigurationError {
         String ln = r.readLine();
         if (ln == null) {
             return -1;
