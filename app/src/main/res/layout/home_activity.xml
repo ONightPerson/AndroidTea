@@ -37,4 +37,10 @@
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:text="ClassLoader" />
+
+    <Button
+        android:id="@+id/go_to_second_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="跳转到SecondActivity" />
 </LinearLayout>

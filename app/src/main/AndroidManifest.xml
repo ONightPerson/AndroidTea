@@ -69,7 +69,8 @@
         <activity android:name=".network.SignalStrengthTestActivity" />
         <activity android:name=".TVDemoActivity" />
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
-        <activity android:name=".network.WebViewTestActivity" />
+        <activity android:name=".network.WebViewTestActivity"
+            android:exported="false"/>
         <activity android:name=".network.HttpRequestTestActivity" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemo" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />

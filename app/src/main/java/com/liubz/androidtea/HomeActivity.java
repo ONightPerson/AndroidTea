@@ -13,12 +13,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.baseinterface.BaseInterface;
+import com.liubz.androidtea.cherish.classloader.CustomClassLoader;
+import com.liubz.androidtea.interprocess.SecondActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -120,6 +124,17 @@ public class HomeActivity extends AppCompatActivity {
         } catch (SecurityException e) {
         }
 
+        ClassLoader loader = HomeActivity.class.getClassLoader();
+        while(loader != null) {
+            Log.i(TAG, "classLoader: " + loader);
+            loader = loader.getParent();
+        }
+
+    }
+
+    @OnClick(R.id.go_to_second_activity)
+    void goToSecondActivity() {
+        startActivity(new Intent(this, SecondActivity.class));
     }
 
     private Iterator<String> parse(Class<?> service, URL u)
