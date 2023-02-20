@@ -11,7 +11,7 @@ import android.util.Log;
 import androidx.core.app.NotificationCompat;
 
 import com.liubz.androidtea.R;
-import com.liubz.androidtea.interprocess.SecondActivity;
+import com.liubz.androidtea.notification.LaunchOtherAppActivity;
 
 public class NotificationUtils {
     private static final String TAG = "NotificationUtils";
@@ -26,7 +26,7 @@ public class NotificationUtils {
         Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setContentTitle(context.getString(R.string.notification_content_title))
                 .setContentText(context.getString(R.string.notification_content_text))
-                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, SecondActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context, LaunchOtherAppActivity.class), PendingIntent.FLAG_UPDATE_CURRENT))
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.my_ic_launcher)
                 .build();

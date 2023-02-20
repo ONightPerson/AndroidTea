@@ -28,10 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
-        <activity
-            android:name=".HomeActivity"
-            android:launchMode="singleInstance"
-            android:theme="@style/MainTheme">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -55,13 +52,8 @@
         <activity android:name=".material.CoordinatorLayoutTestActivity" />
         <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
         <activity android:name=".material.CustomBehaviorTestActivity" />
-        <activity android:name=".thread.AsyncTaskTestActivity" />
-        <activity android:name=".thread.serialize.SerializableTestActivity" />
-        <activity
-            android:name=".interprocess.SecondActivity"
-            android:finishOnTaskLaunch="true" />
-        <activity
-            android:name=".interprocess.ThirdActivity" />
+        <activity android:name=".notification.LaunchOtherAppActivity" />
+        <activity android:name=".notification.NotificationActivity" />
         <activity
             android:name=".modules.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"
@@ -69,8 +61,9 @@
         <activity android:name=".network.SignalStrengthTestActivity" />
         <activity android:name=".TVDemoActivity" />
         <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
-        <activity android:name=".network.WebViewTestActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".network.WebViewTestActivity"
+            android:exported="false" />
         <activity android:name=".network.HttpRequestTestActivity" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemo" />
         <activity android:name=".modules.screenrecord.ScreenRecordDemoActivity" />
@@ -78,11 +71,33 @@
         <activity android:name=".archcomponents.ShowNameActivity" />
         <activity android:name=".communicate.eventbus.EventBusActivity" />
         <activity android:name=".communicate.CommunicationActivity" />
+        <!--  launch mode start -->
         <activity
-            android:name="io.flutter.embedding.android.FlutterActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
-            android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".stack.launchmode.LaunchModeActivity"
+            android:taskAffinity="com.liubz.androidtea.custom" />
+        <activity
+            android:name=".stack.launchmode.standard.StandardActivity"
+            android:launchMode="standard" />
+        <activity
+            android:name=".stack.launchmode.singletop.SingleTopActivity"
+            android:launchMode="singleTop" />
+
+        <activity
+            android:name=".stack.launchmode.singletask.SingleTaskActivity"
+            android:launchMode="singleTask" />
+
+        <activity
+            android:name=".stack.launchmode.singleinstance.SingleInstanceActivity"
+            android:launchMode="singleInstance" />
+
+        <activity
+            android:name=".stack.launchmode.OtherActivity"
+            android:launchMode="standard" />
+
+        <activity
+            android:name=".stack.launchmode.TransparentActivity"
+            android:theme="@style/AppTheme.Transparent" />
+        <!--  launch mode end -->
 
         <activity
             android:name=".modules.launcher.Launcher"
@@ -121,8 +136,6 @@
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessibilityservice" />
         </service>
-
-        <service android:name=".thread.MyIntentService" />
 
         <receiver
             android:name=".broadcast.BootCompleteReceiver"

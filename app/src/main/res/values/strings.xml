@@ -2,7 +2,6 @@
     <string name="app_name">AndroidTea</string>
     <string name="accessibility_service_label">AndroidTea 辅助功能</string>
     <string name="accessibility_service_description">用于帮助用户开启权限等</string>
-    <string name="accessibility_click_to_launch">任务栈</string>
     <string name="accessibility_auto_click">自动点击按钮</string>
 
     <string name="accessibility_auto_click_toast">辅助功能点击</string>
@@ -161,7 +160,6 @@
     <string name="drawer_open">打开</string>
     <string name="drawer_close">关闭</string>
     <string name="call_phone">拨打电话</string>
-    <string name="launch_browser">打开浏览器</string>
     <string name="user_name">用户名</string>
     <string name="login">登录</string>
     <string name="dl_user_name">ONightPersion</string>
@@ -240,4 +238,19 @@
     <string name="communicate_event_bus">event bus</string>
     <string name="communicate_event_bus_query_data">请求数据</string>
     <string name="material_test">%s %s</string>
+    <string name="home_launch_browser_btn_txt">打开浏览器</string>
+    <string name="home_launch_webview_btn_txt">打开Webview</string>
+    <string name="home_launch_launchmode_btn_txt">打开LaunchMode页面</string>
+    <string name="launch_mode_title">LaunchMode分类</string>
+    <string name="launch_mode_standard_btn_txt">Standard模式</string>
+    <string name="launch_mode_single_top_btn_text">SingleTop模式</string>
+    <string name="launch_mode_single_task_btn_text">SingleTask模式</string>
+    <string name="launch_mode_single_instance_btn_txt">SingleInstance模式</string>
+    <string name="launch_mode_launch_other_btn">启动OtherActivity</string>
+    <string name="single_top_launch_btn_txt">启动SingleTopActivity</string>
+    <string name="standard_launch_btn_txt">启动StandardActivity</string>
+    <string name="single_task_launch_self_btn">启动SingleTaskActivity</string>
+    <string name="other_launch_single_task_btn_txt">启动SingleTaskActivity</string>
+    <string name="other_launch_single_instance_btn_txt">启动SingleInstanceActivity</string>
+    <string name="home_launch_other_app">跳转其他应用</string>
 </resources>

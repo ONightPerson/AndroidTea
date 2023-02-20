@@ -13,34 +13,50 @@
         android:text="@string/call_phone" />
 
     <Button
-        android:id="@+id/task"
+        android:id="@+id/launch_webview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/accessibility_click_to_launch" />
+        android:text="@string/home_launch_webview_btn_txt"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/launch_browser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/launch_browser"/>
+        android:text="@string/home_launch_browser_btn_txt" />
 
     <Button
-        android:id="@+id/service_loader"
+        android:id="@+id/launch_launch_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="ServiceLoader" />
-
-    <Button
-        android:id="@+id/classloader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="ClassLoader" />
+        android:text="@string/home_launch_launchmode_btn_txt"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/go_to_second_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="跳转到SecondActivity" />
+        android:text="@string/home_launch_other_app" />
+
+
+    <Button
+        android:id="@+id/launch_mode_transparent_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="打开透明页面"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/service_loader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ServiceLoader"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/classloader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ClassLoader"
+        android:textAllCaps="false" />
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.liubz.androidtea.interprocess;
+package com.liubz.androidtea.notification;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -16,7 +16,7 @@ import android.widget.RemoteViews;
 
 import com.liubz.androidtea.R;
 
-public class ThirdActivity extends Activity {
+public class NotificationActivity extends Activity {
     private static final String TAG = "ThirdActivity";
 
     @Override
@@ -31,9 +31,9 @@ public class ThirdActivity extends Activity {
         notification.icon = R.drawable.icon;
         notification.tickerText = "hello";
         notification.contentView =  new RemoteViews(getPackageName(),
-                R.layout.home_activity);
+                R.layout.activity_home);
         notification.contentIntent = PendingIntent.getActivity(this, 0,
-                new Intent(this, ThirdActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+                new Intent(this, NotificationActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
         notification.when = 0;
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(2, notification);

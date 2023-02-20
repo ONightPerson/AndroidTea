@@ -5,10 +5,9 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/send_notification"
+        android:id="@+id/single_instance_launch_other_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="sendNotification"
-        android:text="Hello, this is third activity" />
-
+        android:text="@string/launch_mode_launch_other_btn"
+        android:textAllCaps="false" />
 </LinearLayout>

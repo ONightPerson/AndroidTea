@@ -1,5 +1,6 @@
 package com.liubz.androidtea;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,31 +11,27 @@ import android.os.Bundle;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.baseinterface.BaseInterface;
-import com.liubz.androidtea.cherish.classloader.CustomClassLoader;
-import com.liubz.androidtea.interprocess.SecondActivity;
+import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
+import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceConfigurationError;
-import java.util.ServiceLoader;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
 
     private SensorManager sensormanager;
@@ -45,16 +42,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity);
+        setContentView(R.layout.activity_home);
+        setTitle("HomeActivity");
         ButterKnife.bind(this);
-        Log.i(TAG, "onCreate: ");
+        Log.i(TAG, "onCreate");
 
-//        testSensor();
-
-        // 陀螺仪传感器
-//        DegreeSensorManager manager = new DegreeSensorManager();
-//        manager.initSensor(this);
-//        manager.registerListener();
         initSensor();
     }
 
@@ -70,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         unregisterSensor();
     }
 
-    @OnClick(R.id.task)
+    @OnClick(R.id.launch_webview)
     void onClick() {
         startActivity(new Intent(this, WebViewTestActivity.class));
     }
@@ -91,21 +83,31 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.service_loader)
     void serviceLoader() {
-        ServiceLoader<BaseInterface> sl = ServiceLoader.load(BaseInterface.class);
-        Iterator<BaseInterface> iter = sl.iterator();
-        while (iter.hasNext()) {
-            BaseInterface bi = iter.next();
-            Log.i(TAG, bi.getClass().getName() + ": " + bi.name());
-        }
+//        ServiceLoader<BaseInterface> sl = ServiceLoader.load(BaseInterface.class);
+//        Iterator<BaseInterface> iter = sl.iterator();
+//        while (iter.hasNext()) {
+//            BaseInterface bi = iter.next();
+//            Log.i(TAG, bi.getClass().getName() + ": " + bi.name());
+//        }
 
         try {
             Enumeration<URL> enumeration = Thread.currentThread().getContextClassLoader().getResources("META-INF/services/" + BaseInterface.class.getName());
             Log.i(TAG, "serviceLoader: enumeration: " + enumeration);
-            Log.i(TAG, "serviceLoader: hasMoreElements: " + enumeration.hasMoreElements());
-            parse(BaseInterface.class, enumeration.nextElement());
-            while (enumeration.hasMoreElements()) {
-                Log.i(TAG, "serviceLoader: elements: " + enumeration.nextElement());
+//            Log.i(TAG, "serviceLoader: hasMoreElements: " + enumeration.hasMoreElements());
+//            URL nextElement = enumeration.nextElement();
+//            Log.i(TAG, "serviceLoader: next Element: " + nextElement);
+            Iterator<String> pending = null;
+            while ((pending == null) || !pending.hasNext()) {
+                if (!enumeration.hasMoreElements()) {
+                    return;
+                }
+                pending = parse(BaseInterface.class, enumeration.nextElement());
+                Log.i(TAG, "serviceLoader: pending: " + pending +", hasNext: " + pending.hasNext());
             }
+            Log.i(TAG, "serviceLoader: parse result: " + pending.next());
+//            while (enumeration.hasMoreElements()) {
+//                Log.i(TAG, "serviceLoader: elements: " + enumeration.nextElement());
+//            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -134,11 +136,17 @@ public class HomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.go_to_second_activity)
     void goToSecondActivity() {
-        startActivity(new Intent(this, SecondActivity.class));
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName("com.learnopengles.android",
+                "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private Iterator<String> parse(Class<?> service, URL u)
-            throws ServiceConfigurationError {
+            throws ServiceConfigurationError
+    {
+        Log.i(TAG, "parse: service: " + service + ", url: " + u);
         InputStream in = null;
         BufferedReader r = null;
         ArrayList<String> names = new ArrayList<>();
@@ -146,16 +154,33 @@ public class HomeActivity extends AppCompatActivity {
             in = u.openStream();
             r = new BufferedReader(new InputStreamReader(in, "utf-8"));
             int lc = 1;
-            while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
+            while ((lc = parseLine(service, u, r, lc, names)) >= 0);
         } catch (IOException x) {
+            Log.e(TAG, "parse: exception", x);
+//            fail(service, "Error reading configuration file", x);
         } finally {
+            try {
+                if (r != null) r.close();
+                if (in != null) in.close();
+            } catch (IOException y) {
+//                fail(service, "Error closing configuration file", y);
+            }
         }
         return names.iterator();
     }
 
+    @OnClick(R.id.launch_launch_mode)
+    void launchLaunchModeActivity() {
+        Intent intent = new Intent(this, LaunchModeActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+
     private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
                           List<String> names)
-            throws IOException, ServiceConfigurationError {
+            throws IOException, ServiceConfigurationError
+    {
         String ln = r.readLine();
         if (ln == null) {
             return -1;
@@ -165,18 +190,22 @@ public class HomeActivity extends AppCompatActivity {
         ln = ln.trim();
         int n = ln.length();
         if (n != 0) {
-//            if ((ln.indexOf(' ') >= 0) || (ln.indexOf('\t') >= 0))
-//                fail(service, u, lc, "Illegal configuration-file syntax");
+            if ((ln.indexOf(' ') >= 0) || (ln.indexOf('\t') >= 0)) {
+                //                fail(service, u, lc, "Illegal configuration-file syntax");
+            }
             int cp = ln.codePointAt(0);
-//            if (!Character.isJavaIdentifierStart(cp))
+            if (!Character.isJavaIdentifierStart(cp))
 //                fail(service, u, lc, "Illegal provider-class name: " + ln);
             for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
                 cp = ln.codePointAt(i);
-//                if (!Character.isJavaIdentifierPart(cp) && (cp != '.'))
+                if (!Character.isJavaIdentifierPart(cp) && (cp != '.')) {
+
+                }
 //                    fail(service, u, lc, "Illegal provider-class name: " + ln);
             }
+            names.add(ln);
 //            if (!providers.containsKey(ln) && !names.contains(ln))
-//                names.add(ln);
+//
         }
         return lc + 1;
     }
