@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 
@@ -173,6 +174,12 @@ public class HomeActivity extends BaseActivity {
     void launchLaunchModeActivity() {
         Intent intent = new Intent(this, LaunchModeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.immersive_page)
+    void launchImmersiveActivity() {
+        Intent intent = new Intent(this, ImmersiveActivity.class);
         startActivity(intent);
     }
 

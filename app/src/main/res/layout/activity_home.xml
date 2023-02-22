@@ -59,4 +59,11 @@
         android:layout_height="wrap_content"
         android:text="ClassLoader"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/immersive_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_launch_immersive_page"
+        android:textAllCaps="false" />
 </LinearLayout>

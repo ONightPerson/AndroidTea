@@ -253,4 +253,5 @@
     <string name="other_launch_single_task_btn_txt">启动SingleTaskActivity</string>
     <string name="other_launch_single_instance_btn_txt">启动SingleInstanceActivity</string>
     <string name="home_launch_other_app">跳转其他应用</string>
+    <string name="home_launch_immersive_page">沉浸式页面</string>
 </resources>

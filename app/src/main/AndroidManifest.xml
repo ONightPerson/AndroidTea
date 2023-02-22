@@ -99,6 +99,8 @@
             android:theme="@style/AppTheme.Transparent" />
         <!--  launch mode end -->
 
+        <activity android:name=".immersive.ImmersiveActivity" />
+
         <activity
             android:name=".modules.launcher.Launcher"
             android:clearTaskOnLaunch="true"
