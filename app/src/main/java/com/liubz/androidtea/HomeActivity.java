@@ -1,6 +1,8 @@
 package com.liubz.androidtea;
 
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -9,6 +11,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -16,7 +19,10 @@ import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
+import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
+import com.liubz.androidtea.stack.launchmode.TransparentActivity;
+import com.liubz.androidtea.utils.StatusBarUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -103,7 +109,7 @@ public class HomeActivity extends BaseActivity {
                     return;
                 }
                 pending = parse(BaseInterface.class, enumeration.nextElement());
-                Log.i(TAG, "serviceLoader: pending: " + pending +", hasNext: " + pending.hasNext());
+                Log.i(TAG, "serviceLoader: pending: " + pending + ", hasNext: " + pending.hasNext());
             }
             Log.i(TAG, "serviceLoader: parse result: " + pending.next());
 //            while (enumeration.hasMoreElements()) {
@@ -128,14 +134,14 @@ public class HomeActivity extends BaseActivity {
         }
 
         ClassLoader loader = HomeActivity.class.getClassLoader();
-        while(loader != null) {
+        while (loader != null) {
             Log.i(TAG, "classLoader: " + loader);
             loader = loader.getParent();
         }
 
     }
 
-    @OnClick(R.id.go_to_second_activity)
+    @OnClick(R.id.go_to_other_app_activity)
     void goToSecondActivity() {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.learnopengles.android",
@@ -145,8 +151,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private Iterator<String> parse(Class<?> service, URL u)
-            throws ServiceConfigurationError
-    {
+            throws ServiceConfigurationError {
         Log.i(TAG, "parse: service: " + service + ", url: " + u);
         InputStream in = null;
         BufferedReader r = null;
@@ -155,7 +160,7 @@ public class HomeActivity extends BaseActivity {
             in = u.openStream();
             r = new BufferedReader(new InputStreamReader(in, "utf-8"));
             int lc = 1;
-            while ((lc = parseLine(service, u, r, lc, names)) >= 0);
+            while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
         } catch (IOException x) {
             Log.e(TAG, "parse: exception", x);
 //            fail(service, "Error reading configuration file", x);
@@ -177,17 +182,58 @@ public class HomeActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.launch_mode_transparent_btn)
+    void launchTransparentActivity() {
+        startActivity(new Intent(this, TransparentActivity.class));
+    }
+
+    @OnClick(R.id.launch_mode_dialog_activity_btn)
+    void launchDialogActivity() {
+        startActivity(new Intent(this, DialogActivity.class));
+    }
+
     @OnClick(R.id.immersive_page)
     void launchImmersiveActivity() {
         Intent intent = new Intent(this, ImmersiveActivity.class);
         startActivity(intent);
     }
 
+    @OnClick(R.id.get_status_bar_height)
+    void getStatusBarHeight() {
+        Toast.makeText(HomeActivity.this, "状态栏高度：" + StatusBarUtil.getStatusBarHeight(this), Toast.LENGTH_LONG).show();
+    }
+
+    @OnClick(R.id.show_alert_dialog)
+    void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog dialog = builder.setTitle("欢迎来到Android世界")
+                .setMessage("这个是一个AlertDialog")
+                .setCancelable(true)
+                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        Log.i(TAG, "AlertDialog onCancel");
+                    }
+                })
+                .create();
+        dialog.show();
+    }
 
     private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
                           List<String> names)
-            throws IOException, ServiceConfigurationError
-    {
+            throws IOException, ServiceConfigurationError {
         String ln = r.readLine();
         if (ln == null) {
             return -1;
@@ -203,13 +249,13 @@ public class HomeActivity extends BaseActivity {
             int cp = ln.codePointAt(0);
             if (!Character.isJavaIdentifierStart(cp))
 //                fail(service, u, lc, "Illegal provider-class name: " + ln);
-            for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
-                cp = ln.codePointAt(i);
-                if (!Character.isJavaIdentifierPart(cp) && (cp != '.')) {
+                for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
+                    cp = ln.codePointAt(i);
+                    if (!Character.isJavaIdentifierPart(cp) && (cp != '.')) {
 
-                }
+                    }
 //                    fail(service, u, lc, "Illegal provider-class name: " + ln);
-            }
+                }
             names.add(ln);
 //            if (!providers.containsKey(ln) && !names.contains(ln))
 //

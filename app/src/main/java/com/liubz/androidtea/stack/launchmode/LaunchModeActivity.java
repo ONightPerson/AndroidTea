@@ -55,10 +55,4 @@ public class LaunchModeActivity extends AppCompatActivity {
     void launchSingleInstance() {
         startActivity(new Intent(this, SingleInstanceActivity.class));
     }
-
-    @OnClick(R.id.launch_mode_transparent_btn)
-    void launchTransparentActivity() {
-        startActivity(new Intent(this, TransparentActivity.class));
-    }
-
 }

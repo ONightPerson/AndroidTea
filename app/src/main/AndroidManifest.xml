@@ -97,6 +97,10 @@
         <activity
             android:name=".stack.launchmode.TransparentActivity"
             android:theme="@style/AppTheme.Transparent" />
+
+        <activity
+            android:name=".stack.launchmode.DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <!--  launch mode end -->
 
         <activity android:name=".immersive.ImmersiveActivity" />

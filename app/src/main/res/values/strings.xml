@@ -254,4 +254,8 @@
     <string name="other_launch_single_instance_btn_txt">启动SingleInstanceActivity</string>
     <string name="home_launch_other_app">跳转其他应用</string>
     <string name="home_launch_immersive_page">沉浸式页面</string>
+    <string name="home_get_status_bar_height">获取状态栏高度</string>
+    <string name="home_show_alert_dialog">展示弹窗</string>
+    <string name="home_launch_transparent_activity">打开透明页面</string>
+    <string name="home_launch_dialog_activity_btn_text">打开Dialog主题Activity</string>
 </resources>
