@@ -36,8 +36,6 @@ public class TeaApplication extends Application {
 
         LitePal.initialize(this);
 
-//        Log.i(TAG, "onCreate: pid: " + Process.myPid());
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel channel = new NotificationChannel(NotificationUtils.CHANNEL_ID,

@@ -19,6 +19,7 @@ import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
+import com.liubz.androidtea.notification.NewTaskActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
@@ -71,7 +72,9 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick(R.id.launch_webview)
     void onClick() {
-        startActivity(new Intent(this, WebViewTestActivity.class));
+        Intent intent = new Intent(this, WebViewTestActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     @OnClick(R.id.call_phone)
@@ -85,6 +88,7 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.launch_browser)
     void launchBrowser() {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.baidu.com"));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
@@ -178,6 +182,12 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.launch_launch_mode)
     void launchLaunchModeActivity() {
         Intent intent = new Intent(this, LaunchModeActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.launch_new_task)
+    void launchNewTask() {
+        Intent intent = new Intent(this, NewTaskActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

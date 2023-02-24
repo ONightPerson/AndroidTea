@@ -53,7 +53,9 @@
         <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
         <activity android:name=".material.CustomBehaviorTestActivity" />
         <activity android:name=".notification.LaunchOtherAppActivity" />
-        <activity android:name=".notification.NotificationActivity" />
+        <activity
+            android:name=".notification.NewTaskActivity"
+            android:taskAffinity="com.liubz.androidtea.custom" />
         <activity
             android:name=".modules.accessibility.AccessibilityJumpActivity"
             android:launchMode="singleTask"
@@ -72,9 +74,7 @@
         <activity android:name=".communicate.eventbus.EventBusActivity" />
         <activity android:name=".communicate.CommunicationActivity" />
         <!--  launch mode start -->
-        <activity
-            android:name=".stack.launchmode.LaunchModeActivity"
-            android:taskAffinity="com.liubz.androidtea.custom" />
+        <activity android:name=".stack.launchmode.LaunchModeActivity" />
         <activity
             android:name=".stack.launchmode.standard.StandardActivity"
             android:launchMode="standard" />

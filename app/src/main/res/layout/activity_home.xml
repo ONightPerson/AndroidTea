@@ -26,6 +26,13 @@
         android:text="@string/home_launch_browser_btn_txt" />
 
     <Button
+        android:id="@+id/launch_new_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_launch_new_task_btn_text"
+        android:textAllCaps="false" />
+
+    <Button
         android:id="@+id/launch_launch_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

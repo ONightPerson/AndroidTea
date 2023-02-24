@@ -17,7 +17,7 @@ public class NotificationUtils {
     private static final String TAG = "NotificationUtils";
 
     public static int NOTIFICATION_ID = 33;
-    public static final String CHANNEL_ID = "20019";
+    public static final String CHANNEL_ID = "20021";
 
     public static void sendNotification(Context context) {
         NotificationManager nm = (NotificationManager) context.getSystemService(
