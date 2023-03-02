@@ -5,25 +5,40 @@ import com.liubz.androidtea.utils.ThreadUtils;
 public class JoinTestClass {
     public static void main(String[] args) {
 
-        Thread threadOne = new Thread(new Task(), "ThreadOne");
-        Thread threadTwo = new Thread(new Task(), "ThreadTwo");
+        testJoin();
+        testInterruptJoiningThread();
+    }
 
+    public static void testJoin() {
+        Thread threadOne = new Thread(new Task(5000), "ThreadOne");
+        Thread threadTwo = new Thread(new Task(1000), "ThreadTwo");
         // start
         threadOne.start();
         threadTwo.start();
-
-        System.out.println("wait all thread over");
-
         ThreadUtils.join(threadOne);
         ThreadUtils.join(threadTwo);
-        System.out.println("all thread over");
+    }
+
+    public static void testInterruptJoiningThread() {
+        final Thread mainThread = Thread.currentThread();
+        final Thread threadThree = new Thread(() -> {
+            ThreadUtils.sleep(1000);
+            mainThread.interrupt();
+        });
+        threadThree.start();
+        ThreadUtils.join(threadThree);
     }
 
     static class Task implements Runnable {
+        private long timeout;
+
+        public Task(long timeout) {
+            this.timeout = timeout;
+        }
 
         @Override
         public void run() {
-            ThreadUtils.sleep(1000);
+            ThreadUtils.sleep(timeout);
             System.out.println("Task" + Thread.currentThread().getName() + " end");
         }
     }

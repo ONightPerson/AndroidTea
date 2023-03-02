@@ -23,6 +23,7 @@ public class ThreadUtils {
         try {
             t.join();
         } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
