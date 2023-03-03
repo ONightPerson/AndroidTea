@@ -1,96 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.liubz.androidtea.HomeActivity">
 
-    <Button
-        android:id="@+id/call_phone"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/call_phone" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/launch_webview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_webview_btn_txt"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/call_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/call_phone" />
 
-    <Button
-        android:id="@+id/launch_browser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_browser_btn_txt" />
+        <Button
+            android:id="@+id/launch_webview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_webview_btn_txt"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/launch_new_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_new_task_btn_text"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/launch_browser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_browser_btn_txt" />
 
-    <Button
-        android:id="@+id/launch_launch_mode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_launchmode_btn_txt"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/launch_new_task"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_new_task_btn_text"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/show_alert_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_show_alert_dialog"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/launch_launch_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_launchmode_btn_txt"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/launch_mode_transparent_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_transparent_activity"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/show_alert_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_show_alert_dialog"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/launch_mode_dialog_activity_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_dialog_activity_btn_text"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/launch_mode_transparent_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_transparent_activity"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/go_to_other_app_activity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_other_app" />
+        <Button
+            android:id="@+id/launch_mode_dialog_activity_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_dialog_activity_btn_text"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/service_loader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ServiceLoader"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/go_to_other_app_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_other_app" />
 
-    <Button
-        android:id="@+id/classloader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ClassLoader"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/service_loader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ServiceLoader"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/immersive_page"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_launch_immersive_page"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/classloader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ClassLoader"
+            android:textAllCaps="false" />
 
-    <Button
-        android:id="@+id/get_status_bar_height"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/home_get_status_bar_height"
-        android:textAllCaps="false" />
-</LinearLayout>
+        <Button
+            android:id="@+id/immersive_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_launch_immersive_page"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/get_status_bar_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_get_status_bar_height"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/rx_java3_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_rxjava3_btn_txt"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</ScrollView>
+

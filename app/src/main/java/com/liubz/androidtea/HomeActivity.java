@@ -20,6 +20,7 @@ import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
+import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
@@ -90,6 +91,11 @@ public class HomeActivity extends BaseActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.baidu.com"));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.rx_java3_activity)
+    void launchRxActivity() {
+        startActivity(new Intent(this, RxActivity.class));
     }
 
     @OnClick(R.id.service_loader)
