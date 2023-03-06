@@ -21,12 +21,17 @@ public class RxActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setTitle("RxActivity");
 
-//        hello("Kitty", "Snoopy", "Shriek");
-        just("one object");
+        hello("Kitty", "Snoopy", "Shriek");
+//        just("one object");
+        sendInteger();
     }
 
     public static void hello(String... args) {
         Flowable.fromArray(args).subscribe(s -> System.out.println("hello " + s + "!"));
+    }
+
+    public static void sendInteger() {
+        Observable.fromArray(1, 2, 3, 4).subscribe(System.out::println);
     }
 
     public static void just(String str) {

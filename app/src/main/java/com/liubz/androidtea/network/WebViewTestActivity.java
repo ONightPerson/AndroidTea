@@ -12,6 +12,7 @@ import android.webkit.WebViewClient;
 
 import com.google.gson.JsonPrimitive;
 import com.liubz.androidtea.R;
+import com.liubz.androidtea.bridge.JsInteration;
 
 
 /**
@@ -43,8 +44,8 @@ public class WebViewTestActivity extends Activity {
 //        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
 //                Base64.NO_PADDING);
 //        mWebView.loadData(encodedHtml, "text/html", "base64");
-
-        mWebView.loadUrl("https://github.com/mynane/PDF/blob/master/JavaScript%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97(%E7%AC%AC6%E7%89%88)(%E4%B8%AD%E6%96%87%E7%89%88).pdf");
+        mWebView.addJavascriptInterface(new JsInteration(), "android");
+        mWebView.loadUrl("https://onightperson.github.io/demo/index.html");
 
         mWebView.setWebViewClient(new WebViewClient() {
             @Override
