@@ -25,6 +25,7 @@ import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
 import com.liubz.androidtea.utils.StatusBarUtil;
+import com.liubz.androidtea.view.EditTextActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -69,6 +70,11 @@ public class HomeActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         unregisterSensor();
+    }
+
+    @OnClick(R.id.edit_text_activity)
+    void launchEditTextActivity() {
+        startActivity(new Intent(this, EditTextActivity.class));
     }
 
     @OnClick(R.id.launch_webview)

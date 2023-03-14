@@ -104,6 +104,13 @@
             android:layout_height="wrap_content"
             android:text="@string/home_rxjava3_btn_txt"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/edit_text_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_edit_text_btn_txt"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
 

@@ -261,4 +261,6 @@
     <string name="home_launch_new_task_btn_text">新开一个任务</string>
     <string name="new_task_send_notification">发送通知</string>
     <string name="home_rxjava3_btn_txt">RxJava3</string>
+    <string name="edit_text_input_name">输入名字</string>
+    <string name="home_edit_text_btn_txt">EditText</string>
 </resources>

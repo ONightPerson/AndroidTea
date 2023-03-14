@@ -105,6 +105,8 @@
 
         <activity android:name=".immersive.ImmersiveActivity" />
 
+        <activity android:name=".view.EditTextActivity" />
+
         <activity
             android:name=".modules.launcher.Launcher"
             android:clearTaskOnLaunch="true"

@@ -44,7 +44,7 @@ public class WebViewTestActivity extends Activity {
 //        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
 //                Base64.NO_PADDING);
 //        mWebView.loadData(encodedHtml, "text/html", "base64");
-        mWebView.addJavascriptInterface(new JsInteration(), "android");
+        mWebView.addJavascriptInterface(new JsInteration(mWebView), "bridge");
         mWebView.loadUrl("https://onightperson.github.io/demo/index.html");
 
         mWebView.setWebViewClient(new WebViewClient() {
