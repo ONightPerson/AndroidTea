@@ -1,22 +1,29 @@
 package com.liubz.androidtea;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
@@ -70,6 +77,11 @@ public class HomeActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         unregisterSensor();
+    }
+
+    @OnClick(R.id.expandable_list_activity)
+    void launchExpandableListActivity() {
+        startActivity(new Intent(this, MyExpandableListActivity.class));
     }
 
     @OnClick(R.id.edit_text_activity)

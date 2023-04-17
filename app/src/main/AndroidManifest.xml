@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.liubz.androidtea">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -106,6 +107,8 @@
         <activity android:name=".immersive.ImmersiveActivity" />
 
         <activity android:name=".view.EditTextActivity" />
+
+        <activity android:name=".expandablelist.MyExpandableListActivity" />
 
         <activity
             android:name=".modules.launcher.Launcher"
