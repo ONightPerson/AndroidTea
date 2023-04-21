@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -58,6 +59,17 @@ public class WebViewTestActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 Log.i(TAG, "onPageFinished: onPageFinished");
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                return super.shouldOverrideUrlLoading(view, request);
+            }
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Log.i(TAG, "shouldOverrideUrlLoading: url -> " + url);
+                return super.shouldOverrideUrlLoading(view, url);
             }
         });
     }
