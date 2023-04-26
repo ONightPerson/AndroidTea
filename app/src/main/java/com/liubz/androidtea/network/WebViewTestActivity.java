@@ -37,6 +37,9 @@ public class WebViewTestActivity extends Activity {
     private void initViews() {
         mWebView = findViewById(R.id.webview);
         mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setUseWideViewPort(true);
+        mWebView.getSettings().setLoadWithOverviewMode(true);
+
         // Create an unencoded HTML string
         // then convert the unencoded HTML string into bytes, encode
         // it with Base64, and load the data.
@@ -45,6 +48,8 @@ public class WebViewTestActivity extends Activity {
 //        String encodedHtml = Base64.encodeToString(unencodedHtml.getBytes(),
 //                Base64.NO_PADDING);
 //        mWebView.loadData(encodedHtml, "text/html", "base64");
+        // 启用WebView调试
+        mWebView.setWebContentsDebuggingEnabled(true);
         mWebView.addJavascriptInterface(new JsInteration(mWebView), "bridge");
         mWebView.loadUrl("https://onightperson.github.io/demo/index.html");
 

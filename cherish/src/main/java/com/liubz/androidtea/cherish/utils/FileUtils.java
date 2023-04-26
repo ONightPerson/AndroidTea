@@ -2,7 +2,6 @@ package com.liubz.androidtea.cherish.utils;
 
 import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStream;
 
 /**
  * @Desc:
