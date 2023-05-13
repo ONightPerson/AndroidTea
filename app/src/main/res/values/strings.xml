@@ -264,4 +264,5 @@
     <string name="edit_text_input_name">输入名字</string>
     <string name="home_edit_text_btn_txt">EditText</string>
     <string name="home_expandable_list_activity">ExpandableListActivity</string>
+    <string name="retrofit_service_1">服务1</string>
 </resources>

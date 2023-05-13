@@ -26,6 +26,7 @@ import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
+import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
 import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
@@ -94,6 +95,11 @@ public class HomeActivity extends BaseActivity {
         Intent intent = new Intent(this, WebViewTestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.retrofit_activity)
+    void startRetrofitActivity() {
+        startActivity(new Intent(this, RetrofitActivity.class));
     }
 
     @OnClick(R.id.call_phone)
