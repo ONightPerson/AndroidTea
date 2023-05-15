@@ -11,7 +11,7 @@ import retrofit2.http.Query;
  * @Author: liubaozhu
  * @Date: 2023/5/12 4:57 PM
  */
-public interface TranslationService {
+public interface SuggestService {
 
 
     @GET("https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le=en")

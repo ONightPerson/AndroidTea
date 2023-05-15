@@ -33,7 +33,7 @@ public class RetrofitActivity1 extends BaseActivity {
           .addConverterFactory(GsonConverterFactory.create())
           .build();
 
-        TranslationService service = retrofit.create(TranslationService.class);
+        SuggestService service = retrofit.create(SuggestService.class);
         Call<Suggest> call = service.getCall("中国");
         
         call.enqueue(new Callback<Suggest>() {
