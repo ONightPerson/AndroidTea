@@ -113,10 +113,17 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/expandable_list_activity"
+        android:id="@+id/expandable_list_activity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/home_expandable_list_activity"
+        android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/retrofit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/home_expandable_list_activity"
+            android:text="@string/home_retrofit_network"
             android:textAllCaps="false" />
 
         <Button

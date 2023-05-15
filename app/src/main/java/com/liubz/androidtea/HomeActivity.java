@@ -1,25 +1,19 @@
 package com.liubz.androidtea;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
@@ -27,6 +21,7 @@ import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
+import com.liubz.androidtea.network.retrofit.RetrofitActivity1;
 import com.liubz.androidtea.notification.NewTaskActivity;
 import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
@@ -173,6 +168,11 @@ public class HomeActivity extends BaseActivity {
             loader = loader.getParent();
         }
 
+    }
+
+    @OnClick(R.id.retrofit)
+    void launchRetrofitActivity() {
+        startActivity(new Intent(this, RetrofitActivity1.class));
     }
 
     @OnClick(R.id.go_to_other_app_activity)
