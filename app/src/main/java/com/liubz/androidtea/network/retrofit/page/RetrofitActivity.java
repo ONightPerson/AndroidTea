@@ -7,8 +7,10 @@ import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
-import com.liubz.androidtea.network.retrofit.CustomService;
+import com.liubz.androidtea.network.retrofit.data.Suggest;
+import com.liubz.androidtea.network.retrofit.service.CustomService;
 import com.liubz.androidtea.network.retrofit.data.Repo;
+import com.liubz.androidtea.network.retrofit.service.SuggestService;
 
 import java.util.List;
 
@@ -31,8 +33,8 @@ public class RetrofitActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn1)
-    void service1() {
+    @OnClick(R.id.list_repo)
+    void listRepo() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.github.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -51,6 +53,29 @@ public class RetrofitActivity extends BaseActivity {
             @Override
             public void onFailure(Call<List<Repo>> call, Throwable t) {
                 Log.e(TAG, "onFailure: ", t);
+            }
+        });
+    }
+
+    @OnClick(R.id.dict_suggest)
+    void dictSuggest() {
+        Retrofit retrofit = new Retrofit.Builder()
+          .baseUrl("http://fy.iciba.com/")
+          .addConverterFactory(GsonConverterFactory.create())
+          .build();
+
+        SuggestService service = retrofit.create(SuggestService.class);
+        Call<Suggest> call = service.getCall("中国");
+        call.enqueue(new Callback<Suggest>() {
+            @Override
+            public void onResponse(Call<Suggest> call, Response<Suggest> response) {
+                Suggest suggest = response.body();
+                Log.i(TAG, "request --> suggest: " + suggest);
+            }
+
+            @Override
+            public void onFailure(Call<Suggest> call, Throwable t) {
+                Log.i(TAG, "onFailure: ");
             }
         });
     }

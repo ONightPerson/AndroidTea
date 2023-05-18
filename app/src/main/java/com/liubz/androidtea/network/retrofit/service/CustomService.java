@@ -1,4 +1,4 @@
-package com.liubz.androidtea.network.retrofit;
+package com.liubz.androidtea.network.retrofit.service;
 
 import com.liubz.androidtea.network.retrofit.data.Repo;
 

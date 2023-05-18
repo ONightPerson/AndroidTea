@@ -1,4 +1,6 @@
-package com.liubz.androidtea.network.retrofit;
+package com.liubz.androidtea.network.retrofit.service;
+
+import com.liubz.androidtea.network.retrofit.data.Suggest;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -136,7 +136,7 @@
 
         <activity android:name=".rx.RxActivity" />
 
-        <activity android:name=".network.retrofit.RetrofitActivity1" />
+        <activity android:name=".container.ContainerActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"

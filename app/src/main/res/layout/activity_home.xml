@@ -120,17 +120,24 @@
         android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/retrofit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/home_retrofit_network"
-            android:textAllCaps="false" />
-
-        <Button
             android:id="@+id/retrofit_activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Retrofit"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/container_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="集合"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/communicate_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通信组件"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

@@ -1,4 +1,4 @@
-package com.liubz.androidtea.network.retrofit;
+package com.liubz.androidtea.network.retrofit.data;
 
 import java.util.Arrays;
 import java.util.List;

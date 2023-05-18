@@ -17,11 +17,12 @@ import androidx.annotation.Nullable;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.communicate.CommunicationActivity;
+import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
-import com.liubz.androidtea.network.retrofit.RetrofitActivity1;
 import com.liubz.androidtea.notification.NewTaskActivity;
 import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
@@ -170,11 +171,6 @@ public class HomeActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.retrofit)
-    void launchRetrofitActivity() {
-        startActivity(new Intent(this, RetrofitActivity1.class));
-    }
-
     @OnClick(R.id.go_to_other_app_activity)
     void goToSecondActivity() {
         Intent intent = new Intent();
@@ -182,6 +178,16 @@ public class HomeActivity extends BaseActivity {
                 "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @OnClick(R.id.container_activity)
+    void goContainerActivity() {
+        startActivity(new Intent(this, ContainerActivity.class));
+    }
+
+    @OnClick(R.id.communicate_activity)
+    void goCommunicateActivity() {
+        startActivity(new Intent(this, CommunicationActivity.class));
     }
 
     private Iterator<String> parse(Class<?> service, URL u)
