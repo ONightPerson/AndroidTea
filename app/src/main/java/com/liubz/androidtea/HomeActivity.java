@@ -20,6 +20,7 @@ import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
+import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
@@ -275,6 +276,11 @@ public class HomeActivity extends BaseActivity {
                 })
                 .create();
         dialog.show();
+    }
+
+    @OnClick(R.id.glide_activity)
+    void goGlideActivity() {
+        startActivity(new Intent(this, GlideActivity.class));
     }
 
     private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,

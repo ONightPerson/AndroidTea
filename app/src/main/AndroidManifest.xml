@@ -138,6 +138,8 @@
 
         <activity android:name=".container.ContainerActivity" />
 
+        <activity android:name=".imageloader.GlideActivity" />
+
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
             android:label="@string/accessibility_service_label"

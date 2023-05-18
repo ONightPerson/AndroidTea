@@ -139,5 +139,12 @@
             android:layout_height="wrap_content"
             android:text="通信组件"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/glide_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="glide"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
