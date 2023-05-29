@@ -33,7 +33,7 @@ public class GlideActivity extends BaseActivity {
 
     private void initViews() {
         Glide.with(this)
-          .load("https://img-home.csdnimg.cn/images/20230406105129.png")
+          .load("https://picx.zhimg.com/v2-3b4fc7e3a1195a081d0259246c38debc_1440w.jpg?source=172ae18b")
           .centerCrop()
           .into(imageView);
     }

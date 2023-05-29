@@ -146,5 +146,12 @@
             android:layout_height="wrap_content"
             android:text="glide"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/screen_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="屏幕信息"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

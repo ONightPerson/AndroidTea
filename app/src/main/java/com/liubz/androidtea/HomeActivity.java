@@ -29,6 +29,7 @@ import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
+import com.liubz.androidtea.utils.ScreenUtils;
 import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.view.EditTextActivity;
 
@@ -371,5 +372,9 @@ public class HomeActivity extends BaseActivity {
 
             }
         };
+    }
+    @OnClick(R.id.screen_info)
+    void outputScreenInfo() {
+        ScreenUtils.outputDensityInfo(this);
     }
 }
