@@ -1,19 +1,24 @@
 package com.liubz.androidtea;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
@@ -177,7 +182,7 @@ public class HomeActivity extends BaseActivity {
     void goToSecondActivity() {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.learnopengles.android",
-                "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
+          "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
 //        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
@@ -193,7 +198,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private Iterator<String> parse(Class<?> service, URL u)
-            throws ServiceConfigurationError {
+      throws ServiceConfigurationError {
         Log.i(TAG, "parse: service: " + service + ", url: " + u);
         InputStream in = null;
         BufferedReader r = null;
@@ -255,27 +260,27 @@ public class HomeActivity extends BaseActivity {
     void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle("欢迎来到Android世界")
-                .setMessage("这个是一个AlertDialog")
-                .setCancelable(true)
-                .setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                })
-                .setOnCancelListener(new DialogInterface.OnCancelListener() {
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        Log.i(TAG, "AlertDialog onCancel");
-                    }
-                })
-                .create();
+          .setMessage("这个是一个AlertDialog")
+          .setCancelable(true)
+          .setPositiveButton("确认", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+              }
+          })
+          .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+              }
+          })
+          .setOnCancelListener(new DialogInterface.OnCancelListener() {
+              @Override
+              public void onCancel(DialogInterface dialog) {
+                  Log.i(TAG, "AlertDialog onCancel");
+              }
+          })
+          .create();
         dialog.show();
     }
 
@@ -286,7 +291,7 @@ public class HomeActivity extends BaseActivity {
 
     private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
                           List<String> names)
-            throws IOException, ServiceConfigurationError {
+      throws IOException, ServiceConfigurationError {
         String ln = r.readLine();
         if (ln == null) {
             return -1;
@@ -314,6 +319,17 @@ public class HomeActivity extends BaseActivity {
 //
         }
         return lc + 1;
+    }
+
+    @OnClick(R.id.phone_info)
+    void getPhoneInfo() {
+        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+        String te1 = tm.getLine1Number(); // 获取本机号码  
+        Log.i(TAG, "getPhoneInfo: tel: " + te1);
+//        String deviceid = tm.getDeviceId(); // 获取智能设备唯一编号  
+//
+//        String imei = tm.getSimSerialNumber(); // 获得SIM卡的序号  
+//        String imsi = tm.getSubscriberId(); // 得到用户Id  
     }
 
     private void registerSensor() {
@@ -373,6 +389,7 @@ public class HomeActivity extends BaseActivity {
             }
         };
     }
+
     @OnClick(R.id.screen_info)
     void outputScreenInfo() {
         ScreenUtils.outputDensityInfo(this);

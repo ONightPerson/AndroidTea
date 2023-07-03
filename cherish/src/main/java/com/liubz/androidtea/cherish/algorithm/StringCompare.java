@@ -1,6 +1,8 @@
 package com.liubz.androidtea.cherish.algorithm;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author: created by liubaozhu on 2021/2/21
@@ -8,8 +10,9 @@ import java.util.Arrays;
  */
 public class StringCompare {
     public static void main(String[] args) {
-        int index = indexOfByBM("aaabbaa", "abb");
-        System.out.println("index: " + index);
+//        int index = indexOfByBM("aaabbaa", "abb");
+//        System.out.println("index: " + index);
+        matchStr();
     }
 
     public static int indexOfByBF(String main, String pattern) {
@@ -70,6 +73,20 @@ public class StringCompare {
         for (int i = 0; i < m; i++) {
             int index = pattern[i];
             table[index] = i;
+        }
+    }
+
+    private static void matchStr() {
+        String url = "https://waimai-eci-221121-145807-204-sl-sqt.waimai.test.sankuai.com/c/home/index.html#/r/home";
+        Pattern pattern = Pattern.compile("^https?://([^\\/]+)-sl-(.*\\.html)");
+        Matcher matcher = pattern.matcher(url);
+        if (matcher.find()) {
+            String swimLane = matcher.group(1);
+            System.out.println(swimLane);
+            String pageUrl = matcher.group(2);
+            System.out.println(pageUrl);
+        } else {
+            System.out.println("未匹配到结果");
         }
     }
 
