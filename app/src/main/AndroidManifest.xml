@@ -53,8 +53,27 @@
         <activity android:name=".material.tablayout.TabLayoutActivity" />
         <activity android:name=".material.CoordinatorLayoutTestActivity" />
         <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
-        <activity android:name=".material.CustomBehaviorTestActivity" />
-        <activity android:name=".notification.LaunchOtherAppActivity" />
+        <activity android:name=".material.CustomBehaviorTestActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:path="/app/demo"
+                    android:host="com.liubz"
+                    android:scheme="zhuzi" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".notification.LaunchOtherAppActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="com.liubz"
+                    android:scheme="zhuzi" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".notification.NewTaskActivity"
             android:taskAffinity="com.liubz.androidtea.custom" />

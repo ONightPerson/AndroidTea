@@ -323,13 +323,16 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick(R.id.phone_info)
     void getPhoneInfo() {
-        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        String te1 = tm.getLine1Number(); // 获取本机号码  
-        Log.i(TAG, "getPhoneInfo: tel: " + te1);
+//        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+//        String te1 = tm.getLine1Number(); // 获取本机号码  
+//        Log.i(TAG, "getPhoneInfo: tel: " + te1);
 //        String deviceid = tm.getDeviceId(); // 获取智能设备唯一编号  
 //
 //        String imei = tm.getSimSerialNumber(); // 获得SIM卡的序号  
 //        String imsi = tm.getSubscriberId(); // 得到用户Id  
+        Intent intent = new Intent();
+        intent.setData(Uri.parse("zhuzi://com.liubz/app/demo"));
+        startActivity(intent);
     }
 
     private void registerSensor() {
