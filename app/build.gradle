@@ -13,6 +13,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
+        ndk {
+            moduleName "ndkdemotest-jni"
+            abiFilters "armeabi-v7a", "x86"
+        }
+
     }
 
     viewBinding {
@@ -38,6 +43,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
+
+        externalNativeBuild {
+            ndkBuild {
+                path 'src/main/jni/Android.mk'
+            }
+        }
+        sourceSets.main {
+            jni.srcDirs = []
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
     }
 
     compileOptions {
@@ -51,7 +66,7 @@ dependencies {
 
     implementation project (':baseinterface')
     implementation project (':interfaceimpl')
-    implementation project (':cherish')
+//    implementation project (':cherish')
 
     implementation configs.androidx.appcompat
     implementation configs.androidx.recyclerview

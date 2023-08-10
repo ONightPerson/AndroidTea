@@ -19,27 +19,27 @@ import java.lang.reflect.Method;
 public class CustomClassLoader extends ClassLoader {
 
     public static void main(String[] params) {
-        CustomClassLoader ccl = new CustomClassLoader("/Users/liubaozhu/Desktop");
-        try {
-            Class c = ccl.loadClass("com.example.Hello");
-            if (c != null) {
-                Object obj = c.newInstance();
-                System.out.println(obj.getClass().getClassLoader());
-                Method method = c.getDeclaredMethod("say", null);
-                method.setAccessible(true);
-                method.invoke(obj, null);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+//        CustomClassLoader ccl = new CustomClassLoader("/Users/liubaozhu/Desktop");
+//        try {
+//            Class c = ccl.loadClass("com.example.Hello");
+//            if (c != null) {
+//                Object obj = c.newInstance();
+//                System.out.println(obj.getClass().getClassLoader());
+//                Method method = c.getDeclaredMethod("say", null);
+//                method.setAccessible(true);
+//                method.invoke(obj, null);
+//            }
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

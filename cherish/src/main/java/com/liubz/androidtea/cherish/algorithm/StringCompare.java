@@ -12,7 +12,8 @@ public class StringCompare {
     public static void main(String[] args) {
 //        int index = indexOfByBM("aaabbaa", "abb");
 //        System.out.println("index: " + index);
-        matchStr();
+//        matchStr();
+        getHttpContent();
     }
 
     public static int indexOfByBF(String main, String pattern) {
@@ -77,8 +78,8 @@ public class StringCompare {
     }
 
     private static void matchStr() {
-        String url = "https://waimai-eci-221121-145807-204-sl-sqt.waimai.test.sankuai.com/c/home/index.html#/r/home";
         Pattern pattern = Pattern.compile("^https?://([^\\/]+)-sl-(.*\\.html)");
+        String url = "https://waimai-eci-221121-145807-204-sl-sqt.waimai.test.sankuai.com/c/home/index.html#/r/home";
         Matcher matcher = pattern.matcher(url);
         if (matcher.find()) {
             String swimLane = matcher.group(1);
@@ -89,5 +90,18 @@ public class StringCompare {
             System.out.println("未匹配到结果");
         }
     }
+
+    private static void getHttpContent() {
+        String url = "https://waimai-eci-221121-145807-204-sl-sqt.waimai.test.sankuai.com/c/home/index.html#/r/home";
+        Pattern pattern = Pattern.compile("(https?://)(.+)");
+        Matcher matcher = pattern.matcher(url);
+        if (matcher.find()) {
+            String protocol = matcher.group(1);
+            String rest = matcher.group(2);
+            System.out.println("协议部分：" + protocol);
+            System.out.println("剩余部分：" + rest);
+        }
+    }
+
 
 }

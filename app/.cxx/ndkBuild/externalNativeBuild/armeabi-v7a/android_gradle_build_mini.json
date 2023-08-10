@@ -1,0 +1,18 @@
+{
+  "buildFiles": [
+    "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk"
+  ],
+  "cleanCommands": [
+    "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/lib clean"
+  ],
+  "buildTargetsCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/lib {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "ndkdemotest-jni-externalNativeBuild-armeabi-v7a": {
+      "artifactName": "ndkdemotest-jni",
+      "buildCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003darmeabi-v7a NDK_ALL_ABIS\u003darmeabi-v7a NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/lib /Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj/local/armeabi-v7a/libndkdemotest-jni.so",
+      "abi": "armeabi-v7a",
+      "output": "/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj/local/armeabi-v7a/libndkdemotest-jni.so",
+      "runtimeFiles": []
+    }
+  }
+}

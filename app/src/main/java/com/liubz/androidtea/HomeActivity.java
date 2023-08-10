@@ -34,6 +34,7 @@ import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
+import com.liubz.androidtea.utils.NdkUtils;
 import com.liubz.androidtea.utils.ScreenUtils;
 import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.view.EditTextActivity;
@@ -331,7 +332,7 @@ public class HomeActivity extends BaseActivity {
 //        String imei = tm.getSimSerialNumber(); // 获得SIM卡的序号  
 //        String imsi = tm.getSubscriberId(); // 得到用户Id  
         Intent intent = new Intent();
-        intent.setData(Uri.parse("zhuzi://com.liubz/app/demo"));
+        intent.setData(Uri.parse("meituanenterprise://enterprise.meituan.com/sqt/logit"));
         startActivity(intent);
     }
 
@@ -396,5 +397,11 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.screen_info)
     void outputScreenInfo() {
         ScreenUtils.outputDensityInfo(this);
+    }
+
+    @OnClick(R.id.ndk_tools)
+    void ndkTools() {
+        String contentFromJni = NdkUtils.getStringFromNdk();
+        Log.i(TAG, "ndkTools: contentFromJni: " + contentFromJni);
     }
 }
