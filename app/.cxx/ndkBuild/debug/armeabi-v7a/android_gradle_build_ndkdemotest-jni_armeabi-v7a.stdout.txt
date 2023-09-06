@@ -1,2 +1,1 @@
-[armeabi-v7a] Compile thumb  : ndkdemotest-jni <= ndkdemotest.c
-[armeabi-v7a] SharedLibrary  : libndkdemotest-jni.so
+make: Nothing to be done for 'ndkdemotest-jni'.

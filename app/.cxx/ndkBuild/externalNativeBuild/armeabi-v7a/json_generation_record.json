@@ -7,67 +7,7 @@
   },
   {
     "level": "INFO",
-    "message": "rebuilding JSON /Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/android_gradle_build.json due to:",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "- expected json /Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/android_gradle_build.json file is not present, will remove stale json folder",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "- missing previous command file /Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/build_command.txt, will remove stale json folder",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "- command changed from previous, will remove stale json folder",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "created folder \u0027/Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a\u0027",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "executing ndkBuild Executable : /Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk\nAPP_ABI\u003darmeabi-v7a\nNDK_ALL_ABIS\u003darmeabi-v7a\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-22\nNDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj\nNDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "Executable : /Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk\nAPP_ABI\u003darmeabi-v7a\nNDK_ALL_ABIS\u003darmeabi-v7a\nNDK_DEBUG\u003d0\nAPP_PLATFORM\u003dandroid-22\nNDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/obj\nNDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/externalNativeBuild/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "done executing ndkBuild",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "write build output /Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/build_output.txt",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "parse and convert ndk-build output to build configuration JSON",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
-    "tag": "externalNativeBuild|armeabi-v7a"
-  },
-  {
-    "level": "INFO",
-    "message": "write command file /Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/build_command.txt",
+    "message": "JSON \u0027/Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/armeabi-v7a/android_gradle_build.json\u0027 was up-to-date",
     "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
     "tag": "externalNativeBuild|armeabi-v7a"
   },

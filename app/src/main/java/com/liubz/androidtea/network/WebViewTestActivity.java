@@ -8,6 +8,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -66,15 +67,30 @@ public class WebViewTestActivity extends Activity {
                 Log.i(TAG, "onPageFinished: onPageFinished");
             }
 
+            @Nullable
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
+                Log.i(TAG, "shouldInterceptRequest: " + request);
+                return super.shouldInterceptRequest(view, request);
+            }
+
+            @Nullable
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+                Log.i(TAG, "shouldInterceptRequest: " + url);
+                return super.shouldInterceptRequest(view, url);
+            }
+
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                return super.shouldOverrideUrlLoading(view, request);
+                Log.i(TAG, "shouldOverrideUrlLoading: ");
+                return true;
             }
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.i(TAG, "shouldOverrideUrlLoading: url -> " + url);
-                return super.shouldOverrideUrlLoading(view, url);
+                return true;
             }
         });
     }

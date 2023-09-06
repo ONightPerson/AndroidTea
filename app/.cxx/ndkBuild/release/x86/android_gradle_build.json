@@ -3,19 +3,19 @@
     "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk"
   ],
   "cleanCommands": [
-    "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib clean"
+    "/Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib clean"
   ],
-  "buildTargetsCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib {LIST_OF_TARGETS_TO_BUILD}",
+  "buildTargetsCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib {LIST_OF_TARGETS_TO_BUILD}",
   "libraries": {
     "ndkdemotest-jni-release-x86": {
-      "buildCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib /Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj/local/x86/libndkdemotest-jni.so",
+      "buildCommand": "/Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-22 NDK_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003d/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/lib /Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj/local/x86/libndkdemotest-jni.so",
       "toolchain": "toolchain-x86",
       "abi": "x86",
       "artifactName": "ndkdemotest-jni",
       "files": [
         {
           "src": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/ndkdemotest.c",
-          "flags": "-target i686-none-linux-android22 -fdata-sections -ffunction-sections -fstack-protector-strong -funwind-tables -no-canonical-prefixes --sysroot /Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -g -Wno-invalid-command-line-argument -Wno-unused-command-line-argument -fno-addrsig -fPIC -O2 -DNDEBUG -I/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni -DANDROID -Wa,--noexecstack -Wformat -Werror\u003dformat-security -mstackrealign"
+          "flags": "-target i686-none-linux-android22 -fdata-sections -ffunction-sections -fstack-protector-strong -funwind-tables -no-canonical-prefixes --sysroot /Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -g -Wno-invalid-command-line-argument -Wno-unused-command-line-argument -D_FORTIFY_SOURCE\u003d2 -fPIC -O2 -DNDEBUG -I/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni -DANDROID -Wformat -Werror\u003dformat-security -mstackrealign"
         }
       ],
       "output": "/Users/liubaozhu/priLib/AndroidTea/app/build/intermediates/ndkBuild/release/obj/local/x86/libndkdemotest-jni.so"
@@ -23,7 +23,7 @@
   },
   "toolchains": {
     "toolchain-x86": {
-      "cCompilerExecutable": "/Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang"
+      "cCompilerExecutable": "/Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang"
     }
   },
   "cFileExtensions": [

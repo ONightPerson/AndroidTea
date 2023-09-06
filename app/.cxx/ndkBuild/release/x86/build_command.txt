@@ -1,4 +1,4 @@
-Executable : /Users/liubaozhu/Library/Android/sdk/ndk/20.1.5948944/ndk-build
+Executable : /Users/liubaozhu/Library/Android/sdk/ndk/21.1.6352462/ndk-build
 arguments : 
 NDK_PROJECT_PATH=null
 APP_BUILD_SCRIPT=/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk
