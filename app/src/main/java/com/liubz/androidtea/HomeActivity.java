@@ -1,32 +1,29 @@
 package com.liubz.androidtea;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
 import com.example.baseinterface.BaseInterface;
+import com.liubz.androidtea.myasm.AsmDemo;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
+import com.liubz.androidtea.network.HttpRequestTestActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
@@ -43,6 +40,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -336,6 +334,11 @@ public class HomeActivity extends BaseActivity {
         startActivity(intent);
     }
 
+    @OnClick(R.id.gson_test)
+    void startHttpRequestActivity() {
+        startActivity(new Intent(this, HttpRequestTestActivity.class));
+    }
+
     private void registerSensor() {
         //更新速率：提到游戏的规格上
         sensormanager.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME);
@@ -403,5 +406,21 @@ public class HomeActivity extends BaseActivity {
     void ndkTools() {
         String contentFromJni = NdkUtils.getStringFromNdk();
         Log.i(TAG, "ndkTools: contentFromJni: " + contentFromJni);
+    }
+
+    @OnClick(R.id.asm)
+    void asm() {
+        AsmDemo demo = new AsmDemo();
+        try {
+            demo.test();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 }

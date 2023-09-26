@@ -3,7 +3,9 @@ package com.liubz.androidtea.network;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
+
 import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -65,6 +67,16 @@ public class WebViewTestActivity extends Activity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 Log.i(TAG, "onPageFinished: onPageFinished");
+
+                mWebView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String js = "var newscript = document.createElement(\"script\");";
+                        js += "newscript.src=\"https://awp-assets.meituan.net/bepfe/sqt-testtools/test_tool/js/index.bundle.js\";";
+                        js += "document.body.appendChild(newscript);";
+                        mWebView.loadUrl("javascript:" + js);
+                    }
+                }, 3000L);
             }
 
             @Nullable
