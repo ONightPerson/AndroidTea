@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.myasm;
+package com.liubz.androidtea.cherish.asm;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

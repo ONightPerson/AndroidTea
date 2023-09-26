@@ -1,4 +1,4 @@
-package com.liubz.androidtea.myasm;
+package com.liubz.androidtea.cherish.asm;
 
 /**
  * @Desc:

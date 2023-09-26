@@ -1,16 +1,19 @@
-package com.liubz.androidtea.cherish.myasm;
+package com.liubz.androidtea.cherish.asm;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.FieldNode;
+import org.objectweb.asm.tree.MethodNode;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
-import java.lang.String;
+import java.util.List;
 
 /**
  * @Desc:
@@ -19,7 +22,16 @@ import java.lang.String;
  */
 public class AsmDemo extends ClassLoader implements Opcodes {
 
-    public static void main(String[] args) throws IOException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public static void main(String[] args) {
+        try {
+//            treeApiTest();
+            classNodeTest();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void modifyMethods() throws IllegalAccessException, InstantiationException, InvocationTargetException, IOException {
         ClassReader cr = new ClassReader(Foo.class.getName());
         ClassWriter cw = new ClassWriter(cr, ClassWriter.COMPUTE_MAXS);
         ClassVisitor cv = new MethodChangeClassAdapter(cw);
@@ -41,7 +53,6 @@ public class AsmDemo extends ClassLoader implements Opcodes {
 //        System.out.println("methods数量: " + exampleClass.getMethods().length);
 
 
-
         System.out.println("***************************");
         System.out.println("methods数量: " + exampleClass.getMethods().length);
         for (Method method : exampleClass.getMethods()) {
@@ -59,11 +70,46 @@ public class AsmDemo extends ClassLoader implements Opcodes {
         System.out.println("method1: " + exampleClass.getMethods()[1]);
         System.out.println("method2: " + exampleClass.getMethods()[2]);
 //        exampleClass.getMethods()[2].invoke(exampleClass.newInstance(), new String[] {"2"});
-        exampleClass.getMethods()[2].invoke(null, (Object) new String[] {"2", "3"});
+        exampleClass.getMethods()[2].invoke(null, (Object) new String[]{"2", "3"});
         // gets the bytecode of the Example class, and loads it dynamically
 
 //        FileOutputStream fos = new FileOutputStream("e:\\Example.class");
 //        fos.write(code);
 //        fos.close();
+    }
+
+    public static void classNodeTest() throws IOException {
+        ClassReader cr = new ClassReader(User.class.getName());
+        ClassNode cn = new ClassNode(ASM4);
+        cr.accept(cn, ASM4);
+
+        List<MethodNode> methods = cn.methods;
+        List<FieldNode> fields = cn.fields;
+        System.out.println("methods:");
+        for (MethodNode mn : methods) {
+            System.out.println(mn.name + ", " + mn.desc);
+        }
+        System.out.println("fields:");
+        for (FieldNode fn : fields) {
+            System.out.println(fn.name + ", " + fn.desc);
+        }
+    }
+
+    public static void treeApiTest() throws IOException {
+        ClassReader cr = new ClassReader(Foo.class.getName());
+        ClassVisitor cv = new ClassVisitor(ASM4) {
+            @Override
+            public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
+                System.out.println("visit Field: " + name + ", desc: " + descriptor);
+                return super.visitField(access, name, descriptor, signature, value);
+            }
+
+            @Override
+            public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
+                System.out.println("visit method: " + name + ", desc: " + descriptor);
+                return super.visitMethod(access, name, descriptor, signature, exceptions);
+            }
+        };
+        cr.accept(cv, ASM4);
     }
 }
