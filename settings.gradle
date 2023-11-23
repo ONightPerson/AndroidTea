@@ -8,3 +8,13 @@ include ':interview'
 include ':cherish'
 include ':AutoParcel'
 include ':app'
+println('settings.gradle:This is executed during the initialization phase.')
+
+gradle.settingsEvaluated {
+    println('settings 配置完毕')
+}
+
+// 所有 Project 对象创建（注意：此时 build.gradle 中的配置代码还未执行）
+gradle.projectsLoaded {
+    println('project has been loaded')
+}

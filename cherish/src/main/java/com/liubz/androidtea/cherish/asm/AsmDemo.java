@@ -43,8 +43,6 @@ public class AsmDemo extends ClassLoader implements Opcodes {
         mv.visitLdcInsn("this is add method print!");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/String;)V");
         mv.visitInsn(RETURN);
-
-        mv.visitMaxs(0, 0);
         mv.visitEnd();
 
         AsmDemo demo = new AsmDemo();

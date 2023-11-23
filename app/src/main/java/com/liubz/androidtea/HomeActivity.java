@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.baseinterface.BaseInterface;
-import com.liubz.androidtea.myasm.AsmDemo;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
@@ -406,21 +405,5 @@ public class HomeActivity extends BaseActivity {
     void ndkTools() {
         String contentFromJni = NdkUtils.getStringFromNdk();
         Log.i(TAG, "ndkTools: contentFromJni: " + contentFromJni);
-    }
-
-    @OnClick(R.id.asm)
-    void asm() {
-        AsmDemo demo = new AsmDemo();
-        try {
-            demo.test();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
     }
 }

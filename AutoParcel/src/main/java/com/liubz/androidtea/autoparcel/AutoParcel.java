@@ -9,8 +9,7 @@ import java.lang.annotation.Target;
  * author: created by liubaozhu on 2020/7/7
  * email: liubaozhu@baidu.com
  */
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.SOURCE)
+
 public @interface AutoParcel {
     int version() default 0;
 }

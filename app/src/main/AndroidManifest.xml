@@ -117,6 +117,7 @@
 
         <activity
             android:name=".stack.launchmode.TransparentActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Transparent" />
 
         <activity

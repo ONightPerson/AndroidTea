@@ -19,7 +19,8 @@ public class ClassWriterTest implements Opcodes {
     public static void main(String[] args) {
         try {
 //            copyUserClass();
-            addFiledToClass();
+//            addFiledToClass();
+            HelloWorldGenerator.generateByteCode();
         } catch (IOException e) {
             e.printStackTrace();
         }
