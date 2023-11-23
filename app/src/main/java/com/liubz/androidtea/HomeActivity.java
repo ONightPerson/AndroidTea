@@ -4,10 +4,6 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,7 +35,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -53,11 +48,6 @@ import butterknife.OnClick;
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
 
-    private SensorManager sensormanager;
-    private SensorEventListener listener;
-    private Sensor accelerometerSensor;
-    private Sensor magneticSensor;
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,20 +55,16 @@ public class HomeActivity extends BaseActivity {
         setTitle("HomeActivity");
         ButterKnife.bind(this);
         Log.i(TAG, "onCreate");
-
-        initSensor();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerSensor();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterSensor();
     }
 
     @OnClick(R.id.expandable_list_activity)
@@ -125,13 +111,6 @@ public class HomeActivity extends BaseActivity {
 
     @OnClick(R.id.service_loader)
     void serviceLoader() {
-//        ServiceLoader<BaseInterface> sl = ServiceLoader.load(BaseInterface.class);
-//        Iterator<BaseInterface> iter = sl.iterator();
-//        while (iter.hasNext()) {
-//            BaseInterface bi = iter.next();
-//            Log.i(TAG, bi.getClass().getName() + ": " + bi.name());
-//        }
-
         try {
             Enumeration<URL> enumeration = Thread.currentThread().getContextClassLoader().getResources("META-INF/services/" + BaseInterface.class.getName());
             Log.i(TAG, "serviceLoader: enumeration: " + enumeration);
@@ -208,13 +187,11 @@ public class HomeActivity extends BaseActivity {
             while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
         } catch (IOException x) {
             Log.e(TAG, "parse: exception", x);
-//            fail(service, "Error reading configuration file", x);
         } finally {
             try {
                 if (r != null) r.close();
                 if (in != null) in.close();
             } catch (IOException y) {
-//                fail(service, "Error closing configuration file", y);
             }
         }
         return names.iterator();
@@ -304,96 +281,20 @@ public class HomeActivity extends BaseActivity {
             }
             int cp = ln.codePointAt(0);
             if (!Character.isJavaIdentifierStart(cp))
-//                fail(service, u, lc, "Illegal provider-class name: " + ln);
                 for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
                     cp = ln.codePointAt(i);
                     if (!Character.isJavaIdentifierPart(cp) && (cp != '.')) {
 
                     }
-//                    fail(service, u, lc, "Illegal provider-class name: " + ln);
                 }
             names.add(ln);
-//            if (!providers.containsKey(ln) && !names.contains(ln))
-//
         }
         return lc + 1;
-    }
-
-    @OnClick(R.id.phone_info)
-    void getPhoneInfo() {
-//        TelephonyManager tm = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-//        String te1 = tm.getLine1Number(); // 获取本机号码  
-//        Log.i(TAG, "getPhoneInfo: tel: " + te1);
-//        String deviceid = tm.getDeviceId(); // 获取智能设备唯一编号  
-//
-//        String imei = tm.getSimSerialNumber(); // 获得SIM卡的序号  
-//        String imsi = tm.getSubscriberId(); // 得到用户Id  
-        Intent intent = new Intent();
-        intent.setData(Uri.parse("meituanenterprise://enterprise.meituan.com/sqt/logit"));
-        startActivity(intent);
     }
 
     @OnClick(R.id.gson_test)
     void startHttpRequestActivity() {
         startActivity(new Intent(this, HttpRequestTestActivity.class));
-    }
-
-    private void registerSensor() {
-        //更新速率：提到游戏的规格上
-        sensormanager.registerListener(listener, magneticSensor, SensorManager.SENSOR_DELAY_GAME);
-        sensormanager.registerListener(listener, accelerometerSensor, SensorManager.SENSOR_DELAY_GAME);
-    }
-
-    private void unregisterSensor() {
-        sensormanager.unregisterListener(listener, magneticSensor);
-        sensormanager.unregisterListener(listener, accelerometerSensor);
-    }
-
-    private void initSensor() {
-         /*
-        传感器的创建
-        1、先创建传感器管理器，管理所有传感器
-        2、传入参数，指定特定传感器
-        3、注册
-        4、结束，注销传感器
-         */
-        // 1、获取传感器管理服务对象
-        sensormanager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        // 2、特定传观器对象获取: 方向传感器
-        accelerometerSensor = sensormanager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        magneticSensor = sensormanager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
-        // 3、注册监听器，来实时的更改操作
-        //监听器：精确度更改会立即执行onSensorChanged方法
-        listener = new SensorEventListener() {
-            private float[] accelerometer = new float[3];
-            private float[] magnetic = new float[3];
-
-            @Override
-            public void onSensorChanged(SensorEvent event) {
-                //判断当前是什么传感器
-                if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                    //使用clone来取值
-                    accelerometer = event.values.clone();
-                } else if (event.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
-                    magnetic = event.values.clone();
-                }
-                float[] R = new float[9];
-                float[] values = new float[3];
-                if (accelerometer.length != 0 && magnetic.length != 0) {
-                    //根据传输的数据，计算转动角度,将结果放进长度为9的数组中
-                    sensormanager.getRotationMatrix(R, null, accelerometer, magnetic);
-                    //根据上面计算出的旋转矩阵R，在计算旋转角度，存进values中
-                    sensormanager.getOrientation(R, values);
-                    //弧度转换成角度
-//                    Log.i(TAG, "onSensorChanged: " + Math.toDegrees(values[0]));
-                }
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-            }
-        };
     }
 
     @OnClick(R.id.screen_info)

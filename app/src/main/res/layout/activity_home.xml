@@ -155,13 +155,6 @@
             android:textAllCaps="false" />
 
         <Button
-            android:id="@+id/phone_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="手机号码信息"
-            android:textAllCaps="false" />
-
-        <Button
             android:id="@+id/ndk_tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
