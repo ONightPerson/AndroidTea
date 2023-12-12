@@ -38,6 +38,7 @@ public class InteractiveStateActivity extends Activity {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         filter.addAction(Intent.ACTION_USER_PRESENT);
         registerReceiver(mReceiver, filter);
+
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
@@ -306,5 +308,12 @@ public class HomeActivity extends BaseActivity {
     void ndkTools() {
         String contentFromJni = NdkUtils.getStringFromNdk();
         Log.i(TAG, "ndkTools: contentFromJni: " + contentFromJni);
+    }
+
+    @OnClick(R.id.sim_state_listener)
+    void simStateListener() {
+        SimStateReceiver simStateReceiver = new SimStateReceiver();
+        IntentFilter intentFilter = new IntentFilter(SimStateReceiver.ACTION_SIM_STATE_CHANGED);
+        registerReceiver(simStateReceiver, intentFilter);
     }
 }

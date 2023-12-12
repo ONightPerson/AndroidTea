@@ -3,7 +3,6 @@ package com.liubz.androidtea.serialization;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,16 +18,28 @@ public class SerializableTest {
 
     private static final String FILE_NAME = "user.1";
 
-    static class User implements Serializable {
-        private static final long serialVersionUID = 1;
-        String name;
-        int age;
+    static class Student implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        public String name;
+        public int age;
+        public String sex;
+        public String className;
+
+        public Student(String name, int age, String sex, String className) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.className = className;
+        }
 
         @Override
         public String toString() {
-            return "User{" +
+            return "Student{" +
               "name='" + name + '\'' +
               ", age=" + age +
+              ", sex=" + sex +
+              ", className=" + className +
               '}';
         }
     }
@@ -44,10 +55,8 @@ public class SerializableTest {
         try {
             fos = new FileOutputStream(new File("/Users/liubaozhu/Desktop", FILE_NAME));
             oos = new ObjectOutputStream(fos);
-            User user = new User();
-            user.name = "ONightPerson";
-            user.age = 33;
-            oos.writeObject(user);
+            Student student = new Student("小明", 18, "男", "高中三年级");
+            oos.writeObject(student);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -62,8 +71,8 @@ public class SerializableTest {
         try {
             fis = new FileInputStream(new File("/Users/liubaozhu/Desktop", FILE_NAME));
             ois = new ObjectInputStream(fis);
-            User user = (User) ois.readObject();
-            System.out.println("user: " + user + ", className: " + User.class.getName());
+            Student student = (Student) ois.readObject();
+            System.out.println("user: " + student + ", className: " + Student.class.getName());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
