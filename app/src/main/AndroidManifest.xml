@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+
     <application
         android:name=".TeaApplication"
         android:allowBackup="false"
@@ -56,19 +57,23 @@
         <activity android:name=".material.CustomBehaviorTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:path="/app/demo"
                     android:host="com.liubz"
+                    android:path="/app/demo"
                     android:scheme="zhuzi" />
             </intent-filter>
         </activity>
         <activity android:name=".notification.LaunchOtherAppActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="com.liubz"
                     android:scheme="zhuzi" />
@@ -160,6 +165,8 @@
         <activity android:name=".container.ContainerActivity" />
 
         <activity android:name=".imageloader.GlideActivity" />
+
+        <activity android:name=".view.ViewStubActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"

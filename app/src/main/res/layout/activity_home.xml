@@ -174,5 +174,12 @@
             android:layout_height="wrap_content"
             android:text="Sim卡状态变化"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/view_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ViewStub"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

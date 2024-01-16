@@ -18,6 +18,8 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Action1;
 import rx.functions.Func1;
+import rx.functions.Func2;
+import rx.schedulers.Schedulers;
 
 
 /**
@@ -34,14 +36,15 @@ public class RxActivity extends BaseActivity {
         setTitle("RxActivity");
 
 //        hello("Kitty", "Snoopy", "Shriek");
-//        just("one object");
+        just("one object");
 //        sendInteger();
 //        handleNormalAndException();
 //        create();
-        showCourses();
+//        showCourses();
+
     }
 
-//    public static void hello(String... args) {
+    //    public static void hello(String... args) {
 //        Flowable.fromArray(args).subscribe(s -> System.out.println("hello " + s + "!"));
 //        Flowable.fromArray(args).subscribe(new Consumer<String>() {
 //            @Override
@@ -55,9 +58,32 @@ public class RxActivity extends BaseActivity {
 //        Observable.fromArray(1, 2, 3, 4).subscribe(System.out::println);
 //    }
 //
-//    public static void just(String str) {
-//        Observable.just(str).subscribe(s -> System.out.println("hello " + s + "!"));
-//    }
+    public static void just(String str) {
+        Observable<String> o1 = Observable.just(null);
+        Observable<String> o2 = Observable.just(str).mergeWith(o1);
+//        Observable.just(str).mergeWith(o1).subscribe(s -> System.out.println("hello " + s + "!"));
+
+        Observable<String> o3 = Observable.just("llllllll");
+        Observable<String> o4 = Observable.combineLatest(o2, o3, new Func2<String, String, String>() {
+            @Override
+            public String call(String s, String s2) {
+                return s + s2;
+            }
+        });
+        o4.map(new Func1<String, Repo>() {
+            @Override
+            public Repo call(String s) {
+                return new Repo(s);
+            }
+        }).subscribeOn(Schedulers.io()).subscribe(s -> System.out.println("hello " + s + "!"));
+    }
+
+    static class Repo {
+        Repo(String name) {
+            this.name = name;
+        }
+        String name;
+    }
 //
 //    public static void handleNormalAndException() {
 //        Observable

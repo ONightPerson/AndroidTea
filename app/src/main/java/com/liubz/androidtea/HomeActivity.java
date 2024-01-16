@@ -32,6 +32,7 @@ import com.liubz.androidtea.utils.NdkUtils;
 import com.liubz.androidtea.utils.ScreenUtils;
 import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.view.EditTextActivity;
+import com.liubz.androidtea.view.ViewStubActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -315,5 +316,10 @@ public class HomeActivity extends BaseActivity {
         SimStateReceiver simStateReceiver = new SimStateReceiver();
         IntentFilter intentFilter = new IntentFilter(SimStateReceiver.ACTION_SIM_STATE_CHANGED);
         registerReceiver(simStateReceiver, intentFilter);
+    }
+
+    @OnClick(R.id.view_stub)
+    void viewStub() {
+        startActivity(new Intent(this, ViewStubActivity.class));
     }
 }
