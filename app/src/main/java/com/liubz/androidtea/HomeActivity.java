@@ -7,7 +7,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,8 +32,10 @@ import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
+import com.liubz.androidtea.utils.CommonDialog;
 import com.liubz.androidtea.utils.NdkUtils;
 import com.liubz.androidtea.utils.ScreenUtils;
+import com.liubz.androidtea.utils.SpannableStringBuilderUtil;
 import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.view.EditTextActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
@@ -321,5 +327,30 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.view_stub)
     void viewStub() {
         startActivity(new Intent(this, ViewStubActivity.class));
+    }
+
+    @OnClick(R.id.dialog_test)
+    void dialogTest() {
+        SpannableStringBuilder info = new SpannableStringBuilder();
+        info.append("hfefefefe");
+        ClickableSpan serviceClickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                //页面跳转到《用户协议》页面
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                //移除下划线
+                ds.setUnderlineText(false);
+            }
+        };
+        SpannableStringBuilderUtil.append(info,"\n用户协议",
+          false, getResources().getColor(R.color.orange_font), serviceClickableSpan);
+        CommonDialog dialog = new CommonDialog(this);
+        dialog.title("hffff")
+          .content(info)
+          .positiveBtnText("hfefefefe")
+          .show();
     }
 }
