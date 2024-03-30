@@ -117,7 +117,9 @@
     "variantName": "debug",
     "validAbiList": [
       "ARMEABI_V7A",
-      "X86"
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
     ],
     "prefabDirectory": "/Users/liubaozhu/Repo/AndroidTea/app/.cxx/ndkBuild/debug/prefab",
     "prefabPackageDirectoryList": []

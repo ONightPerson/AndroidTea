@@ -2,19 +2,19 @@
   {
     "level": "INFO",
     "message": "Start JSON generation. Platform version: 22 min SDK version: x86",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
+    "file": "/Users/liubaozhu/Repo/AndroidTea/app/src/main/jni/Android.mk",
     "tag": "externalNativeBuild|x86"
   },
   {
     "level": "INFO",
-    "message": "JSON \u0027/Users/liubaozhu/priLib/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/x86/android_gradle_build.json\u0027 was up-to-date",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
+    "message": "JSON \u0027/Users/liubaozhu/Repo/AndroidTea/app/.cxx/ndkBuild/externalNativeBuild/x86/android_gradle_build.json\u0027 was up-to-date",
+    "file": "/Users/liubaozhu/Repo/AndroidTea/app/src/main/jni/Android.mk",
     "tag": "externalNativeBuild|x86"
   },
   {
     "level": "INFO",
     "message": "JSON generation completed without problems",
-    "file": "/Users/liubaozhu/priLib/AndroidTea/app/src/main/jni/Android.mk",
+    "file": "/Users/liubaozhu/Repo/AndroidTea/app/src/main/jni/Android.mk",
     "tag": "externalNativeBuild|x86"
   }
 ]

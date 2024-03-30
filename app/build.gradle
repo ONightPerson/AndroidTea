@@ -13,10 +13,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
-        ndk {
-            moduleName "ndkdemotest-jni"
-            abiFilters "armeabi-v7a", "x86"
-        }
+//        ndk {
+//            moduleName "ndkdemotest-jni"
+//            abiFilters "armeabi-v7a", "x86",
+//        }
 
     }
 
