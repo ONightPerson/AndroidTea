@@ -1,7 +1,6 @@
 package com.liubz.androidtea.cherish.methodinvoke;
 
 import com.liubz.androidtea.cherish.methodinvoke.overxxx.Animal;
-import com.liubz.androidtea.cherish.methodinvoke.overxxx.BritishShortHairCat;
 
 /**
  * @Desc:
