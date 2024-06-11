@@ -5,7 +5,17 @@
  */
 public class CommonTest {
     public static void main(String[] args) {
-        short s1 = 1;
-        s1 += 1;
+        System.out.println(f(2));
     }
+
+    public static int f(int value) {
+        try {
+            return value * value;
+        } finally {
+            if (value == 23) {
+                return 0;
+            }
+        }
+    }
+
 }

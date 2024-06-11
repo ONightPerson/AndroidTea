@@ -27,8 +27,5 @@ public class Test {
         child2.sFunc(new Object());
         child2.func("sss");
         child2.func(new Object());
-
-        Animal parent = new BritishShortHairCat();
-        parent.eat();
     }
 }

@@ -10,6 +10,11 @@ package com.liubz.androidtea.cherish.methodinvoke.overxxx;
  */
 public class Cat extends Animal implements ISpeak {
 
+    enum CatType {
+        BRITISH,
+        AMERICAN,
+    }
+
     public void sleep() {
         System.out.println("cat sleep");
     }
@@ -26,6 +31,7 @@ public class Cat extends Animal implements ISpeak {
     public void dailyActivities() {
         this.catchMouse();
         super.sleep();
+        System.out.println(CatType.AMERICAN);
     }
 
 
