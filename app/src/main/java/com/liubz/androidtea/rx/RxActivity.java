@@ -6,11 +6,15 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.rx.bean.Animal;
+import com.liubz.androidtea.rx.bean.Cat;
+import com.liubz.androidtea.rx.bean.Dog;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.functions.Func2;
@@ -31,12 +35,57 @@ public class RxActivity extends BaseActivity {
 //        setTitle("RxActivity");
 
 //        hello("Kitty", "Snoopy", "Shriek");
-        just("one object");
+//        just("one object");
 //        sendInteger();
 //        handleNormalAndException();
 //        create();
 //        showCourses();
+        justTest();
 
+    }
+
+    public void animalTest() {
+
+        Func1<Animal, CharSequence> animalNameFunc = new Func1<Animal, CharSequence>() {
+            @Override
+            public String call(Animal animal) {
+                return animal.getName();
+            }
+        };
+        Observable<Cat> animals = Observable.just(new Cat());
+
+        Observable<CharSequence> animalNames = animals.map(animalNameFunc);
+
+
+    }
+
+    public void justTest() {
+        /**
+         *  source observable Observable.just(1, 2, 3, 4) (记为 ob1)
+         *                    OnSubscriber OnSubscribeFromArray (记为on1)
+         *
+         *  map变换后
+         *  map observable  记为ob2
+         *                OnSubscriber OnSubscribeMap，记为on2
+         *                OnSubscribeMap 内部创建了MapSubscriber，记为sub2
+         *  业务subscriber 记为tSub
+         *
+         *                                                                                    mapper.call
+         *  ob2.subscribe(tSub) -> on2.call(tSub) -> ob1.subscribe(sub2) -> on1.call(sub2) -> sub2.onNext -> tSub.onNext
+         *
+          */
+        //
+        Observable.just(1, 2, 3, 4)
+          .map(new Func1<Number, String>() {
+              @Override
+              public String call(Number integer) {
+                  return "数字" + integer;
+              }
+          })
+          .subscribeOn(Schedulers.io())
+          .subscribeOn(Schedulers.computation())
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribe(integer -> Log.i(TAG, "call: " + integer));
     }
 
     //    public static void hello(String... args) {
