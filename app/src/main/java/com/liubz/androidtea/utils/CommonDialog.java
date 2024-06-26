@@ -17,12 +17,6 @@ import androidx.annotation.NonNull;
 import com.liubz.androidtea.R;
 
 
-/**
- * 美团企业版通用的dialog原型，按钮的样式固定
- * @author meisong03
- * @motifier liubaozhu02
- * @date 8/22/22
- */
 public class CommonDialog extends Dialog {
 
     private View mContainer;

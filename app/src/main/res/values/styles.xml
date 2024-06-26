@@ -117,4 +117,8 @@
         <item name="android:editTextColor">@color/black</item>
     </style>
 
+    <style name="CommonDialog">
+
+    </style>
+
 </resources>

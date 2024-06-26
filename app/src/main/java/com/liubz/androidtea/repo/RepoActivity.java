@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
@@ -69,7 +70,6 @@ public class RepoActivity extends BaseActivity {
             @Override
             public void onFailure(Call<List<Repo>> call, Throwable t) {
                 Log.e(TAG, "onFailure: ", t);
-
             }
         });
     }
