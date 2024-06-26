@@ -168,6 +168,8 @@
 
         <activity android:name=".view.ViewStubActivity" />
 
+        <activity android:name=".repo.RepoActivity" />
+
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
             android:label="@string/accessibility_service_label"

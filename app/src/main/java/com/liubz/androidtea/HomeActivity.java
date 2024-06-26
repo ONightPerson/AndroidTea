@@ -28,6 +28,7 @@ import com.liubz.androidtea.network.HttpRequestTestActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
+import com.liubz.androidtea.repo.RepoActivity;
 import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
@@ -352,5 +353,10 @@ public class HomeActivity extends BaseActivity {
           .content(info)
           .positiveBtnText("hfefefefe")
           .show();
+    }
+
+    @OnClick(R.id.repo_test)
+    void repoActivity() {
+        startActivity(new Intent(this, RepoActivity.class));
     }
 }

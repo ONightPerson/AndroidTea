@@ -188,5 +188,12 @@
             android:layout_height="wrap_content"
             android:text="Dialog Test"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/repo_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Repo Test"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
