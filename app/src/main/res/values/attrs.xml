@@ -10,4 +10,8 @@
     <declare-styleable name="RectView">
         <attr name="rectColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="AnimatableImageView">
+        <attr name="drawableRes" format="reference"/>
+    </declare-styleable>
 </resources>

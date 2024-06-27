@@ -13,9 +13,9 @@
         <item name="android:windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:background">#00000000</item>
-<!--        <item name="android:windowBackground">@android:color/transparent</item>-->
+        <!--        <item name="android:windowBackground">@android:color/transparent</item>-->
         <item name="android:windowIsTranslucent">true</item>
-<!--        <item name="android:windowAnimationStyle">@null</item>-->
+        <!--        <item name="android:windowAnimationStyle">@null</item>-->
     </style>
 
     <style name="Button">
@@ -27,6 +27,7 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:padding">5dip</item>
     </style>
+
     <style name="ButtonTop" parent="@style/Button">
         <!--        <item name="android:background">@drawable/btn_top</item>-->
         <item name="android:layout_width">0dip</item>
@@ -34,48 +35,47 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">20sp</item>
     </style>
+
     <style name="ButtonBottom" parent="@style/Button">
         <item name="android:layout_width">60dip</item>
     </style>
+
     <style name="ButtonConnect" parent="@style/Button">
         <item name="android:textSize">12sp</item>
         <item name="android:layout_width">85dip</item>
         <item name="android:layout_height">38dip</item>
     </style>
+
     <style name="help_title">
         <item name="android:textSize">12sp</item>
         <item name="android:layout_marginTop">10dip</item>
         <item name="android:layout_marginBottom">10dip</item>
         <item name="android:typeface">monospace</item>
     </style>
+
     <style name="help_content">
         <item name="android:textSize">10sp</item>
         <item name="android:typeface">monospace</item>
     </style>
+
     <style name="ListText">
         <item name="android:typeface">monospace</item>
     </style>
+
     <style name="ListTextTitle" parent="ListText">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">15sp</item>
     </style>
+
     <style name="ListTextSummary" parent="ListText">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="CustomTextInputLayoutStyle">
         <item name="android:textColor">#ffff00</item>
         <item name="android:textSize">18sp</item>
     </style>
-
-<!--    <style name="MainTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-<!--        <item name="android:windowIsTranslucent">false</item>-->
-<!--        <item name="android:windowContentOverlay">@null</item>-->
-<!--        <item name="android:windowNoTitle">true</item>-->
-<!--        <item name="android:windowBackground">@color/common_white</item>-->
-<!--        <item name="android:windowAnimationStyle">@null</item>-->
-<!--    </style>-->
-
 
     <style name="MyWidget" parent="android:Theme" />
 
@@ -90,7 +90,10 @@
         <item name="android:layout_height">56dp</item>
     </style>
 
-    <style name="CommonDialog" parent="@android:style/Theme.Dialog">
+    <style name="CommonDialog" />
+
+    <!-- 通用对话框 -->
+    <style name="CommonDialog.Dialog" parent="@android:style/Theme.Dialog">
         <!-- 边框 -->
         <item name="android:windowFrame">@drawable/edge_login_dialog</item>
 
@@ -117,8 +120,22 @@
         <item name="android:editTextColor">@color/black</item>
     </style>
 
-    <style name="CommonDialog">
-
+    <!-- ProgressDialog -->
+    <style name="CommonDialog.Progress" parent="android:style/Theme.Dialog">
+        <!-- 无边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!--无标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!--背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <!-- 允许对话框的背景变暗 -->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--布局居中-->
+        <item name="android:layout_gravity">center</item>
+        <!--设置窗口为半透明状态-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+<!--        <item name="android:backgroundDimAmount">0.0</item>-->
     </style>
-
 </resources>

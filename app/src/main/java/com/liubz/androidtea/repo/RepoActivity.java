@@ -6,12 +6,12 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.network.retrofit.data.Repo;
 import com.liubz.androidtea.network.retrofit.service.CustomService;
+import com.liubz.androidtea.utils.ProcessHandler;
 
 import java.util.List;
 
@@ -51,6 +51,9 @@ public class RepoActivity extends BaseActivity {
     }
 
     private void loadData() {
+        final ProcessHandler processHandler = new ProcessHandler(this);
+        processHandler.showProcessDialog();
+
         Retrofit retrofit = new Retrofit.Builder()
           .baseUrl("https://api.github.com/")
           .addConverterFactory(GsonConverterFactory.create())
@@ -61,6 +64,7 @@ public class RepoActivity extends BaseActivity {
         call.enqueue(new Callback<List<Repo>>() {
             @Override
             public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+                processHandler.dismissProcessDialog();
                 Log.i(TAG, "onResponse -- call: " + response);
                 List<Repo> data = response.body();
                 Log.i(TAG, "onResponse -- data size: " + data.size() + ", data detail: " + data);
@@ -69,6 +73,7 @@ public class RepoActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Repo>> call, Throwable t) {
+                processHandler.dismissProcessDialog();
                 Log.e(TAG, "onFailure: ", t);
             }
         });

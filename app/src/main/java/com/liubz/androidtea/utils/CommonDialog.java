@@ -34,7 +34,7 @@ public class CommonDialog extends Dialog {
     private Context mContext;
 
     public CommonDialog(@NonNull Context context) {
-        super(context, R.style.CommonDialog);
+        super(context, R.style.CommonDialog_Dialog);
         this.mContext = context;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mContainer = inflater.inflate(R.layout.common_dialog, null);
