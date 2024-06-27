@@ -333,7 +333,7 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.dialog_test)
     void dialogTest() {
         SpannableStringBuilder info = new SpannableStringBuilder();
-        info.append("hfefefefe");
+        info.append("请点击");
         ClickableSpan serviceClickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
@@ -346,12 +346,27 @@ public class HomeActivity extends BaseActivity {
                 ds.setUnderlineText(false);
             }
         };
-        SpannableStringBuilderUtil.append(info,"\n用户协议",
+        SpannableStringBuilderUtil.append(info,"快递单号",
           false, getResources().getColor(R.color.orange_font), serviceClickableSpan);
+        info.append("来查看的你的物流信息");
         CommonDialog dialog = new CommonDialog(this);
-        dialog.title("hffff")
+        dialog.title("测试弹窗")
           .content(info)
-          .positiveBtnText("hfefefefe")
+          .positiveBtnText("确定")
+          .onPositiveBtnClick(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  Toast.makeText(HomeActivity.this, "确定", Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+              }
+          })
+          .negativeBtnText("取消")
+          .onNegativeBtnClick(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  dialog.dismiss();
+              }
+          })
           .show();
     }
 
