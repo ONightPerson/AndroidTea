@@ -1,15 +1,15 @@
-package com.liubz.androidtea.network.retrofit.service;
+package com.liubz.androidtea.repo.model;
 
 import com.liubz.androidtea.network.retrofit.data.Repo;
 
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import rx.Observable;
 
-public interface CustomService {
+public interface RepoService {
 
     @GET("/users/{user}/repos")
-    Call<List<Repo>> listRepos(@Path("user") String user);
+    Observable<List<Repo>> listRepos(@Path("user") String user);
 }

@@ -1,25 +1,22 @@
 package com.liubz.androidtea.repo;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.network.retrofit.data.Repo;
-import com.liubz.androidtea.network.retrofit.service.CustomService;
+import com.liubz.androidtea.repo.view.RepoAdapter;
+import com.liubz.androidtea.repo.viewmodel.RepoViewModel;
+import com.liubz.androidtea.repo.viewmodel.RepoViewModelFactory;
 import com.liubz.androidtea.utils.ProcessHandler;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * @Desc: 获取个人github仓库，使用mvvm来实现
@@ -31,51 +28,29 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class RepoActivity extends BaseActivity {
     private static final String TAG = "RepoActivity";
-    private RepoAdapter mAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_repo);
-        initViews();
-
-        loadData();
+        init();
     }
 
-    private void initViews() {
+    private void init() {
+        RepoViewModel viewModel = new ViewModelProvider(getViewModelStore(), new RepoViewModelFactory()).get(RepoViewModel.class);
         RecyclerView rv = findViewById(R.id.repo_recycler_view);
-        RepoAdapter adapter = new RepoAdapter(this, null);
+        final RepoAdapter adapter = new RepoAdapter(this, viewModel);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
-        mAdapter = adapter;
-    }
-
-    private void loadData() {
         final ProcessHandler processHandler = new ProcessHandler(this);
-        processHandler.showProcessDialog();
-
-        Retrofit retrofit = new Retrofit.Builder()
-          .baseUrl("https://api.github.com/")
-          .addConverterFactory(GsonConverterFactory.create())
-          .build();
-
-        CustomService service = retrofit.create(CustomService.class);
-        Call<List<Repo>> call = service.listRepos("onightperson");
-        call.enqueue(new Callback<List<Repo>>() {
-            @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
+        viewModel.showLoading.observe(this, showLoading -> {
+            if (showLoading) {
+                processHandler.showProcessDialog();
+            } else {
                 processHandler.dismissProcessDialog();
-                Log.i(TAG, "onResponse -- call: " + response);
-                List<Repo> data = response.body();
-                Log.i(TAG, "onResponse -- data size: " + data.size() + ", data detail: " + data);
-                mAdapter.dataChanged(data);
-            }
-
-            @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
-                processHandler.dismissProcessDialog();
-                Log.e(TAG, "onFailure: ", t);
             }
         });
+        viewModel.data.observe(this, repoList -> adapter.notifyDataSetChanged());
+        viewModel.fetchData();
     }
 }

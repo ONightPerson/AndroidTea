@@ -8,11 +8,7 @@ import androidx.annotation.Nullable;
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.network.retrofit.data.Suggest;
-import com.liubz.androidtea.network.retrofit.service.CustomService;
-import com.liubz.androidtea.network.retrofit.data.Repo;
 import com.liubz.androidtea.network.retrofit.service.SuggestService;
-
-import java.util.List;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -31,30 +27,6 @@ public class RetrofitActivity extends BaseActivity {
         setTitle("RetrofitActivity");
         setContentView(R.layout.activity_retrofit);
         ButterKnife.bind(this);
-    }
-
-    @OnClick(R.id.list_repo)
-    void listRepo() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        CustomService service = retrofit.create(CustomService.class);
-        Call<List<Repo>> call = service.listRepos("onightperson");
-        call.enqueue(new Callback<List<Repo>>() {
-            @Override
-            public void onResponse(Call<List<Repo>> call, Response<List<Repo>> response) {
-                Log.i(TAG, "onResponse -- call: " + response);
-                List<Repo> data = response.body();
-                Log.i(TAG, "onResponse -- data size: " + data.size() + ", data detail: " + data);
-            }
-
-            @Override
-            public void onFailure(Call<List<Repo>> call, Throwable t) {
-                Log.e(TAG, "onFailure: ", t);
-            }
-        });
     }
 
     @OnClick(R.id.dict_suggest)

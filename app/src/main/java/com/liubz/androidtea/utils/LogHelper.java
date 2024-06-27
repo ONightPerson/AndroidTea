@@ -17,4 +17,20 @@ public class LogHelper {
     public static void d(String tag, String msg, Object... args) {
         Log.d(LOG_TAG + tag, String.format(msg, args));
     }
+
+    public static void e(String tag, Throwable e) {
+        Log.d(LOG_TAG + tag, getTraceFromException(e));
+    }
+
+    public static String getTraceFromException(Throwable e) {
+        String trace = "";
+        if (e == null) {
+            return trace;
+        }
+        StackTraceElement[] elements = e.getStackTrace();
+        for (int i = 0; i < elements.length; i++) {
+            trace = trace + elements[i].toString() + '\n';
+        }
+        return trace;
+    }
 }

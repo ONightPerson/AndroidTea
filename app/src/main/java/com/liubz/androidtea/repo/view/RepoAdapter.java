@@ -1,4 +1,4 @@
-package com.liubz.androidtea.repo;
+package com.liubz.androidtea.repo.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.liubz.androidtea.R;
 import com.liubz.androidtea.network.retrofit.data.Repo;
+import com.liubz.androidtea.repo.viewmodel.RepoViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,20 +23,12 @@ import java.util.List;
  */
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder> {
 
-    private List<Repo> mRepoList;
     private Context mContext;
+    private RepoViewModel mViewModel;
 
-    public RepoAdapter(Context context, @NonNull List<Repo> repoList) {
+    public RepoAdapter(@NonNull Context context, @NonNull RepoViewModel viewModel) {
         mContext = context;
-        mRepoList = repoList == null ? new ArrayList<>() : repoList;
-    }
-
-    public void dataChanged(List<Repo> repoList) {
-        mRepoList.clear();
-        if (repoList != null) {
-            mRepoList.addAll(repoList);
-        }
-        notifyDataSetChanged();
+        mViewModel = viewModel;
     }
 
     @NonNull
@@ -48,12 +41,12 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RepoViewHolder holder, int position) {
-         holder.repoNameView.setText(mRepoList.get(position).fullName);
+         holder.repoNameView.setText(mViewModel.data.getValue().get(position).fullName);
     }
 
     @Override
     public int getItemCount() {
-        return mRepoList.size();
+        return mViewModel.data.getValue().size();
     }
 
     class RepoViewHolder extends RecyclerView.ViewHolder {
