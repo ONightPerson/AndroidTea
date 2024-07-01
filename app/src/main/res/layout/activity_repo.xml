@@ -4,9 +4,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/repo_recycler_view"
+    <com.liubz.androidtea.view.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/repo_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.liubz.androidtea.view.widget.SwipeRefreshLayout>
 </LinearLayout>

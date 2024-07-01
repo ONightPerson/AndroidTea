@@ -74,7 +74,7 @@ public class MyAccessibilityService extends AccessibilityService {
         for (AccessibilityNodeInfo node : nodes) {
             Log.i(TAG, "autoClick: node: " + node);
             if (TextUtils.equals(node.getText(), text) && TextUtils.equals(
-                    node.getClassName(),  "android.widget.Button")) {
+                    node.getClassName(),  "android.com.liubz.androidtea.view.widget.Button")) {
                 node.performAction(AccessibilityNodeInfo.ACTION_CLICK);
                 AccessibilityJumpActivity.dismiss(this);
             }
