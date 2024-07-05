@@ -1,8 +1,10 @@
 package com.liubz.androidtea.utils;
 
 import android.content.Context;
+import android.graphics.PointF;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
 
 /**
  * @Desc:
@@ -46,5 +48,35 @@ public class ScreenUtils {
               ", scaledDensity=" + scaledDensity +
               '}';
         }
+    }
+
+    public static PointF getViewCenter(View view, int offset) {
+        if (view == null) {
+            return new PointF(0f, 0f);
+        }
+
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        float x = location[0] + view.getWidth() / 2f;
+        float y = location[1] + view.getHeight() / 2f - offset;
+        return new PointF(x, y);
+    }
+
+    public static int getNavigationBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = context.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 }
