@@ -85,7 +85,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     public static final int DEFAULT_SLINGSHOT_DISTANCE = -1;
 
     @VisibleForTesting
-    static final int CIRCLE_DIAMETER = 40;
+    static final int CIRCLE_DIAMETER = 40; // 40dp
     @VisibleForTesting
     static final int CIRCLE_DIAMETER_LARGE = 56;
 
@@ -442,8 +442,22 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         a.recycle();
     }
 
+    /**
+     * if (mCircleViewIndex < 0):
+     *      这行代码检查 mCircleViewIndex 是否小于 0。如果是小于 0，则表示没有特殊的子视图（进度条），此时返回当前的索引 i，即保持默认的绘制顺序。
+     * else if (i == childCount - 1):
+     *      如果当前索引 i 是最后一个子视图的索引（即 childCount - 1），那么返回 mCircleViewIndex，表示将特殊子视图（进度条）绘制在最后。
+     * else if (i >= mCircleViewIndex):
+     *      如果当前索引 i 大于或等于 mCircleViewIndex，则将这些子视图的绘制顺序提前一位（即 i + 1），为特殊子视图让出最后的位置。
+     * else:
+     *      如果当前索引 i 小于 mCircleViewIndex，则保持这些子视图的绘制顺序不变，返回当前索引 i。
+     * @param childCount
+     * @param i
+     * @return
+     */
     @Override
     protected int getChildDrawingOrder(int childCount, int i) {
+        // mCircleViewIndex < 0表示无进度条
         if (mCircleViewIndex < 0) {
             return i;
         } else if (i == childCount - 1) {
@@ -459,7 +473,9 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
     }
 
     private void createProgressView() {
+        // 背景圆
         mCircleView = new CircleImageView(getContext());
+        // 箭头圆弧
         mProgress = new CircularProgressDrawable(getContext());
         mProgress.setStyle(CircularProgressDrawable.DEFAULT);
         mCircleView.setImageDrawable(mProgress);
@@ -835,6 +851,12 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
         mEnableLegacyRequestDisallowInterceptTouch = enabled;
     }
 
+    /**
+     * 这个方法的主要目的是处理触摸事件的拦截请求，特别是在目标视图不支持嵌套滚动的情况下。
+     * 它确保了在某些情况下（如目标视图是 AbsListView 且设备版本低于 21，或目标视图不支持嵌套滚动），
+     * 请求会被传递给父视图，而不是由当前视图处理。这有助于避免垂直滚动事件被不适当地拦截，从而提供更好的用户体验
+     * @param b
+     */
     @Override
     public void requestDisallowInterceptTouchEvent(boolean b) {
         // if this is a List < L or another view that doesn't support nested
