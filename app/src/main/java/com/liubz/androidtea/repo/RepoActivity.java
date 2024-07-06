@@ -4,6 +4,7 @@ import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,7 +34,7 @@ public class RepoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 
     private RepoViewModel mViewModel;
     private ImageView mShopCartView;
-    private BezierRedPointView mBezierAnimView;
+    private RelativeLayout mContainer;
     private int offsetTop;
 
     @Override
@@ -44,16 +45,16 @@ public class RepoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     }
 
     private void init() {
-        mShopCartView = findViewById(R.id.shopcart_view);
-        mBezierAnimView = findViewById(R.id.bezier_animation_view);
-        mBezierAnimView.post(new Runnable() {
+        mContainer = findViewById(R.id.container);
+        mContainer.post(new Runnable() {
             @Override
             public void run() {
                 int[] loc = new int[2];
-                mBezierAnimView.getLocationOnScreen(loc);
+                mContainer.getLocationOnScreen(loc);
                 offsetTop = loc[1];
             }
         });
+        mShopCartView = findViewById(R.id.shopcart_view);
         SwipeRefreshLayout spl = findViewById(R.id.swipe_refresh_layout);
         spl.setOnRefreshListener(this);
         RepoViewModel viewModel = new ViewModelProvider(getViewModelStore(), new RepoViewModelFactory()).get(RepoViewModel.class);
@@ -82,15 +83,16 @@ public class RepoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
     }
 
     @Override
-    public void start(View startView) {
+    public void onSelectAnim(View startView) {
         // 获取起点和终点的中心点坐标
         PointF startPoint = ScreenUtils.getViewCenter(startView, offsetTop);
         PointF endPoint = ScreenUtils.getViewCenter(mShopCartView, offsetTop);
 
         // 定义控制点，控制点可以根据需求调整
-        PointF controlPoint = new PointF((startPoint.x + endPoint.x) / 2, startPoint.y - 300);
+        PointF controlPoint = new PointF((startPoint.x + endPoint.x) / 2, startPoint.y);
 
+        BezierRedPointView view = new BezierRedPointView(this);
         // 启动动画
-        mBezierAnimView.startAnimation(startPoint, endPoint, controlPoint);
+        view.startAnimation(mContainer, startPoint, endPoint, controlPoint);
     }
 }

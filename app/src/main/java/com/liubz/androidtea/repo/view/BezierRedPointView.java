@@ -1,5 +1,7 @@
 package com.liubz.androidtea.repo.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,6 +10,7 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 
 /**
@@ -37,9 +40,21 @@ public class BezierRedPointView extends View {
         paint.setAntiAlias(true);
     }
 
-    public void startAnimation(PointF startPoint, PointF endPoint, PointF controlPoint) {
+    public void startAnimation(ViewGroup parent, PointF startPoint, PointF endPoint, PointF controlPoint) {
         isAnimating = true;
         ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                parent.removeView(BezierRedPointView.this);
+            }
+            @Override
+            public void onAnimationStart(Animator animation) {
+                super.onAnimationStart(animation);
+                parent.addView(BezierRedPointView.this);
+            }
+        });
         animator.setDuration(300); // 动画持续时间
         animator.setInterpolator(new AccelerateInterpolator(2));
         animator.addUpdateListener(animation -> {
@@ -63,8 +78,6 @@ public class BezierRedPointView extends View {
         super.onDraw(canvas);
         if (isAnimating) {
             canvas.drawCircle(currentPosition[0], currentPosition[1], 12, paint);
-        } else {
-            canvas.drawARGB(0, 0, 0, 0);
         }
     }
 }

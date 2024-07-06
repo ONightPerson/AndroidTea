@@ -11,12 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.liubz.androidtea.R;
-import com.liubz.androidtea.network.retrofit.data.Repo;
 import com.liubz.androidtea.repo.viewmodel.RepoViewModel;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 /**
  * @Desc:
@@ -30,7 +25,7 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
     private RepoSelectListener mListener;
 
     public interface RepoSelectListener {
-        void start(View startView);
+        void onSelectAnim(View startView);
     }
 
     public void setRepoSelectListener(RepoSelectListener listener) {
@@ -67,12 +62,9 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
             super(itemView);
             repoNameView = itemView.findViewById(R.id.repo_name);
             repoSelectView = itemView.findViewById(R.id.repo_select);
-            repoSelectView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListener != null) {
-                        mListener.start(repoSelectView);
-                    }
+            repoSelectView.setOnClickListener(v -> {
+                if (mListener != null) {
+                    mListener.onSelectAnim(repoSelectView);
                 }
             });
         }

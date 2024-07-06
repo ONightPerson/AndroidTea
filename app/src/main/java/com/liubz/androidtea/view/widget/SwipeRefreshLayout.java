@@ -77,6 +77,7 @@ import androidx.core.widget.ListViewCompat;
 public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingParent3,
         NestedScrollingParent2, NestedScrollingChild3, NestedScrollingChild2, NestedScrollingParent,
         NestedScrollingChild {
+    private static final String TAG = "SwipeRefreshLayout";
     // Maps to ProgressBar.Large style
     public static final int LARGE = CircularProgressDrawable.LARGE;
     // Maps to ProgressBar default style
@@ -786,6 +787,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                Log.i(TAG, "onInterceptTouchEvent: ACTION_DOWN");
                 setTargetOffsetTopAndBottom(mOriginalOffsetTop - mCircleView.getTop());
                 mActivePointerId = ev.getPointerId(0);
                 mIsBeingDragged = false;
@@ -798,6 +800,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 break;
 
             case MotionEvent.ACTION_MOVE:
+                Log.i(TAG, "onInterceptTouchEvent: ACTION_MOVE");
                 if (mActivePointerId == INVALID_POINTER) {
                     Log.e(LOG_TAG, "Got ACTION_MOVE event but don't have an active pointer id.");
                     return false;
@@ -812,11 +815,13 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 break;
 
             case MotionEvent.ACTION_POINTER_UP:
+
                 onSecondaryPointerUp(ev);
                 break;
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                Log.i(TAG, "onInterceptTouchEvent: ACTION_CANCEL");
                 mIsBeingDragged = false;
                 mActivePointerId = INVALID_POINTER;
                 break;
@@ -1261,11 +1266,13 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                Log.i(TAG, "onTouchEvent: ACTION_DOWN");
                 mActivePointerId = ev.getPointerId(0);
                 mIsBeingDragged = false;
                 break;
 
             case MotionEvent.ACTION_MOVE: {
+                Log.i(TAG, "onTouchEvent: ACTION_MOVE");
                 pointerIndex = ev.findPointerIndex(mActivePointerId);
                 if (pointerIndex < 0) {
                     Log.e(LOG_TAG, "Got ACTION_MOVE event but have an invalid active pointer id.");
@@ -1304,6 +1311,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 break;
 
             case MotionEvent.ACTION_UP: {
+                Log.i(TAG, "onTouchEvent: ACTION_UP");
                 pointerIndex = ev.findPointerIndex(mActivePointerId);
                 if (pointerIndex < 0) {
                     Log.e(LOG_TAG, "Got ACTION_UP event but don't have an active pointer id.");
@@ -1320,6 +1328,7 @@ public class SwipeRefreshLayout extends ViewGroup implements NestedScrollingPare
                 return false;
             }
             case MotionEvent.ACTION_CANCEL:
+                Log.i(TAG, "onTouchEvent: ACTION_CANCEL");
                 return false;
         }
 
