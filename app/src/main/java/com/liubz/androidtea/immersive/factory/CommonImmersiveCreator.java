@@ -1,4 +1,4 @@
-package com.liubz.androidtea.immersive;
+package com.liubz.androidtea.immersive.factory;
 
 import android.app.Activity;
 import android.graphics.Color;

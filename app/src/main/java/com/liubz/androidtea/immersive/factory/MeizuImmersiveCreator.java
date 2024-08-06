@@ -1,9 +1,11 @@
-package com.liubz.androidtea.immersive;
+package com.liubz.androidtea.immersive.factory;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+
+import com.liubz.androidtea.immersive.factory.CommonImmersiveCreator;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

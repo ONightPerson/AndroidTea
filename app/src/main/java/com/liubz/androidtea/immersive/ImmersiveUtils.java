@@ -2,6 +2,9 @@ package com.liubz.androidtea.immersive;
 
 import android.app.Activity;
 
+import com.liubz.androidtea.immersive.factory.ImmersiveCreator;
+import com.liubz.androidtea.immersive.factory.ImmersiveFactory;
+
 /**
  * @Desc:
  * @Author: liubaozhu
