@@ -17,11 +17,6 @@ import java.lang.reflect.Method;
  */
 public class XiaomiImmersiveCreator extends CommonImmersiveCreator {
 
-    private static int mIsMIUI = -1; // -1 -> 未知; 1 -> 是; 0 -> 否
-    private static final String KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code";
-    private static final String KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name";
-    private static final String KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage";
-
     @Override
     public void setImmerseStatusBar(Activity activity) {
         if (activity == null) {
