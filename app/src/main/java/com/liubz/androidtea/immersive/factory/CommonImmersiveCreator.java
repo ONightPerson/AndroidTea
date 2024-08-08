@@ -20,11 +20,15 @@ public class CommonImmersiveCreator extends ImmersiveCreator {
             return;
         }
         Window window = activity.getWindow();
+        // 将FLAG_TRANSLUCENT_STATUS换成FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS，否则状态栏不会完全透明，会有一个半透明的灰色蒙层
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
           | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         View decorView = window.getDecorView();
+        // SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN 表示Activity全屏显示，但状态栏不会被隐藏，依然可见
+        // SYSTEM_UI_FLAG_LAYOUT_STABLE表示保持整个View稳定，使View不会因为系统UI的变化而重新layout
         decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
           | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        // FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS表示系统bar的背景将交给window绘制
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.TRANSPARENT);
 

@@ -19,7 +19,6 @@ public class ImmersiveActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_immersive);
         // 全屏模式 & 应用主体内容占用系统状态栏
-        ImmersiveUtils.setImmersiveMode(this, true);
+        ImmersiveUtils.setImmersiveMode(this, false);
     }
-
 }
