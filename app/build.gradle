@@ -81,7 +81,7 @@ dependencies {
     implementation configs.androidx.swiperefreshlayout
 //    implementation configs.androidx.lifecycle_extensions
 
-    implementation 'org.litepal.android:java:3.0.0'
+//    implementation 'org.litepal.android:java:3.0.0'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
     implementation 'com.squareup.okhttp3:mockwebserver:5.0.0-alpha.2'
     implementation 'com.google.code.gson:gson:2.8.7'

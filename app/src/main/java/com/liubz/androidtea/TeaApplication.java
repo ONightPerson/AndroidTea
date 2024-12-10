@@ -7,7 +7,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Process;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -15,10 +14,8 @@ import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.network.websocket.WebSocketConfig;
 import com.liubz.androidtea.network.websocket.WebSocketHelper;
-import com.liubz.androidtea.utils.NotificationUtils;
 import com.liubz.androidtea.utils.ApplicationUtils;
-
-import org.litepal.LitePal;
+import com.liubz.androidtea.utils.NotificationUtils;
 
 public class TeaApplication extends Application {
     private static final String TAG = "TeaApplication";
@@ -33,8 +30,6 @@ public class TeaApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        LitePal.initialize(this);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);

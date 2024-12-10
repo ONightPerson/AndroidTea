@@ -38,6 +38,7 @@ import com.liubz.androidtea.utils.NdkUtils;
 import com.liubz.androidtea.utils.ScreenUtils;
 import com.liubz.androidtea.utils.SpannableStringBuilderUtil;
 import com.liubz.androidtea.utils.StatusBarUtil;
+import com.liubz.androidtea.utils.UrlUtils;
 import com.liubz.androidtea.view.EditTextActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
 
@@ -373,5 +374,8 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.repo_test)
     void repoActivity() {
         startActivity(new Intent(this, RepoActivity.class));
+        String originalUrl = "https://example.com/path/to/resource?param1=value1&param2=value2#section1";
+        String urlWithoutParamsAndHash = UrlUtils.removeUrlParametersAndHash(originalUrl);
+        Log.i(TAG, "repoActivity: URL without parameters and hash: " + urlWithoutParamsAndHash);
     }
 }

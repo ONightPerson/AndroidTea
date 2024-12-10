@@ -44,7 +44,6 @@
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
-        <activity android:name=".persistence.litepal.LitePalTestActivity" />
         <activity android:name=".contentprovider.ContactsTestActivity" />
         <activity android:name=".music.client.MusicPlayActivity" />
         <activity android:name=".material.recycler.RecyclerViewActivity" />
