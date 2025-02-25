@@ -11,9 +11,11 @@ import com.liubz.androidtea.utils.LogHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.annotations.NonNull;
+import io.reactivex.rxjava3.core.Observer;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
  * @Desc:
@@ -31,16 +33,15 @@ public class RepoViewModel extends ViewModel {
         NetWorkHelper.getService(RepoService.class).listRepos("onightperson")
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
-          .subscribe(new Subscriber<List<Repo>>() {
+          .subscribe(new Observer<List<Repo>>() {
               @Override
-              public void onStart() {
-                  super.onStart();
+              public void onSubscribe(@NonNull Disposable d) {
                   LogHelper.i(TAG, "onStart");
                   showLoading.setValue(true);
               }
 
               @Override
-              public void onCompleted() {
+              public void onComplete() {
                   LogHelper.i(TAG, "onCompleted");
                   showLoading.setValue(false);
               }

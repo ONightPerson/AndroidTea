@@ -10,6 +10,14 @@ versions.material = '1.1.0'
 versions.coordinatorlayout = '1.1.0'
 versions.lifecycle = '2.2.0'
 versions.room = '2.2.5'
+versions.okhttp = '4.12.0' // https://central.sonatype.com/artifact/com.squareup.okhttp3/okhttp/versions
+versions.okhttp_mockwebserver = '4.12.0' // https://central.sonatype.com/artifact/com.squareup.okhttp3/mockwebserver/versions
+versions.retrofit = '2.9.0' // https://central.sonatype.com/artifact/com.squareup.retrofit2/retrofit/versions
+versions.converter_gson = '2.9.0' // https://central.sonatype.com/artifact/com.squareup.retrofit2/converter-gson/versions
+versions.adapter_rxjava = '2.9.0' // https://central.sonatype.com/artifact/com.squareup.retrofit2/adapter-rxjava3
+versions.rxJava = '3.1.10' // https://central.sonatype.com/artifact/io.reactivex.rxjava3/rxjava/versions
+versions.rxAndroid = '3.0.2' // https://central.sonatype.com/artifact/io.reactivex.rxjava3/rxandroid/versions
+versions.gson = '2.8.7' // https://central.sonatype.com/artifact/com.google.code.gson/gson/versions
 
 def androidx = [:]
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
@@ -26,4 +34,28 @@ androidx.lifecycle_viewmodel = "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
 androidx.lifecycle_extensions = "androidx.lifecycle:lifecycle-extensions:2.2.0"
 androidx.swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+def retrofit = [:]
+retrofit.retrofit = "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+retrofit.converter_gson = "com.squareup.retrofit2:converter-gson:${versions.converter_gson}"
+retrofit.adapter_rxjava = "com.squareup.retrofit2:adapter-rxjava3:${versions.adapter_rxjava}"
+
+def gson = [:]
+gson.gson = "com.google.code.gson:gson:${versions.gson}"
+
+def okhttp = [:]
+okhttp.okhttp = "com.squareup.okhttp3:okhttp:${versions.okhttp}"
+okhttp.okhttp_mockwebserver = "com.squareup.okhttp3:mockwebserver:${versions.okhttp_mockwebserver}"
+
+def rxjava = [:]
+rxjava.rxjava = "io.reactivex.rxjava3:rxjava:${versions.rxJava}"
+
+def rxAndroid = [:]
+rxAndroid.rxAndroid = "io.reactivex.rxjava3:rxandroid:${versions.rxAndroid}"
+
+
 configs.androidx = androidx
+configs.retrofit = retrofit
+configs.gson = gson
+configs.okhttp = okhttp
+configs.rxjava = rxjava
+configs.rxAndroid = rxAndroid
