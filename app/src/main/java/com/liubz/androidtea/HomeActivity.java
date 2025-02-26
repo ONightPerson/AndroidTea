@@ -35,6 +35,7 @@ import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
 import com.liubz.androidtea.utils.CommonDialog;
 import com.liubz.androidtea.utils.NdkUtils;
+import com.liubz.androidtea.utils.ReflectionUtils;
 import com.liubz.androidtea.utils.ScreenUtils;
 import com.liubz.androidtea.utils.SpannableStringBuilderUtil;
 import com.liubz.androidtea.utils.StatusBarUtil;
@@ -377,5 +378,14 @@ public class HomeActivity extends BaseActivity {
         String originalUrl = "https://example.com/path/to/resource?param1=value1&param2=value2#section1";
         String urlWithoutParamsAndHash = UrlUtils.removeUrlParametersAndHash(originalUrl);
         Log.i(TAG, "repoActivity: URL without parameters and hash: " + urlWithoutParamsAndHash);
+    }
+
+    @OnClick(R.id.reflectionDemo)
+    void reflectionDemo() {
+        try {
+            ReflectionUtils.test();
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
