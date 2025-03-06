@@ -58,8 +58,8 @@ public class AsmDemo extends ClassLoader implements Opcodes {
         }
         // uses the dynamically generated class to print 'Helloworld'
         // 調用changeMethodContent，修改方法內容
-        exampleClass.getMethods()[0].invoke(exampleClass.newInstance(), null);
-        exampleClass.getMethods()[1].invoke(exampleClass.newInstance(), null);
+//        exampleClass.getMethods()[0].invoke(exampleClass.newInstance(), null);
+//        exampleClass.getMethods()[1].invoke(exampleClass.newInstance(), null);
 
         System.out.println("***************************");
         // 調用execute,修改方法名

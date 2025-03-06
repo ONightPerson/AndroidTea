@@ -3,19 +3,16 @@
  * @Author: liubaozhu
  * @Date: 4/10/24 4:25 PM
  */
-public class CommonTest {
+public class CommonTest implements Speak {
+    private static final String TAG = "CommonTest";
+    @Override
+    public void speak() {
+
+    }
+
+    public static final String[] s = {"1", "2", "3"};
+
     public static void main(String[] args) {
-        System.out.println(f(2));
+        AnimalType animalType = AnimalType.CAT;
     }
-
-    public static int f(int value) {
-        try {
-            return value * value;
-        } finally {
-            if (value == 23) {
-                return 0;
-            }
-        }
-    }
-
 }
