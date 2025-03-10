@@ -1,3 +1,3 @@
 public interface Speak {
-    void speak();
+    void speak(String msg);
 }
