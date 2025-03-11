@@ -3,6 +3,7 @@ apply plugin: 'java-library'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'org.openjdk.jol:jol-core:0.11'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
