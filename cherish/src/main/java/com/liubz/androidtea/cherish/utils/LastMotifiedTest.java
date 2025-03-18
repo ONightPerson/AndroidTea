@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.tools;
+package com.liubz.androidtea.cherish.utils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

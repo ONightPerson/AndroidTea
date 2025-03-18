@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.join;
+package com.liubz.androidtea.cherish.thread.join;
 
 import java.util.concurrent.TimeUnit;
 

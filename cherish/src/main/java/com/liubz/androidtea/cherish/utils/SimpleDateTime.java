@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2013 Baidu Inc. All rights reserved.
  */
-package com.liubz.androidtea.cherish.tools;
+package com.liubz.androidtea.cherish.utils;
 
 /**
  * 系统的 Date，替代方案，因为系统Date的初始化性能太慢。

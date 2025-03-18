@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.lock;
+package com.liubz.androidtea.cherish.concurrent.lock;
 
 import java.util.concurrent.locks.LockSupport;
 

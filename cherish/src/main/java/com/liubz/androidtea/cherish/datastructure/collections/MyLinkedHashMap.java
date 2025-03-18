@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.collections;
+package com.liubz.androidtea.cherish.datastructure.collections;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
