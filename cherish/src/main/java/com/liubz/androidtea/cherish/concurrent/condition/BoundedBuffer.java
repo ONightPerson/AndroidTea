@@ -1,7 +1,5 @@
 package com.liubz.androidtea.cherish.concurrent.condition;
 
-import com.liubz.androidtea.cherish.datastructure.LinkList;
-
 import java.util.LinkedList;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
