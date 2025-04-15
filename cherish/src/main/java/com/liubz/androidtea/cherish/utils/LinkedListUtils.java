@@ -94,4 +94,41 @@ public class LinkedListUtils {
         removeNode.next = null;
         return dummy.next;
     }
+
+    /**
+     * 获取该链表的中间节点
+     * 若链表节点数为奇数，则返回中间节点
+     * 若链表节点数为偶数，则返回中间两个节点的后一个节点
+     * 1 2 2
+     * @param head
+     * @return
+     */
+    public static Node findMiddleNode(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    public static boolean isPalindrome(Node head) {
+        Node center = findMiddleNode(head);
+        Node reversedSecondHalf = reverse(center);
+
+        Node p1 = reversedSecondHalf;
+        Node p2 = head;
+        while (p1 != null) {
+            if (p1.data != p2.data) {
+                return false;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return true;
+    }
 }
