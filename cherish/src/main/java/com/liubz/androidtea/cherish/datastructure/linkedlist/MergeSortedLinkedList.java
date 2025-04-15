@@ -20,6 +20,6 @@ public class MergeSortedLinkedList {
         System.out.println("开始合并");
         Node head = LinkedListUtils.merge(head1, head2);
         System.out.println("合并2个有序链表：");
-        LinkedListUtils.printList(head);
+        LinkedListUtils.print(head);
     }
 }

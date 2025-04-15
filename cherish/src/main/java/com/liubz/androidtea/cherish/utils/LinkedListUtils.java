@@ -4,7 +4,7 @@ import com.liubz.androidtea.cherish.datastructure.bean.Node;
 
 public class LinkedListUtils {
 
-    public static void printList(Node<?> head) {
+    public static void print(Node<?> head) {
         if (head == null) {
             return;
         }
@@ -130,5 +130,27 @@ public class LinkedListUtils {
             p2 = p2.next;
         }
         return true;
+    }
+
+    /**
+     * 删除链表中等于给定值 value 的所有节点
+     * @param head
+     * @param value
+     * @return
+     */
+    public static Node<Integer> delete(Node<Integer> head, int value) {
+        Node<Integer> dummy = new Node<>(-1);
+        dummy.next = head;
+        Node<Integer> p = dummy;
+        while (p.next != null) {
+            if (p.next.data == value) {
+                p.next = p.next.next;
+            } else {
+                p = p.next;
+            }
+
+        }
+
+        return dummy.next;
     }
 }

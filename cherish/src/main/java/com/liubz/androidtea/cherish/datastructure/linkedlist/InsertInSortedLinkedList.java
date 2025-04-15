@@ -11,10 +11,10 @@ public class InsertInSortedLinkedList {
         head1.next.next.next = new Node(12);
 
         Node<Integer> head = insert(head1, new Node<Integer>(6));
-        LinkedListUtils.printList(head);
+        LinkedListUtils.print(head);
 
         Node<Integer> removedHead = remove(head, 12);
-        LinkedListUtils.printList(removedHead);
+        LinkedListUtils.print(removedHead);
 
     }
 

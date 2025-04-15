@@ -15,7 +15,7 @@ public class ReverseLinkedList {
         head.next.next.next.next.next.next.next = new Node(8);
 
         Node reversedHead = LinkedListUtils.reverse(head);
-        LinkedListUtils.printList(reversedHead);
+        LinkedListUtils.print(reversedHead);
     }
 
 
