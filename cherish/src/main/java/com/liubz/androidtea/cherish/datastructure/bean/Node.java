@@ -1,4 +1,4 @@
-package com.liubz.androidtea.cherish.datastructure.linkedlist;
+package com.liubz.androidtea.cherish.datastructure.bean;
 
 public class Node<T> {
     public T data;

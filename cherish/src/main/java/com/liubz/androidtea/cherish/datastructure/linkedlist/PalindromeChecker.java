@@ -1,5 +1,8 @@
 package com.liubz.androidtea.cherish.datastructure.linkedlist;
 
+import com.liubz.androidtea.cherish.datastructure.bean.Node;
+import com.liubz.androidtea.cherish.utils.LinkedListUtils;
+
 /**
  * 回文字符串检测
  * 给定单链表，判断链表中的节点数据是否是回文结构
@@ -16,15 +19,18 @@ public class PalindromeChecker {
 
     public static void main(String[] args) {
         Node head = createLinkedList();
-        boolean isPalindrome = isPalindrome(head);
-        System.out.println("当前单链表存储的数据是否为回文结构:" + isPalindrome);
+//        boolean isPalindrome = isPalindrome(head);
+//        System.out.println("当前单链表存储的数据是否为回文结构:" + isPalindrome);
+        Node reversedHead = reverseLinkedList(head);
+        System.out.println("反转链表");
+        LinkedListUtils.printList(reversedHead);
     }
 
     static Node createLinkedList() {
         Node<Integer> head = new Node(1);
         Node<Integer> next1 = new Node(2);
         head.next = next1;
-        Node<Integer> next2 = new Node(3);
+        Node<Integer> next2 = new Node(4);
         next1.next = next2;
         Node<Integer> next6 = new Node(3);
         next2.next = next6;
