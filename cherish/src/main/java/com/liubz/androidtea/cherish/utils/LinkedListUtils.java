@@ -21,6 +21,7 @@ public class LinkedListUtils {
             return head;
         }
         Node dummy = new Node(-1);
+        dummy.next = head;
         Node cur = head;
         Node next;
         while (cur != null) {
