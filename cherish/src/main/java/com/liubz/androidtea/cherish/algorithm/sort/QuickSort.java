@@ -21,6 +21,15 @@ public class QuickSort {
         }
     }
 
+    /**
+     * 1 4 9 6 3
+     * 1 3 9 6 4
+     *
+     * @param arr
+     * @param low
+     * @param high
+     * @return
+     */
     static int partition(int[] arr, int low, int high) {
         int pivot = arr[high];
         while (low < high) {
