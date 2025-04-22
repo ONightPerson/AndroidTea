@@ -20,7 +20,7 @@ public class ShellSort {
                 int j = i - gap; // 已排序的最后索引
                 while (j >= 0 && arr[j] > temp) {
                     arr[j + gap] = arr[j];
-                    j -= gap;
+                    j -= gap; // NOTE 迭代条件
                 }
                 arr[j + gap] = temp;
             }

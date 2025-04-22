@@ -10,13 +10,17 @@ public class InsertionSort {
         }
     }
 
+    /**
+     * 1 2
+     * @param arr
+     */
     static void insertionSort(int[] arr) {
         if (arr == null || arr.length <= 1) {
             return;
         }
         int n = arr.length;
         for (int i = 1; i < n; i++) {
-            int key = arr[i];
+            int key = arr[i]; // 1
             int j = i - 1; // 已排序部分的最后一个索引
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];

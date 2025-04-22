@@ -17,20 +17,15 @@ public class LinkedListUtils {
     }
 
     public static Node reverse(Node head) {
-        if (head == null || head.next == null) {
-            return head;
-        }
-        Node dummy = new Node(-1);
-        dummy.next = head;
         Node cur = head;
-        Node next;
+        Node pre = null;
         while (cur != null) {
-            next = cur.next;
-            cur.next = dummy.next;
-            dummy.next = cur;
+            Node next = cur.next;
+            cur.next = pre;
+            pre = cur;
             cur = next;
         }
-        return dummy.next;
+        return pre;
     }
 
     public static boolean hasCycle(Node<?> head) {

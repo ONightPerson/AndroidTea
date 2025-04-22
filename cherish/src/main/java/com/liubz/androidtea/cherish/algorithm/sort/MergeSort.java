@@ -1,5 +1,10 @@
 package com.liubz.androidtea.cherish.algorithm.sort;
 
+/**
+ * 递推公式：
+ * mergeSort(l...r) = merge(mergeSort(l...mid), mergeSort(mid+1...r))
+ * 终止条件：l >= r;
+ */
 public class MergeSort {
 
     public static void main(String[] args) {
