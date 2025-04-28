@@ -45,7 +45,7 @@ public class HeapSort {
         }
         if (largest != i) {
             swap(arr, largest, i);
-            heapify(arr, n, i);
+            heapify(arr, n, largest);
         }
     }
 
