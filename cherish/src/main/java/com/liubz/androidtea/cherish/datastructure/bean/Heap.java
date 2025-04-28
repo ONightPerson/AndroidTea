@@ -28,14 +28,43 @@ public class Heap {
         return true;
     }
 
+    /**
+     * 获取对顶元素
+     * @return
+     */
+    public int take() {
+        int result = heap[0];
+        count--;
+        heap[0] = heap[count];
+        siftDown(0, heap[0]);
+        return result;
+    }
+
     private void siftUp(int i, int value) {
         while (i > 0) {
             int parent = (i - 1) >>> 1;
-            if (heap[parent] > value) {
+            if (heap[parent] >= value) {
                 break;
             }
             heap[i] = heap[parent];
             i = parent;
+        }
+        heap[i] = value;
+    }
+
+    public void siftDown(int i, int value) {
+        int half = count >>> 1;
+        while (i < half) {
+            int child = 2 * i + 1;
+            int right = child + 1;
+            if (right < count && heap[right] > heap[child]) {
+                child = right;
+            }
+            if (value >= heap[child]) {
+                break;
+            }
+            heap[i] = heap[child];
+            i = child;
         }
         heap[i] = value;
     }

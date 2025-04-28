@@ -24,29 +24,50 @@ public class HeapSort {
         }
         int n = arr.length;
         for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(arr, n, i);
+            siftDown(arr, n, i);
         }
         for (int i = n - 1; i > 0; i--) {
             swap(arr, 0, i);
-            heapify(arr, i, 0);
+            siftDown(arr, i, 0);
         }
     }
 
 
-    static void heapify(int[] arr, int n, int i) {
-        int largest = i;
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        if (left < n && arr[left] > arr[largest]) {
-            largest = left;
+//    static void siftDown(int[] arr, int n, int i) {
+//        int largest = i;
+//        int left = 2 * i + 1;
+//        int right = 2 * i + 2;
+//        if (left < n && arr[left] > arr[largest]) {
+//            largest = left;
+//        }
+//        if (right < n && arr[right] > arr[largest]) {
+//            largest = right;
+//        }
+//        if (largest != i) {
+//            swap(arr, largest, i);
+//            siftDown(arr, n, largest);
+//        }
+//
+//
+//    }
+
+    static void siftDown(int[] arr, int n, int i) {
+        int value = arr[i];
+        int half = n >>> 1;
+        while (i < half) {
+            int child = 2 * i + 1;
+            int right = child + 1;
+            if (right < n && arr[right] > arr[child]) {
+                child = right;
+            }
+
+            if (arr[i] >= arr[child]) {
+                break;
+            }
+            arr[i] = arr[child];
+            i = child;
         }
-        if (right < n && arr[right] > arr[largest]) {
-            largest = right;
-        }
-        if (largest != i) {
-            swap(arr, largest, i);
-            heapify(arr, n, largest);
-        }
+        arr[i] = value;
     }
 
     static void swap(int[] arr, int i, int j) {
