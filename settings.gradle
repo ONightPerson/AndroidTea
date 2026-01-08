@@ -1,12 +1,5 @@
-include ':interfaceimpl'
-include ':baseinterface'
-include ':parcelapp'
-setBinding(new Binding([gradle: this]))
-include ':adapter'
-include ':AutoParcelCompiler'
 include ':interview'
 include ':cherish'
-include ':AutoParcel'
 include ':app'
 println('settings.gradle:This is executed during the initialization phase.')
 

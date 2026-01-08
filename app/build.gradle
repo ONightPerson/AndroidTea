@@ -45,9 +45,6 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation project (':baseinterface')
-    implementation project (':interfaceimpl')
-
     implementation configs.androidx.appcompat
     implementation configs.androidx.recyclerview
     implementation configs.androidx.cardview
