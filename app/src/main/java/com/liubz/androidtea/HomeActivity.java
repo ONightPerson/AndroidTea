@@ -145,7 +145,6 @@ public class HomeActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.learnopengles.android",
           "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
-//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
