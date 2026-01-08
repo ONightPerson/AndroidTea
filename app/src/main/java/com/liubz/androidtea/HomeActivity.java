@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.baseinterface.BaseInterface;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
@@ -49,7 +48,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ServiceConfigurationError;
@@ -119,31 +117,6 @@ public class HomeActivity extends BaseActivity {
     @OnClick(R.id.rx_java3_activity)
     void launchRxActivity() {
         startActivity(new Intent(this, RxActivity.class));
-    }
-
-    @OnClick(R.id.service_loader)
-    void serviceLoader() {
-        try {
-            Enumeration<URL> enumeration = Thread.currentThread().getContextClassLoader().getResources("META-INF/services/" + BaseInterface.class.getName());
-            Log.i(TAG, "serviceLoader: enumeration: " + enumeration);
-//            Log.i(TAG, "serviceLoader: hasMoreElements: " + enumeration.hasMoreElements());
-//            URL nextElement = enumeration.nextElement();
-//            Log.i(TAG, "serviceLoader: next Element: " + nextElement);
-            Iterator<String> pending = null;
-            while ((pending == null) || !pending.hasNext()) {
-                if (!enumeration.hasMoreElements()) {
-                    return;
-                }
-                pending = parse(BaseInterface.class, enumeration.nextElement());
-                Log.i(TAG, "serviceLoader: pending: " + pending + ", hasNext: " + pending.hasNext());
-            }
-            Log.i(TAG, "serviceLoader: parse result: " + pending.next());
-//            while (enumeration.hasMoreElements()) {
-//                Log.i(TAG, "serviceLoader: elements: " + enumeration.nextElement());
-//            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @OnClick(R.id.classloader)
