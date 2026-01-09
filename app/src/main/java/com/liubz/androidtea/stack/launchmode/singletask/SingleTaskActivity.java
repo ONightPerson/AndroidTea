@@ -5,13 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivitySingleTaskBinding;
 import com.liubz.androidtea.stack.launchmode.OtherActivity;
-import com.liubz.androidtea.stack.launchmode.standard.StandardActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @Desc:
@@ -19,22 +15,28 @@ import butterknife.OnClick;
  * @Date: 2023/2/17 7:11 PM
  */
 public class SingleTaskActivity extends BaseActivity {
+    private ActivitySingleTaskBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_task);
+        binding = ActivitySingleTaskBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("SingleTaskActivity");
-        ButterKnife.bind(this);
+        
+        initListeners();
     }
 
-    @OnClick(R.id.single_task_launch_self_btn)
-    void launchSingleTaskActivity() {
+    private void initListeners() {
+        binding.singleTaskLaunchSelfBtn.setOnClickListener(v -> launchSingleTaskActivity());
+        binding.singleTaskLaunchOtherBtn.setOnClickListener(v -> launchOtherActivity());
+    }
+
+    private void launchSingleTaskActivity() {
         startActivity(new Intent(this, SingleTaskActivity.class));
     }
 
-    @OnClick(R.id.single_task_launch_other_btn)
-    void launchOtherActivity() {
+    private void launchOtherActivity() {
         startActivity(new Intent(this, OtherActivity.class));
     }
 }

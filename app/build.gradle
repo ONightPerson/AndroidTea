@@ -1,17 +1,25 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'  // 添加 Kotlin Android 插件
+}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.liubz.androidtea"
         minSdkVersion 22
-        targetSdkVersion 30
+        targetSdkVersion 34
         buildToolsVersion '28.0.3'
 
         multiDexEnabled true
         versionCode 2
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    // 添加 Kotlin 编译选项
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     viewBinding {
@@ -25,11 +33,6 @@ android {
             signingConfig signingConfigs.debug
         }
 
-        externalNativeBuild {
-            ndkBuild {
-                path 'src/main/jni/Android.mk'
-            }
-        }
         sourceSets.main {
             jni.srcDirs = []
             jniLibs.srcDirs = ['src/main/jniLibs']
@@ -40,6 +43,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        aidl true
+    }
+    namespace 'com.liubz.androidtea'
 }
 
 dependencies {
@@ -69,14 +76,19 @@ dependencies {
 
     implementation 'org.greenrobot:eventbus:3.2.0'
 
-    implementation 'com.jakewharton:butterknife:10.2.3'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
-
     implementation 'com.github.bumptech.glide:glide:4.15.1'
 
     testImplementation 'junit:junit:4.13.2'
 
     implementation 'org.ow2.asm:asm:5.0.1'
+    // Kotlin 标准库
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    // 协程支持（可选但推荐）
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
+
+    // 核心 KTX 扩展（可选但推荐）
+    implementation 'androidx.core:core-ktx:1.12.0'
 }
 
 project.afterEvaluate {

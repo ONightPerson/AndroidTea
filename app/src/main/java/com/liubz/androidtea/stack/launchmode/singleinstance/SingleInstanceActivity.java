@@ -5,12 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivitySingleInstanceBinding;
 import com.liubz.androidtea.stack.launchmode.OtherActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @Desc:
@@ -18,16 +15,19 @@ import butterknife.OnClick;
  * @Date: 2023/2/17 7:31 PM
  */
 public class SingleInstanceActivity extends BaseActivity {
+    private ActivitySingleInstanceBinding binding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_instance);
+        binding = ActivitySingleInstanceBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("SingleInstanceActivity");
-        ButterKnife.bind(this);
+        
+        binding.singleInstanceLaunchOtherBtn.setOnClickListener(v -> launchOtherActivity());
     }
 
-    @OnClick(R.id.single_instance_launch_other_btn)
-    void launchOtherActivity() {
+    private void launchOtherActivity() {
         startActivity(new Intent(this, OtherActivity.class));
     }
 }

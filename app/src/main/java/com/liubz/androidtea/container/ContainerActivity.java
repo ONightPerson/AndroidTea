@@ -5,14 +5,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivityContainerBinding;
 import com.liubz.androidtea.utils.ThreadUtils;
 
 import java.util.concurrent.SynchronousQueue;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @Desc:
@@ -21,18 +18,25 @@ import butterknife.OnClick;
  */
 public class ContainerActivity extends BaseActivity {
     private static final String TAG = "ContainerActivity";
+    private ActivityContainerBinding binding;
 
     final SynchronousQueue<Integer> queue = new SynchronousQueue<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_container);
-        ButterKnife.bind(this);
+        binding = ActivityContainerBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        
+        initListeners();
+        
         synchronousQueue();
     }
 
-    @OnClick(R.id.synchronous_queue)
+    private void initListeners() {
+        binding.synchronousQueue.setOnClickListener(v -> synchronousQueue());
+    }
+
     void synchronousQueue() {
         Thread putThread = new Thread(new Runnable() {
             @Override

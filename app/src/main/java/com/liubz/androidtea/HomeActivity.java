@@ -21,6 +21,7 @@ import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
+import com.liubz.androidtea.databinding.ActivityHomeBinding;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
@@ -42,89 +43,92 @@ import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.utils.UrlUtils;
 import com.liubz.androidtea.view.EditTextActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ServiceConfigurationError;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.liubz.androidtea.window.WindowActivity;
 
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
+    private ActivityHomeBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("HomeActivity");
-        ButterKnife.bind(this);
         Log.i(TAG, "onCreate");
+
+        initListeners();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+    private void initListeners() {
+        binding.expandableListActivity.setOnClickListener(v -> launchExpandableListActivity());
+        binding.editTextActivity.setOnClickListener(v -> launchEditTextActivity());
+        binding.launchWebview.setOnClickListener(v -> launchWebview());
+        binding.retrofitActivity.setOnClickListener(v -> startRetrofitActivity());
+        binding.callPhone.setOnClickListener(v -> callPhone());
+        binding.launchBrowser.setOnClickListener(v -> launchBrowser());
+        binding.rxJava3Activity.setOnClickListener(v -> launchRxActivity());
+        binding.classloader.setOnClickListener(v -> classLoader());
+        binding.goToOtherAppActivity.setOnClickListener(v -> goToSecondActivity());
+        binding.containerActivity.setOnClickListener(v -> goContainerActivity());
+        binding.communicateActivity.setOnClickListener(v -> goCommunicateActivity());
+        binding.launchLaunchMode.setOnClickListener(v -> launchLaunchModeActivity());
+        binding.launchNewTask.setOnClickListener(v -> launchNewTask());
+        binding.launchModeTransparentBtn.setOnClickListener(v -> launchTransparentActivity());
+        binding.launchModeDialogActivityBtn.setOnClickListener(v -> launchDialogActivity());
+        binding.immersivePage.setOnClickListener(v -> launchImmersiveActivity());
+        binding.getStatusBarHeight.setOnClickListener(v -> getStatusBarHeight());
+        binding.showAlertDialog.setOnClickListener(v -> showDialog());
+        binding.glideActivity.setOnClickListener(v -> goGlideActivity());
+        binding.gsonTest.setOnClickListener(v -> startHttpRequestActivity());
+        binding.screenInfo.setOnClickListener(v -> outputScreenInfo());
+        binding.ndkTools.setOnClickListener(v -> ndkTools());
+        binding.simStateListener.setOnClickListener(v -> simStateListener());
+        binding.viewStub.setOnClickListener(v -> viewStub());
+        binding.dialogTest.setOnClickListener(v -> dialogTest());
+        binding.repoTest.setOnClickListener(v -> repoActivity());
+        binding.reflectionDemo.setOnClickListener(v -> reflectionDemo());
+        binding.anim.setOnClickListener(v -> anim());
+        binding.windowDemo.setOnClickListener(v -> windowDemo());
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @OnClick(R.id.expandable_list_activity)
-    void launchExpandableListActivity() {
+    private void launchExpandableListActivity() {
         startActivity(new Intent(this, MyExpandableListActivity.class));
     }
 
-    @OnClick(R.id.edit_text_activity)
-    void launchEditTextActivity() {
+    private void launchEditTextActivity() {
         startActivity(new Intent(this, EditTextActivity.class));
     }
 
-    @OnClick(R.id.launch_webview)
-    void onClick() {
+    private void launchWebview() {
         Intent intent = new Intent(this, WebViewTestActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    @OnClick(R.id.retrofit_activity)
-    void startRetrofitActivity() {
+    private void startRetrofitActivity() {
         startActivity(new Intent(this, RetrofitActivity.class));
     }
 
-    @OnClick(R.id.call_phone)
-    void callPhone() {
+    private void callPhone() {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:17611490712"));
         startActivity(intent);
     }
 
-    @OnClick(R.id.launch_browser)
-    void launchBrowser() {
+    private void launchBrowser() {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.baidu.com"));
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    @OnClick(R.id.rx_java3_activity)
-    void launchRxActivity() {
+    private void launchRxActivity() {
         startActivity(new Intent(this, RxActivity.class));
     }
 
-    @OnClick(R.id.classloader)
-    void classLoader() {
-
+    private void classLoader() {
         String classpath, bootPath, extPath;
-
         try {
             classpath = System.getProperty("java.class.path");
             bootPath = System.getProperty("sun.boot.class.path");
@@ -138,86 +142,52 @@ public class HomeActivity extends BaseActivity {
             Log.i(TAG, "classLoader: " + loader);
             loader = loader.getParent();
         }
-
     }
 
-    @OnClick(R.id.go_to_other_app_activity)
-    void goToSecondActivity() {
+    private void goToSecondActivity() {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName("com.learnopengles.android",
           "com.learnopengles.android.lesson_OpenGL_ES_2.TriangleActivity"));
         startActivity(intent);
     }
 
-    @OnClick(R.id.container_activity)
-    void goContainerActivity() {
+    private void goContainerActivity() {
         startActivity(new Intent(this, ContainerActivity.class));
     }
 
-    @OnClick(R.id.communicate_activity)
-    void goCommunicateActivity() {
+    private void goCommunicateActivity() {
         startActivity(new Intent(this, CommunicationActivity.class));
     }
 
-    private Iterator<String> parse(Class<?> service, URL u)
-      throws ServiceConfigurationError {
-        Log.i(TAG, "parse: service: " + service + ", url: " + u);
-        InputStream in = null;
-        BufferedReader r = null;
-        ArrayList<String> names = new ArrayList<>();
-        try {
-            in = u.openStream();
-            r = new BufferedReader(new InputStreamReader(in, "utf-8"));
-            int lc = 1;
-            while ((lc = parseLine(service, u, r, lc, names)) >= 0) ;
-        } catch (IOException x) {
-            Log.e(TAG, "parse: exception", x);
-        } finally {
-            try {
-                if (r != null) r.close();
-                if (in != null) in.close();
-            } catch (IOException y) {
-            }
-        }
-        return names.iterator();
-    }
-
-    @OnClick(R.id.launch_launch_mode)
-    void launchLaunchModeActivity() {
+    private void launchLaunchModeActivity() {
         Intent intent = new Intent(this, LaunchModeActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.launch_new_task)
-    void launchNewTask() {
+    private void launchNewTask() {
         Intent intent = new Intent(this, NewTaskActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
-    @OnClick(R.id.launch_mode_transparent_btn)
-    void launchTransparentActivity() {
+    private void launchTransparentActivity() {
         startActivity(new Intent(this, TransparentActivity.class));
     }
 
-    @OnClick(R.id.launch_mode_dialog_activity_btn)
-    void launchDialogActivity() {
+    private void launchDialogActivity() {
         startActivity(new Intent(this, DialogActivity.class));
     }
 
-    @OnClick(R.id.immersive_page)
-    void launchImmersiveActivity() {
+    private void launchImmersiveActivity() {
         Intent intent = new Intent(this, ImmersiveActivity.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.get_status_bar_height)
-    void getStatusBarHeight() {
+    private void getStatusBarHeight() {
         Toast.makeText(HomeActivity.this, "状态栏高度：" + StatusBarUtil.getStatusBarHeight(this), Toast.LENGTH_LONG).show();
     }
 
-    @OnClick(R.id.show_alert_dialog)
-    void showDialog() {
+    private void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         AlertDialog dialog = builder.setTitle("欢迎来到Android世界")
           .setMessage("这个是一个AlertDialog")
@@ -244,69 +214,34 @@ public class HomeActivity extends BaseActivity {
         dialog.show();
     }
 
-    @OnClick(R.id.glide_activity)
-    void goGlideActivity() {
+    private void goGlideActivity() {
         startActivity(new Intent(this, GlideActivity.class));
     }
 
-    private int parseLine(Class<?> service, URL u, BufferedReader r, int lc,
-                          List<String> names)
-      throws IOException, ServiceConfigurationError {
-        String ln = r.readLine();
-        if (ln == null) {
-            return -1;
-        }
-        int ci = ln.indexOf('#');
-        if (ci >= 0) ln = ln.substring(0, ci);
-        ln = ln.trim();
-        int n = ln.length();
-        if (n != 0) {
-            if ((ln.indexOf(' ') >= 0) || (ln.indexOf('\t') >= 0)) {
-                //                fail(service, u, lc, "Illegal configuration-file syntax");
-            }
-            int cp = ln.codePointAt(0);
-            if (!Character.isJavaIdentifierStart(cp))
-                for (int i = Character.charCount(cp); i < n; i += Character.charCount(cp)) {
-                    cp = ln.codePointAt(i);
-                    if (!Character.isJavaIdentifierPart(cp) && (cp != '.')) {
-
-                    }
-                }
-            names.add(ln);
-        }
-        return lc + 1;
-    }
-
-    @OnClick(R.id.gson_test)
-    void startHttpRequestActivity() {
+    private void startHttpRequestActivity() {
         startActivity(new Intent(this, HttpRequestTestActivity.class));
     }
 
-    @OnClick(R.id.screen_info)
-    void outputScreenInfo() {
+    private void outputScreenInfo() {
         ScreenUtils.outputDensityInfo(this);
     }
 
-    @OnClick(R.id.ndk_tools)
-    void ndkTools() {
+    private void ndkTools() {
         String contentFromJni = NdkUtils.getStringFromNdk();
         Log.i(TAG, "ndkTools: contentFromJni: " + contentFromJni);
     }
 
-    @OnClick(R.id.sim_state_listener)
-    void simStateListener() {
+    private void simStateListener() {
         SimStateReceiver simStateReceiver = new SimStateReceiver();
         IntentFilter intentFilter = new IntentFilter(SimStateReceiver.ACTION_SIM_STATE_CHANGED);
         registerReceiver(simStateReceiver, intentFilter);
     }
 
-    @OnClick(R.id.view_stub)
-    void viewStub() {
+    private void viewStub() {
         startActivity(new Intent(this, ViewStubActivity.class));
     }
 
-    @OnClick(R.id.dialog_test)
-    void dialogTest() {
+    private void dialogTest() {
         SpannableStringBuilder info = new SpannableStringBuilder();
         info.append("请点击");
         ClickableSpan serviceClickableSpan = new ClickableSpan() {
@@ -345,16 +280,14 @@ public class HomeActivity extends BaseActivity {
           .show();
     }
 
-    @OnClick(R.id.repo_test)
-    void repoActivity() {
+    private void repoActivity() {
         startActivity(new Intent(this, RepoActivity.class));
         String originalUrl = "https://example.com/path/to/resource?param1=value1&param2=value2#section1";
         String urlWithoutParamsAndHash = UrlUtils.removeUrlParametersAndHash(originalUrl);
         Log.i(TAG, "repoActivity: URL without parameters and hash: " + urlWithoutParamsAndHash);
     }
 
-    @OnClick(R.id.reflectionDemo)
-    void reflectionDemo() {
+    private void reflectionDemo() {
         try {
             ReflectionUtils.test();
         } catch (NoSuchMethodException e) {
@@ -362,8 +295,11 @@ public class HomeActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.anim)
-    void anim() {
+    private void anim() {
         startActivity(new Intent(this, AnimActivity.class));
+    }
+
+    private void windowDemo() {
+        startActivity(new Intent(this, WindowActivity.class));
     }
 }

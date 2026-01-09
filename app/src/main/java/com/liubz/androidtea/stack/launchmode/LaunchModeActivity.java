@@ -3,19 +3,15 @@ package com.liubz.androidtea.stack.launchmode;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.R;
+import com.liubz.androidtea.databinding.ActivityLaunchModeBinding;
 import com.liubz.androidtea.stack.launchmode.singleinstance.SingleInstanceActivity;
 import com.liubz.androidtea.stack.launchmode.singletask.SingleTaskActivity;
 import com.liubz.androidtea.stack.launchmode.singletop.SingleTopActivity;
 import com.liubz.androidtea.stack.launchmode.standard.StandardActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_TAG_SUFFIX;
 
@@ -27,32 +23,38 @@ import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_
 @SuppressLint("LongLogTag")
 public class LaunchModeActivity extends AppCompatActivity {
     private static final String TAG = "LaunchModeActivity" + LAUNCH_MODE_TAG_SUFFIX;
+    private ActivityLaunchModeBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launch_mode);
+        binding = ActivityLaunchModeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("LaunchModeActivity");
-        ButterKnife.bind(this);
+        
+        initListeners();
     }
 
-    @OnClick(R.id.launch_mode_standard_btn)
-    void launchStandardMode() {
+    private void initListeners() {
+        binding.launchModeStandardBtn.setOnClickListener(v -> launchStandardMode());
+        binding.launchModeSingleTopBtn.setOnClickListener(v -> launchSingleTopMode());
+        binding.launchModeSingleTaskBtn.setOnClickListener(v -> launchSingleTaskMode());
+        binding.launchModeSingleInstanceBtn.setOnClickListener(v -> launchSingleInstance());
+    }
+
+    private void launchStandardMode() {
         startActivity(new Intent(this, StandardActivity.class));
     }
 
-    @OnClick(R.id.launch_mode_single_top_btn)
-    void launchSingleTopMode() {
+    private void launchSingleTopMode() {
         startActivity(new Intent(this, SingleTopActivity.class));
     }
 
-    @OnClick(R.id.launch_mode_single_task_btn)
-    void launchSingleTaskMode() {
+    private void launchSingleTaskMode() {
         startActivity(new Intent(this, SingleTaskActivity.class));
     }
 
-    @OnClick(R.id.launch_mode_single_instance_btn)
-    void launchSingleInstance() {
+    private void launchSingleInstance() {
         startActivity(new Intent(this, SingleInstanceActivity.class));
     }
 }

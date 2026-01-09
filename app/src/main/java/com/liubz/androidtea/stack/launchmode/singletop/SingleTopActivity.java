@@ -6,12 +6,9 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivitySingleTopBinding;
 import com.liubz.androidtea.stack.launchmode.OtherActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_TAG_SUFFIX;
 
@@ -22,21 +19,28 @@ import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_
  */
 public class SingleTopActivity extends BaseActivity {
     private static final String TAG = "SingleTopActivity" + LAUNCH_MODE_TAG_SUFFIX;
+    private ActivitySingleTopBinding binding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_single_top);
+        binding = ActivitySingleTopBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("SingleTopActivity");
-        ButterKnife.bind(this);
+        
+        initListeners();
     }
 
-    @OnClick(R.id.launch_mode_single_top_btn)
-    void launchSingleTopActivity() {
+    private void initListeners() {
+        binding.launchModeSingleTopBtn.setOnClickListener(v -> launchSingleTopActivity());
+        binding.launchModeOtherBtn.setOnClickListener(v -> launchOtherActivity());
+    }
+
+    private void launchSingleTopActivity() {
         startActivity(new Intent(this, SingleTopActivity.class));
     }
 
-    @OnClick(R.id.launch_mode_other_btn)
-    void launchOtherActivity() {
+    private void launchOtherActivity() {
         startActivity(new Intent(this, OtherActivity.class));
     }
 

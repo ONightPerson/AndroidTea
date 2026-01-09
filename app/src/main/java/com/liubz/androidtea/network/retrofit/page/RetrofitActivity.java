@@ -5,13 +5,11 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivityRetrofitBinding;
 import com.liubz.androidtea.network.retrofit.data.Suggest;
 import com.liubz.androidtea.network.retrofit.service.SuggestService;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,17 +18,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitActivity extends BaseActivity {
     private static final String TAG = "RetrofitActivity";
+    private ActivityRetrofitBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityRetrofitBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("RetrofitActivity");
-        setContentView(R.layout.activity_retrofit);
-        ButterKnife.bind(this);
+
+        binding.dictSuggest.setOnClickListener(v -> dictSuggest());
     }
 
-    @OnClick(R.id.dict_suggest)
-    void dictSuggest() {
+    private void dictSuggest() {
         Retrofit retrofit = new Retrofit.Builder()
           .baseUrl("http://fy.iciba.com/")
           .addConverterFactory(GsonConverterFactory.create())

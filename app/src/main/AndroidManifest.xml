@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.liubz.androidtea">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission
@@ -20,6 +19,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <!-- 悬浮窗权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
 
     <application
         android:name=".TeaApplication"
@@ -31,7 +33,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".HomeActivity">
+        <activity android:name=".HomeActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -52,8 +55,10 @@
         <activity android:name=".material.MaterialTestActivity" />
         <activity android:name=".material.tablayout.TabLayoutActivity" />
         <activity android:name=".material.CoordinatorLayoutTestActivity" />
-        <activity android:name=".material.CollapsingToolbarLayoutTestActivity" />
-        <activity android:name=".material.CustomBehaviorTestActivity">
+        <activity android:name=".material.CollapsingToolbarLayoutTestActivity"
+            android:exported="false"/>
+        <activity android:name=".material.CustomBehaviorTestActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -66,7 +71,8 @@
                     android:scheme="zhuzi" />
             </intent-filter>
         </activity>
-        <activity android:name=".notification.LaunchOtherAppActivity">
+        <activity android:name=".notification.LaunchOtherAppActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -134,10 +140,25 @@
 
         <activity android:name=".view.EditTextActivity" />
 
-        <activity android:name=".expandablelist.MyExpandableListActivity" />
+        <activity android:name=".expandablelist.MyExpandableListActivity"
+            android:exported="false"/>
+
+        <activity android:name=".window.WindowActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".window.FloatingWindowService"
+            android:enabled="true"
+            android:exported="false" />
 
         <activity
             android:name=".modules.launcher.Launcher"
+            android:exported="false"
             android:clearTaskOnLaunch="true"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|fontScale"
             android:enabled="true"
@@ -167,12 +188,14 @@
 
         <activity android:name=".view.ViewStubActivity" />
 
-        <activity android:name=".repo.RepoActivity" />
+        <activity android:name=".repo.RepoActivity"
+            android:exported="false"/>
 
         <activity android:name=".anim.AnimActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
+            android:exported="false"
             android:label="@string/accessibility_service_label"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>

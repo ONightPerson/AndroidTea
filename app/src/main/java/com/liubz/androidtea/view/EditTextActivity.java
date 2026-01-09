@@ -3,30 +3,32 @@ package com.liubz.androidtea.view;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.liubz.androidtea.R;
-import com.liubz.androidtea.base.BaseActivity;
+import androidx.annotation.Nullable;
 
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.databinding.ActivityEditTextBinding;
 
 /**
- * @Desc: 输入框点击监听
+ * @Desc:
  * @Author: liubaozhu
- * @Date: 2023/3/14 3:43 PM
+ * @Date: 2023/5/17 7:27 PM
  */
 public class EditTextActivity extends BaseActivity {
     private static final String TAG = "EditTextActivity";
+    private ActivityEditTextBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityEditTextBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("EditTextActivity");
-        setContentView(R.layout.activity_edit_text);
-        ButterKnife.bind(this);
+
+        binding.inputName.setOnClickListener(v -> inputName());
     }
 
-    @OnClick(R.id.input_name)
-    void inputName() {
-        Log.i(TAG, "inputName: ");
+    private void inputName() {
+        String name = binding.inputName.toString();
+        Log.i(TAG, "inputName: " + name);
     }
 }

@@ -3,17 +3,11 @@ package com.liubz.androidtea.stack.launchmode.standard;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.liubz.androidtea.R;
 import com.liubz.androidtea.base.BaseActivity;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+import com.liubz.androidtea.databinding.ActivityStandardBinding;
 
 import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_TAG_SUFFIX;
 
@@ -25,17 +19,19 @@ import static com.liubz.androidtea.stack.launchmode.LaunchModeConst.LAUNCH_MODE_
 @SuppressLint("LongLogTag")
 public class StandardActivity extends BaseActivity {
     private static final String TAG = "StandardActivity" + LAUNCH_MODE_TAG_SUFFIX;
+    private ActivityStandardBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_standard);
+        binding = ActivityStandardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setTitle("StandardActivity");
-        ButterKnife.bind(this);
+
+        binding.launchModeStandardBtn.setOnClickListener(v -> launchStandardActivity());
     }
 
-    @OnClick(R.id.launch_mode_standard_btn)
-    void launchStandardActivity() {
+    private void launchStandardActivity() {
         startActivity(new Intent(this, StandardActivity.class));
     }
 }
