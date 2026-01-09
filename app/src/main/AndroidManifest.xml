@@ -169,7 +169,7 @@
 
         <activity android:name=".repo.RepoActivity" />
 
-        <activity android:name=".middle.MiddleActivity" />
+        <activity android:name=".anim.AnimActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"

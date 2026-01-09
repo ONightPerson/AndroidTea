@@ -265,4 +265,5 @@
     <string name="home_edit_text_btn_txt">EditText</string>
     <string name="home_expandable_list_activity">ExpandableListActivity</string>
     <string name="home_retrofit_network">Retrofit</string>
+    <string name="home_anim">动画</string>
 </resources>

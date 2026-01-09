@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.liubz.androidtea.anim.AnimActivity;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
@@ -359,5 +360,10 @@ public class HomeActivity extends BaseActivity {
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @OnClick(R.id.anim)
+    void anim() {
+        startActivity(new Intent(this, AnimActivity.class));
     }
 }

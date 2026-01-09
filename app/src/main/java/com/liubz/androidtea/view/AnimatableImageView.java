@@ -134,14 +134,14 @@ public class AnimatableImageView extends AppCompatImageView {
 
     private void startAnimating() {
         Drawable curDrawable = getDrawable();
-        if (curDrawable != null && curDrawable instanceof Animatable) {
+        if (curDrawable instanceof Animatable) {
             ((Animatable) curDrawable).start();
         }
     }
 
     private void stopAnimating() {
         Drawable drawable = getDrawable();
-        if (drawable != null && drawable instanceof Animatable) {
+        if (drawable instanceof Animatable) {
             ((Animatable) drawable).stop();
         }
     }

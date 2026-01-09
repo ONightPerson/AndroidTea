@@ -194,13 +194,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Repo Test"
-            android:textAllCaps="false" />]
+            android:textAllCaps="false" />
 
         <Button
             android:id="@+id/reflectionDemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Reflection Test"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/anim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_anim"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
