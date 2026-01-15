@@ -1,16 +1,21 @@
 package com.liubz.androidtea.utils;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import com.liubz.androidtea.R;
 
 public class NotificationUtils {
+    private static final String TAG = "NotificationUtils";
 
     private static final String CHANNEL_ID = "default_channel";
     private static final String CHANNEL_NAME = "Default Channel";
@@ -35,7 +40,16 @@ public class NotificationUtils {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         
-        // 检查权限并发送通知 (对于 API 33+ 需要动态申请 POST_NOTIFICATIONS 权限，此处仅执行发送操作)
+        // 适配 Android 13+ 的 POST_NOTIFICATIONS 权限检查
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            boolean isPermGranted = ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED;
+            Log.i(TAG, "sendNotification: isPermGranted: " + isPermGranted);
+            if (isPermGranted) {
+                // 如果没有权限，出于安全和 Lint 检查考虑，这里直接返回。
+                return;
+            }
+        }
+        
         notificationManager.notify(id, builder.build());
     }
 
@@ -51,7 +65,7 @@ public class NotificationUtils {
             );
             channel.setDescription("Default notification channel");
             
-            NotificationManager manager = context.getSystemService(NotificationManager.class);
+            NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             if (manager != null) {
                 manager.createNotificationChannel(channel);
             }

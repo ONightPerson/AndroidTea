@@ -121,7 +121,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             try (Response response = mOkHttpClient.newCall(request).execute()) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "Crash report uploaded successfully in real-time. Deleting local backup.");
-                    // 修正：上传成功后，立即删除本地文件，防止下次启动重复上传
+                    // 修正：上传成功后，立即删除本地备份文件，防止下次启动重复上传
                     if (file != null && file.exists()) {
                         file.delete();
                     }

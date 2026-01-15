@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.liubz.androidtea.R;
+import com.liubz.androidtea.utils.NotificationUtils;
 
 public class NewTaskActivity extends AppCompatActivity {
     private static final String TAG = "ThirdActivity";
@@ -22,18 +23,7 @@ public class NewTaskActivity extends AppCompatActivity {
     }
 
     public void sendNotification(View view) {
-//        Log.i(TAG, "sendNotification: ");
-//        Notification notification = createNotification(this, NotificationUtils.CHANNEL_ID);
-//        notification.icon = R.drawable.icon;
-//        notification.tickerText = "hello";
-//        notification.contentView =  new RemoteViews(getPackageName(),
-//                R.layout.activity_home);
-//        notification.contentIntent = PendingIntent.getActivity(this, 0,
-//                new Intent(this, HomeActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
-//        notification.when = 0;
-//        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//        manager.notify(2, notification);
-        NotificationUtils.sendNotification(this);
+        NotificationUtils.sendNotification(this, "hello", "world", 1);
     }
 
     public static Notification createNotification(Context ctx, String channelId) {
