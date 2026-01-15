@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import com.liubz.androidtea.network.websocket.WebSocketConfig;
 import com.liubz.androidtea.network.websocket.WebSocketHelper;
 import com.liubz.androidtea.utils.ApplicationUtils;
-import com.liubz.androidtea.utils.NotificationUtils;
+import com.liubz.androidtea.utils.CrashHandler;
 
 public class TeaApplication extends Application {
     private static final String TAG = "TeaApplication";
@@ -31,17 +31,9 @@ public class TeaApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager nm = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel channel = new NotificationChannel(NotificationUtils.CHANNEL_ID,
-                    getString(R.string.notification_channel_default_name), NotificationManager.IMPORTANCE_LOW);
-            channel.enableLights(false);
-            channel.enableVibration(false);
-            nm.createNotificationChannel(channel);
-        }
-
         initHelper();
         initConfig();
+        CrashHandler.getInstance().init(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
