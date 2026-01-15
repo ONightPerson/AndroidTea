@@ -25,6 +25,7 @@ import com.liubz.androidtea.databinding.ActivityHomeBinding;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
+import com.liubz.androidtea.material.ConstraintDemoActivity;
 import com.liubz.androidtea.network.HttpRequestTestActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
@@ -45,6 +46,16 @@ import com.liubz.androidtea.view.EditTextActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
 import com.liubz.androidtea.window.WindowActivity;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ServiceConfigurationError;
+
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
     private ActivityHomeBinding binding;
@@ -61,6 +72,7 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initListeners() {
+        binding.constraintDemo.setOnClickListener(v -> launchConstraintDemo());
         binding.expandableListActivity.setOnClickListener(v -> launchExpandableListActivity());
         binding.editTextActivity.setOnClickListener(v -> launchEditTextActivity());
         binding.launchWebview.setOnClickListener(v -> launchWebview());
@@ -90,6 +102,10 @@ public class HomeActivity extends BaseActivity {
         binding.reflectionDemo.setOnClickListener(v -> reflectionDemo());
         binding.anim.setOnClickListener(v -> anim());
         binding.windowDemo.setOnClickListener(v -> windowDemo());
+    }
+
+    private void launchConstraintDemo() {
+        startActivity(new Intent(this, ConstraintDemoActivity.class));
     }
 
     private void launchExpandableListActivity() {

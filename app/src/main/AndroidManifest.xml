@@ -73,7 +73,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".notification.LaunchOtherAppActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -145,7 +145,7 @@
             android:exported="false"/>
 
         <activity android:name=".window.WindowActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -194,6 +194,8 @@
             android:exported="false"/>
 
         <activity android:name=".anim.AnimActivity" />
+
+        <activity android:name=".material.ConstraintDemoActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
