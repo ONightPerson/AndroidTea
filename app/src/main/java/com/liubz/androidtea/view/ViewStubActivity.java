@@ -25,13 +25,12 @@ public class ViewStubActivity extends Activity {
         binding.inflateViewStub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inflateViewStub();
+                inflateViewStub(v);
             }
         });
     }
 
-    private void inflateViewStub() {
-        // 在 ViewBinding 中，ViewStub 可以通过 binding 直接访问
-        binding.myViewStub.inflate();
+    public void inflateViewStub(View view) {
+        binding.myViewStub.setVisibility(View.VISIBLE);
     }
 }
