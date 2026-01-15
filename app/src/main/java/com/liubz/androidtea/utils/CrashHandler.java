@@ -51,7 +51,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
         Thread.setDefaultUncaughtExceptionHandler(this);
 
-        // App 启动时检查并上传上次崩溃留下的日志
+        // App 启动时检查并上传历史遗留的崩溃日志
         checkAndUploadReports();
     }
 
@@ -85,13 +85,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         collectDeviceInfo(mContext);
         String crashInfo = getCrashInfo(e);
 
-        // 1. 立即同步保存到本地，并获取文件对象
+        // 1. 同步保存到本地，并获取文件对象
         File crashFile = saveCrashToFile(crashInfo);
 
-        // 2. 尝试同步上传，并传入文件对象以便成功后执行删除
-        if (crashFile != null) {
-            uploadExceptionToServerSync(crashInfo, crashFile);
-        }
+        // 2. 尝试同步上传，传入文件对象以便成功后删除
+        uploadExceptionToServerSync(crashInfo, crashFile);
 
         return true;
     }
@@ -120,16 +118,17 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             RequestBody body = RequestBody.create(json, MediaType.parse("application/json; charset=utf-8"));
             Request request = new Request.Builder().url(UPLOAD_URL).post(body).build();
 
-            // 同步执行
             try (Response response = mOkHttpClient.newCall(request).execute()) {
                 if (response.isSuccessful()) {
                     Log.i(TAG, "Crash report uploaded successfully in real-time. Deleting local backup.");
-                    // 修正点：上传成功后，立即删除本地备份文件，避免下次启动重复上传
-                    file.delete();
+                    // 修正：上传成功后，立即删除本地文件，防止下次启动重复上传
+                    if (file != null && file.exists()) {
+                        file.delete();
+                    }
                 }
             }
         } catch (Exception e) {
-            Log.e(TAG, "Real-time upload failed, file remains on disk for next launch retry", e);
+            Log.e(TAG, "Real-time upload failed, report is saved and will be sent on next launch", e);
         }
     }
 
@@ -145,8 +144,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
                 try {
                     String content = readFileContent(file);
                     if (uploadSync(content)) {
-                        file.delete(); // 上传成功则清除
-                        Log.i(TAG, "Historical crash report uploaded and deleted: " + file.getName());
+                        file.delete(); 
+                        Log.i(TAG, "Historical report uploaded and deleted: " + file.getName());
                     }
                 } catch (Exception e) {
                     Log.e(TAG, "Failed to upload historical report", e);
@@ -183,8 +182,8 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
         for (Field field : Build.class.getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                Object value = field.get(null);
-                mDeviceInfo.put(field.getName(), value != null ? value.toString() : "null");
+                Object val = field.get(null);
+                mDeviceInfo.put(field.getName(), val != null ? val.toString() : "null");
             } catch (Exception e) {
                 Log.e(TAG, "Error collecting device info", e);
             }
