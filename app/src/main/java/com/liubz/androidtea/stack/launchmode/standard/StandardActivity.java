@@ -3,6 +3,7 @@ package com.liubz.androidtea.stack.launchmode.standard;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -24,11 +25,24 @@ public class StandardActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i(TAG, "onCreate");
         binding = ActivityStandardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("StandardActivity");
 
         binding.launchModeStandardBtn.setOnClickListener(v -> launchStandardActivity());
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i(TAG, "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i(TAG, "onResume");
     }
 
     private void launchStandardActivity() {

@@ -1,5 +1,6 @@
 package com.liubz.androidtea.material;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -15,12 +16,15 @@ import com.liubz.androidtea.databinding.ActivityConstraintDemoBinding;
 public class ConstraintDemoActivity extends AppCompatActivity {
 
     private ActivityConstraintDemoBinding binding;
+    private static Context sContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConstraintDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sContext = this;
 
         setTitle("ConstraintLayout 示例");
 
