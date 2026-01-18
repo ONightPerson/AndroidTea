@@ -190,6 +190,13 @@
             android:textAllCaps="false" />
 
         <Button
+            android:id="@+id/book_provider_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ContentProvider 测试"
+            android:textAllCaps="false" />
+
+        <Button
             android:id="@+id/dialog_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

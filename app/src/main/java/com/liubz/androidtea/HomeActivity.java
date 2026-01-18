@@ -21,6 +21,7 @@ import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
+import com.liubz.androidtea.contentprovider.BookProviderTestActivity;
 import com.liubz.androidtea.databinding.ActivityHomeBinding;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
@@ -102,6 +103,7 @@ public class HomeActivity extends BaseActivity {
         binding.reflectionDemo.setOnClickListener(v -> reflectionDemo());
         binding.anim.setOnClickListener(v -> anim());
         binding.windowDemo.setOnClickListener(v -> windowDemo());
+        binding.bookProviderTest.setOnClickListener(v -> launchBookProviderTest());
     }
 
     private void launchConstraintDemo() {
@@ -317,5 +319,9 @@ public class HomeActivity extends BaseActivity {
 
     private void windowDemo() {
         startActivity(new Intent(this, WindowActivity.class));
+    }
+
+    private void launchBookProviderTest() {
+        startActivity(new Intent(this, BookProviderTestActivity.class));
     }
 }

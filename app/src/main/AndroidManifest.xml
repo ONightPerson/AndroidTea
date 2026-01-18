@@ -48,7 +48,7 @@
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
-        <activity android:name=".contentprovider.ContactsTestActivity" />
+        <activity android:name=".contentprovider.BookProviderTestActivity" />
         <activity android:name=".music.client.MusicPlayActivity" />
         <activity android:name=".material.recycler.RecyclerViewActivity" />
         <activity android:name=".material.recycler.CardViewTestActivity" />
@@ -234,6 +234,7 @@
         <provider
             android:name=".contentprovider.BookProvider"
             android:authorities="com.liubz.androidtea.book.provider"
+            android:process=":provider"
             android:exported="true" />
 
         <service
