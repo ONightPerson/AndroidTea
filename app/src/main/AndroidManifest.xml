@@ -41,13 +41,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
         <activity
             android:name=".network.socket.SocketTestActivity"
+            android:windowSoftInputMode="adjustResize"
             android:launchMode="singleTop" />
+
+        <service
+            android:name=".network.socket.TCPChatService"
+            android:process=":socket" />
+
         <activity android:name=".broadcast.BroadcastTestActivity" />
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
+        <activity android:name=".contentprovider.ContactsTestActivity" />
         <activity android:name=".contentprovider.BookProviderTestActivity" />
         <activity android:name=".music.client.MusicPlayActivity" />
         <activity android:name=".material.recycler.RecyclerViewActivity" />

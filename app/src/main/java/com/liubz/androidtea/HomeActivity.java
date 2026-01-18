@@ -30,6 +30,7 @@ import com.liubz.androidtea.material.ConstraintDemoActivity;
 import com.liubz.androidtea.network.HttpRequestTestActivity;
 import com.liubz.androidtea.network.WebViewTestActivity;
 import com.liubz.androidtea.network.retrofit.page.RetrofitActivity;
+import com.liubz.androidtea.network.socket.SocketTestActivity;
 import com.liubz.androidtea.notification.NewTaskActivity;
 import com.liubz.androidtea.repo.RepoActivity;
 import com.liubz.androidtea.rx.RxActivity;
@@ -104,6 +105,7 @@ public class HomeActivity extends BaseActivity {
         binding.anim.setOnClickListener(v -> anim());
         binding.windowDemo.setOnClickListener(v -> windowDemo());
         binding.bookProviderTest.setOnClickListener(v -> launchBookProviderTest());
+        binding.socketTest.setOnClickListener(v -> launchSocketTest());
     }
 
     private void launchConstraintDemo() {
@@ -323,5 +325,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchBookProviderTest() {
         startActivity(new Intent(this, BookProviderTestActivity.class));
+    }
+
+    private void launchSocketTest() {
+        startActivity(new Intent(this, SocketTestActivity.class));
     }
 }
