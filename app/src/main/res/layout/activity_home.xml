@@ -244,5 +244,19 @@
             android:layout_height="wrap_content"
             android:text="@string/home_window_demo"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/velocity_tracker_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="VelocityTracker 速度追踪"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/gesture_detector_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GestureDetector 手势"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

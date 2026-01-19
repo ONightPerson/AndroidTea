@@ -46,18 +46,10 @@ import com.liubz.androidtea.utils.SpannableStringBuilderUtil;
 import com.liubz.androidtea.utils.StatusBarUtil;
 import com.liubz.androidtea.utils.UrlUtils;
 import com.liubz.androidtea.view.EditTextActivity;
+import com.liubz.androidtea.view.GestureDetectorActivity;
+import com.liubz.androidtea.view.VelocityTrackerActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
 import com.liubz.androidtea.window.WindowActivity;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ServiceConfigurationError;
 
 public class HomeActivity extends BaseActivity {
     private static final String TAG = "HomeActivity";
@@ -108,6 +100,8 @@ public class HomeActivity extends BaseActivity {
         binding.bookProviderTest.setOnClickListener(v -> launchBookProviderTest());
         binding.socketTest.setOnClickListener(v -> launchSocketTest());
         binding.binderPoolTest.setOnClickListener(v -> launchBinderPoolTest());
+        binding.velocityTrackerTest.setOnClickListener(v -> launchVelocityTrackerTest());
+        binding.gestureDetectorTest.setOnClickListener(v -> gestureDetectorTest());
     }
 
     private void launchConstraintDemo() {
@@ -335,5 +329,13 @@ public class HomeActivity extends BaseActivity {
 
     private void launchBinderPoolTest() {
         startActivity(new Intent(this, BinderPoolActivity.class));
+    }
+
+    private void launchVelocityTrackerTest() {
+        startActivity(new Intent(this, VelocityTrackerActivity.class));
+    }
+
+    private void gestureDetectorTest() {
+        startActivity(new Intent(this, GestureDetectorActivity.class));
     }
 }
