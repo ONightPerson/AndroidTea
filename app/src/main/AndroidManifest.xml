@@ -51,11 +51,17 @@
             android:name=".network.socket.TCPChatService"
             android:process=":socket" />
 
+        <!-- Binder连接池服务，运行在独立进程 -->
+        <service
+            android:name=".binderpool.BinderPoolService"
+            android:process=":binderpool" />
+
+        <activity android:name=".binderpool.BinderPoolActivity" />
+
         <activity android:name=".broadcast.BroadcastTestActivity" />
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
         <activity android:name=".persistence.PersistenceTestActivity" />
-        <activity android:name=".contentprovider.ContactsTestActivity" />
         <activity android:name=".contentprovider.BookProviderTestActivity" />
         <activity android:name=".music.client.MusicPlayActivity" />
         <activity android:name=".material.recycler.RecyclerViewActivity" />
@@ -102,7 +108,6 @@
             android:theme="@style/AppTheme.Transparent" />
         <activity android:name=".network.SignalStrengthTestActivity" />
         <activity android:name=".TVDemoActivity" />
-        <!--<activity android:name=".safeurl.SafeUrlActivity"/>-->
         <activity
             android:name=".network.WebViewTestActivity"
             android:exported="false" />
@@ -113,7 +118,6 @@
         <activity android:name=".archcomponents.ShowNameActivity" />
         <activity android:name=".communicate.eventbus.EventBusActivity" />
         <activity android:name=".communicate.CommunicationActivity" />
-        <!--  launch mode start -->
         <activity android:name=".stack.launchmode.LaunchModeActivity" />
         <activity
             android:name=".stack.launchmode.standard.StandardActivity"
@@ -142,7 +146,6 @@
         <activity
             android:name=".stack.launchmode.DialogActivity"
             android:theme="@style/Theme.AppCompat.Dialog" />
-        <!--  launch mode end -->
 
         <activity android:name=".immersive.ImmersiveActivity" />
         <activity android:name=".network.retrofit.page.RetrofitActivity" />

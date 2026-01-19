@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.anim.AnimActivity;
 import com.liubz.androidtea.base.BaseActivity;
+import com.liubz.androidtea.binderpool.BinderPoolActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
 import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
@@ -106,6 +107,7 @@ public class HomeActivity extends BaseActivity {
         binding.windowDemo.setOnClickListener(v -> windowDemo());
         binding.bookProviderTest.setOnClickListener(v -> launchBookProviderTest());
         binding.socketTest.setOnClickListener(v -> launchSocketTest());
+        binding.binderPoolTest.setOnClickListener(v -> launchBinderPoolTest());
     }
 
     private void launchConstraintDemo() {
@@ -329,5 +331,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchSocketTest() {
         startActivity(new Intent(this, SocketTestActivity.class));
+    }
+
+    private void launchBinderPoolTest() {
+        startActivity(new Intent(this, BinderPoolActivity.class));
     }
 }
