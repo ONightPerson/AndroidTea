@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="同向滑动冲突解决方案 (内部拦截法)"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.liubz.androidtea.view.VerticalScrollViewEx
+        android:id="@+id/vertical_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFF9C4"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="外部容器顶部区域 (黄色部分)"
+                android:textColor="#333333" />
+
+            <!-- 内部嵌套的 ListView -->
+            <com.liubz.androidtea.view.ListViewEx
+                android:id="@+id/lv_internal"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="#E3F2FD"
+                android:divider="#BDBDBD"
+                android:dividerHeight="1dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="外部容器底部区域 (黄色部分)"
+                android:textColor="#333333" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="#CFD8DC" />
+
+        </LinearLayout>
+    </com.liubz.androidtea.view.VerticalScrollViewEx>
+
+</LinearLayout>

@@ -48,6 +48,7 @@ import com.liubz.androidtea.utils.UrlUtils;
 import com.liubz.androidtea.view.ConflictTestActivity;
 import com.liubz.androidtea.view.EditTextActivity;
 import com.liubz.androidtea.view.GestureDetectorActivity;
+import com.liubz.androidtea.view.SameDirectionConflictActivity;
 import com.liubz.androidtea.view.ScrollerTestActivity;
 import com.liubz.androidtea.view.VelocityTrackerActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
@@ -106,6 +107,7 @@ public class HomeActivity extends BaseActivity {
         binding.gestureDetectorTest.setOnClickListener(v -> gestureDetectorTest());
         binding.scrollerTest.setOnClickListener(v -> scrollerTest());
         binding.scrollConflictTest.setOnClickListener(v -> scrollConflictTest());
+        binding.sameDirectionConflict.setOnClickListener(v -> launchSameDirectionConflictTest());
     }
 
     private void launchConstraintDemo() {
@@ -349,5 +351,9 @@ public class HomeActivity extends BaseActivity {
 
     private void scrollConflictTest() {
         startActivity(new Intent(this, ConflictTestActivity.class));
+    }
+
+    private void launchSameDirectionConflictTest() {
+        startActivity(new Intent(this, SameDirectionConflictActivity.class));
     }
 }

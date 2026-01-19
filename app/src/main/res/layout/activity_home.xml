@@ -256,21 +256,28 @@
             android:id="@+id/gesture_detector_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="GestureDetector 手势"
+            android:text="GestureDetector 手势实验室"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/scroller_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scroller 弹性"
+            android:text="Scroller 弹性滑动"
             android:textAllCaps="false" />
 
         <Button
             android:id="@+id/scroll_conflict_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="滑动冲突"
+            android:text="滑动冲突解决方案"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/same_direction_conflict"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="同向滑动冲突解决"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

@@ -59,6 +59,8 @@
         <activity android:name=".binderpool.BinderPoolActivity" />
 
         <activity android:name=".view.ConflictTestActivity" />
+        
+        <activity android:name=".view.SameDirectionConflictActivity" />
 
         <activity android:name=".broadcast.BroadcastTestActivity" />
         <activity android:name=".broadcast.InteractiveStateActivity" />
