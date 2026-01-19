@@ -265,5 +265,12 @@
             android:layout_height="wrap_content"
             android:text="Scroller 弹性"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/scroll_conflict_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动冲突"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

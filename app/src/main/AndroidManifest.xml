@@ -58,6 +58,8 @@
 
         <activity android:name=".binderpool.BinderPoolActivity" />
 
+        <activity android:name=".view.ConflictTestActivity" />
+
         <activity android:name=".broadcast.BroadcastTestActivity" />
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />

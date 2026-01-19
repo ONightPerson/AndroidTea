@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:text="滑动冲突解决方案 (外部拦截法)"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <com.liubz.androidtea.view.HorizontalScrollViewEx
+        android:id="@+id/horizontal_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#DDDDDD">
+
+        <!-- 第一个页面：列表 A -->
+        <ListView
+            android:id="@+id/list_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF" />
+
+        <!-- 第二个页面：列表 B -->
+        <ListView
+            android:id="@+id/list_view_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#E3F2FD" />
+
+        <!-- 第三个页面：列表 C -->
+        <ListView
+            android:id="@+id/list_view_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F1F8E9" />
+
+    </com.liubz.androidtea.view.HorizontalScrollViewEx>
+
+</LinearLayout>
