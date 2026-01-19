@@ -258,5 +258,12 @@
             android:layout_height="wrap_content"
             android:text="GestureDetector 手势"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/scroller_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Scroller 弹性"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

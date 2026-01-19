@@ -215,6 +215,8 @@
 
         <activity android:name=".view.GestureDetectorActivity" />
 
+        <activity android:name=".view.ScrollerTestActivity" />
+
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
             android:exported="false"
