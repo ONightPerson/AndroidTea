@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'  // 添加 Kotlin Android 插件
+    id 'kotlin-android'
 }
 
 android {
@@ -16,7 +16,6 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
-    // 添加 Kotlin 编译选项
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -75,19 +74,14 @@ dependencies {
     implementation configs.rxAndroid.rxAndroid
 
     implementation 'org.greenrobot:eventbus:3.2.0'
-
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+    
+    // LeonidsLib 因 JCenter 挂掉而移除，改为源码集成
 
     testImplementation 'junit:junit:4.13.2'
-
     implementation 'org.ow2.asm:asm:5.0.1'
-    // Kotlin 标准库
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    // 协程支持（可选但推荐）
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
-
-    // 核心 KTX 扩展（可选但推荐）
     implementation 'androidx.core:core-ktx:1.12.0'
 }
 

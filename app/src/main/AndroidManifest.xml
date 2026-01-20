@@ -172,6 +172,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".anim.ParticleDemoActivity" />
+
         <service
             android:name=".window.FloatingWindowService"
             android:enabled="true"

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.anim.AnimActivity;
+import com.liubz.androidtea.anim.ParticleDemoActivity;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.binderpool.BinderPoolActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
@@ -110,6 +111,7 @@ public class HomeActivity extends BaseActivity {
         binding.scrollConflictTest.setOnClickListener(v -> scrollConflictTest());
         binding.sameDirectionConflict.setOnClickListener(v -> launchSameDirectionConflictTest());
         binding.waveViewTest.setOnClickListener(v -> launchWaveDemo());
+        binding.particleDemo.setOnClickListener(v -> launchParticleDemo());
     }
 
     private void launchConstraintDemo() {
@@ -361,5 +363,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchWaveDemo() {
         startActivity(new Intent(this, WaveDemoActivity.class));
+    }
+
+    private void launchParticleDemo() {
+        startActivity(new Intent(this, ParticleDemoActivity.class));
     }
 }

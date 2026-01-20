@@ -2,11 +2,12 @@
 
 buildscript {
     apply from: 'versions.gradle'
-    ext.kotlin_version = '1.9.0'  // 使用最新稳定版
+    ext.kotlin_version = '1.9.0'
 
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:8.13.2'
@@ -18,6 +19,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
     }
 }
 

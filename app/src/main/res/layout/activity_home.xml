@@ -286,5 +286,12 @@
             android:layout_height="wrap_content"
             android:text="波纹滚动效果"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/particle_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Leonids 粒子特效"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

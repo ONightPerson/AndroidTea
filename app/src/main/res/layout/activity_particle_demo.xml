@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212">
+
+    <TextView
+        android:id="@+id/tv_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Leonids 粒子特效演示"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_confetti"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="屏幕撒花 (Confetti)"
+        app:layout_constraintBottom_toTopOf="@+id/btn_follow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
+
+    <Button
+        android:id="@+id/btn_follow"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="跟随手指 (Continuous)"
+        app:layout_constraintBottom_toTopOf="@+id/btn_explosion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_confetti" />
+
+    <Button
+        android:id="@+id/btn_explosion"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="一触即发 (Explosion)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_follow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
