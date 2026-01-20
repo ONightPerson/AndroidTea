@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
+import androidx.annotation.NonNull;
+
 import com.liubz.androidtea.anim.leonids.initializers.AccelerationInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.ParticleInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.RotationInitializer;
@@ -38,28 +40,28 @@ public class ParticleSystem {
 
     private static long TIMER_TASK_INTERVAL = 33; // Default 30fps
     private ViewGroup mParentView;
-    private int mMaxParticles;
-    private Random mRandom;
+    private final int mMaxParticles;
+    private final Random mRandom;
 
     private ParticleField mDrawingView;
 
-    private ArrayList<Particle> mParticles;
+    private final ArrayList<Particle> mParticles;
     private final ArrayList<Particle> mActiveParticles = new ArrayList<>();
-    private long mTimeToLive;
+    private final long mTimeToLive;
     private long mCurrentTime = 0;
 
     private float mParticlesPerMillisecond;
     private int mActivatedParticles;
     private long mEmittingTime;
 
-    private List<ParticleModifier> mModifiers;
-    private List<ParticleInitializer> mInitializers;
+    private final List<ParticleModifier> mModifiers;
+    private final List<ParticleInitializer> mInitializers;
     private ValueAnimator mAnimator;
     private Timer mTimer;
     private final ParticleTimerTask mTimerTask = new ParticleTimerTask(this);
 
-    private float mDpToPxScale;
-    private int[] mParentLocation;
+    private final float mDpToPxScale;
+    private final int[] mParentLocation;
 
     private int mEmitterXMin;
     private int mEmitterXMax;
@@ -113,7 +115,6 @@ public class ParticleSystem {
      */
     public ParticleSystem(ViewGroup parentView, int maxParticles, Drawable drawable, long timeToLive) {
         this(parentView, maxParticles, timeToLive);
-
         if (drawable instanceof AnimationDrawable) {
             AnimationDrawable animation = (AnimationDrawable) drawable;
             for (int i = 0; i < mMaxParticles; i++) {
@@ -593,7 +594,7 @@ public class ParticleSystem {
         mAnimator.setDuration(animnationTime);
         mAnimator.addUpdateListener(new AnimatorUpdateListener() {
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
+            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 int miliseconds = (Integer) animation.getAnimatedValue();
                 onUpdate(miliseconds);
             }

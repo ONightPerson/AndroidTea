@@ -11,96 +11,96 @@ import com.liubz.androidtea.anim.leonids.modifiers.ParticleModifier;
 
 public class Particle {
 
-	protected Bitmap mImage;
-	
-	public float mCurrentX;
-	public float mCurrentY;
-	
-	public float mScale = 1f;
-	public int mAlpha = 255;
-	
-	public float mInitialRotation = 0f;
-	
-	public float mRotationSpeed = 0f;
-	
-	public float mSpeedX = 0f;
-	public float mSpeedY = 0f;
+    protected Bitmap mImage;
 
-	public float mAccelerationX;
-	public float mAccelerationY;
+    public float mCurrentX;
+    public float mCurrentY;
 
-	private Matrix mMatrix;
-	private Paint mPaint;
+    public float mScale = 1f;
+    public int mAlpha = 255;
 
-	private float mInitialX;
-	private float mInitialY;
+    public float mInitialRotation = 0f;
 
-	private float mRotation;
+    public float mRotationSpeed = 0f;
 
-	private long mTimeToLive;
+    public float mSpeedX = 0f;
+    public float mSpeedY = 0f;
 
-	protected long mStartingMilisecond;
+    public float mAccelerationX;
+    public float mAccelerationY;
 
-	private int mBitmapHalfWidth;
-	private int mBitmapHalfHeight;
+    private final Matrix mMatrix;
+    private final Paint mPaint;
 
-	private List<ParticleModifier> mModifiers;
+    private float mInitialX;
+    private float mInitialY;
+
+    private float mRotation;
+
+    private long mTimeToLive;
+
+    protected long mStartingMilisecond;
+
+    private int mBitmapHalfWidth;
+    private int mBitmapHalfHeight;
+
+    private List<ParticleModifier> mModifiers;
 
 
-	protected Particle() {		
-		mMatrix = new Matrix();
-		mPaint = new Paint();
-	}
-	
-	public Particle (Bitmap bitmap) {
-		this();
-		mImage = bitmap;
-	}
+    protected Particle() {
+        mMatrix = new Matrix();
+        mPaint = new Paint();
+    }
 
-	public void init() {
-		mScale = 1;
-		mAlpha = 255;	
-	}
-	
-	public void configure(long timeToLive, float emiterX, float emiterY) {
-		mBitmapHalfWidth = mImage.getWidth()/2;
-		mBitmapHalfHeight = mImage.getHeight()/2;
-		
-		mInitialX = emiterX - mBitmapHalfWidth;
-		mInitialY = emiterY - mBitmapHalfHeight;
-		mCurrentX = mInitialX;
-		mCurrentY = mInitialY;
-		
-		mTimeToLive = timeToLive;
-	}
+    public Particle(Bitmap bitmap) {
+        this();
+        mImage = bitmap;
+    }
 
-	public boolean update (long miliseconds) {
-		long realMiliseconds = miliseconds - mStartingMilisecond;
-		if (realMiliseconds > mTimeToLive) {
-			return false;
-		}
-		mCurrentX = mInitialX+mSpeedX*realMiliseconds+mAccelerationX*realMiliseconds*realMiliseconds;
-		mCurrentY = mInitialY+mSpeedY*realMiliseconds+mAccelerationY*realMiliseconds*realMiliseconds;
-		mRotation = mInitialRotation + mRotationSpeed*realMiliseconds/1000;
-		for (int i=0; i<mModifiers.size(); i++) {
-			mModifiers.get(i).apply(this, realMiliseconds);
-		}
-		return true;
-	}
-	
-	public void draw (Canvas c) {
-		mMatrix.reset();
-		mMatrix.postRotate(mRotation, mBitmapHalfWidth, mBitmapHalfHeight);
-		mMatrix.postScale(mScale, mScale, mBitmapHalfWidth, mBitmapHalfHeight);
-		mMatrix.postTranslate(mCurrentX, mCurrentY);
-		mPaint.setAlpha(mAlpha);		
-		c.drawBitmap(mImage, mMatrix, mPaint);
-	}
+    public void init() {
+        mScale = 1;
+        mAlpha = 255;
+    }
 
-	public Particle activate(long startingMilisecond, List<ParticleModifier> modifiers) {
-		mStartingMilisecond = startingMilisecond;
-		// We do store a reference to the list, there is no need to copy, since the modifiers do not carte about states 
-		mModifiers = modifiers;
-		return this;
-	}
+    public void configure(long timeToLive, float emiterX, float emiterY) {
+        mBitmapHalfWidth = mImage.getWidth() / 2;
+        mBitmapHalfHeight = mImage.getHeight() / 2;
+
+        mInitialX = emiterX - mBitmapHalfWidth;
+        mInitialY = emiterY - mBitmapHalfHeight;
+        mCurrentX = mInitialX;
+        mCurrentY = mInitialY;
+
+        mTimeToLive = timeToLive;
+    }
+
+    public boolean update(long miliseconds) {
+        long realMiliseconds = miliseconds - mStartingMilisecond;
+        if (realMiliseconds > mTimeToLive) {
+            return false;
+        }
+        mCurrentX = mInitialX + mSpeedX * realMiliseconds + mAccelerationX * realMiliseconds * realMiliseconds;
+        mCurrentY = mInitialY + mSpeedY * realMiliseconds + mAccelerationY * realMiliseconds * realMiliseconds;
+        mRotation = mInitialRotation + mRotationSpeed * realMiliseconds / 1000;
+        for (int i = 0; i < mModifiers.size(); i++) {
+            mModifiers.get(i).apply(this, realMiliseconds);
+        }
+        return true;
+    }
+
+    public void draw(Canvas c) {
+        mMatrix.reset();
+        mMatrix.postRotate(mRotation, mBitmapHalfWidth, mBitmapHalfHeight);
+        mMatrix.postScale(mScale, mScale, mBitmapHalfWidth, mBitmapHalfHeight);
+        mMatrix.postTranslate(mCurrentX, mCurrentY);
+        mPaint.setAlpha(mAlpha);
+        c.drawBitmap(mImage, mMatrix, mPaint);
+    }
+
+    public Particle activate(long startingMilisecond, List<ParticleModifier> modifiers) {
+        mStartingMilisecond = startingMilisecond;
+        // We do store a reference to the list, there is no need to copy, since the modifiers do not carte about states
+        mModifiers = modifiers;
+        return this;
+    }
 }
