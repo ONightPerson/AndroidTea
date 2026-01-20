@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class ScaleInitializer implements ParticleInitializer {
 
-	private float mMaxScale;
-	private float mMinScale;
+	private final float mMaxScale;
+	private final float mMinScale;
 
 	public ScaleInitializer(float minScale, float maxScale) {
 		mMinScale = minScale;
@@ -16,8 +16,7 @@ public class ScaleInitializer implements ParticleInitializer {
 
 	@Override
 	public void initParticle(Particle p, Random r) {
-		float scale = r.nextFloat()*(mMaxScale-mMinScale) + mMinScale;
-		p.mScale = scale;
+        p.mScale = r.nextFloat()*(mMaxScale-mMinScale) + mMinScale;
 	}
 
 }

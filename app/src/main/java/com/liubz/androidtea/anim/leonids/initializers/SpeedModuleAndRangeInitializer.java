@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class SpeedModuleAndRangeInitializer implements ParticleInitializer {
 
-	private float mSpeedMin;
-	private float mSpeedMax;
+	private final float mSpeedMin;
+	private final float mSpeedMax;
 	private int mMinAngle;
 	private int mMaxAngle;
 

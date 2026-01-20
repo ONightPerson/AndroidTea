@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class RotationSpeedInitializer implements ParticleInitializer {
 
-	private float mMinRotationSpeed;
-	private float mMaxRotationSpeed;
+	private final float mMinRotationSpeed;
+	private final float mMaxRotationSpeed;
 
 	public RotationSpeedInitializer(float minRotationSpeed,	float maxRotationSpeed) {
 		mMinRotationSpeed = minRotationSpeed;

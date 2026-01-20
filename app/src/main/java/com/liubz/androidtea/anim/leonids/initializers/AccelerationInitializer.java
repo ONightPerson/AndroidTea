@@ -6,10 +6,10 @@ import java.util.Random;
 
 public class AccelerationInitializer implements ParticleInitializer {
 
-	private float mMinValue;
-	private float mMaxValue;
-	private int mMinAngle;
-	private int mMaxAngle;
+	private final float mMinValue;
+	private final float mMaxValue;
+	private final int mMinAngle;
+	private final int mMaxAngle;
 
 	public AccelerationInitializer(float minAcceleration, float maxAcceleration, int minAngle, int maxAngle) {
 		mMinValue = minAcceleration;

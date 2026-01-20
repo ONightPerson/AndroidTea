@@ -6,8 +6,8 @@ import java.util.Random;
 
 public class RotationInitializer implements ParticleInitializer {
 
-	private int mMinAngle;
-	private int mMaxAngle;
+	private final int mMinAngle;
+	private final int mMaxAngle;
 
 	public RotationInitializer(int minAngle, int maxAngle) {
 		mMinAngle = minAngle;
@@ -18,5 +18,4 @@ public class RotationInitializer implements ParticleInitializer {
 	public void initParticle(Particle p, Random r) {
 		p.mInitialRotation = (mMinAngle == mMaxAngle) ? mMinAngle : r.nextInt(mMaxAngle - mMinAngle) + mMinAngle;
 	}
-
 }

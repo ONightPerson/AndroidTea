@@ -25,7 +25,7 @@ import com.liubz.androidtea.anim.leonids.initializers.RotationInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.RotationSpeedInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.ScaleInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.SpeedModuleAndRangeInitializer;
-import com.liubz.androidtea.anim.leonids.initializers.SpeeddByComponentsInitializer;
+import com.liubz.androidtea.anim.leonids.initializers.SpeedByComponentsInitializer;
 import com.liubz.androidtea.anim.leonids.modifiers.AlphaModifier;
 import com.liubz.androidtea.anim.leonids.modifiers.ParticleModifier;
 
@@ -305,7 +305,7 @@ public class ParticleSystem {
      * @return This.
      */
     public ParticleSystem setSpeedByComponentsRange(float speedMinX, float speedMaxX, float speedMinY, float speedMaxY) {
-        mInitializers.add(new SpeeddByComponentsInitializer(dpToPx(speedMinX), dpToPx(speedMaxX),
+        mInitializers.add(new SpeedByComponentsInitializer(dpToPx(speedMinX), dpToPx(speedMaxX),
                 dpToPx(speedMinY), dpToPx(speedMaxY)));
         return this;
     }
@@ -673,8 +673,7 @@ public class ParticleSystem {
         }
         int particleX = getFromRange(mEmitterXMin, mEmitterXMax);
         int particleY = getFromRange(mEmitterYMin, mEmitterYMax);
-        p.configure(mTimeToLive, particleX, particleY);
-        p.activate(delay, mModifiers);
+        p.configure(mTimeToLive, particleX, particleY).activate(delay, mModifiers);
         mActiveParticles.add(p);
         mActivatedParticles++;
     }
