@@ -13,12 +13,13 @@ import com.liubz.androidtea.anim.leonids.ParticleSystem;
 import com.liubz.androidtea.databinding.ActivityParticleDemoBinding;
 
 /**
- * @Desc: Leonids 粒子特效演示页面
+ * @Desc: Leonids 粒子特效演示页面 (扩展多种场景)
  * @Author: liubaozhu
  */
 public class ParticleDemoActivity extends AppCompatActivity {
 
     private ActivityParticleDemoBinding binding;
+    private ParticleSystem mSnowSystem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,14 +43,13 @@ public class ParticleDemoActivity extends AppCompatActivity {
                     .emitWithGravity(binding.rootLayout, Gravity.TOP, 20, 3000); 
         });
 
-        // 2. 跟随手指效果 (修复版：使用 emit 在精确坐标发射)
+        // 2. 跟随手指效果 (在精确坐标发射)
         binding.btnFollow.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
                 new ParticleSystem(this, 100, R.drawable.ic_star, 800)
                         .setSpeedModuleAndAngleRange(0.05f, 0.15f, 0, 360)
                         .setScaleRange(0.5f, 1.2f)
                         .setFadeOut(300)
-                        // 修正点：使用 emit 方法。在坐标 (x, y) 处，每秒发射 50 个粒子，发射持续 50 毫秒。
                         .emit((int) event.getRawX(), (int) event.getRawY(), 50, 50);
             }
             return true;
@@ -62,5 +62,39 @@ public class ParticleDemoActivity extends AppCompatActivity {
                     .setFadeOut(500)
                     .oneShot(v, 50);
         });
+
+        // 4. 漫天飞雪 (持续发射场景)
+        binding.btnSnow.setOnClickListener(v -> {
+            if (mSnowSystem != null) {
+                mSnowSystem.stopEmitting();
+                mSnowSystem = null;
+                binding.btnSnow.setText("漫天飞雪 (Snowing)");
+            } else {
+                mSnowSystem = new ParticleSystem(this, 100, R.drawable.ic_star, 10000);
+                mSnowSystem.setSpeedModuleAndAngleRange(0.01f, 0.05f, 30, 150)
+                        .setRotationSpeedRange(30, 90)
+                        .setAcceleration(0.00005f, 90)
+                        .emitWithGravity(binding.rootLayout, Gravity.TOP, 10);
+                binding.btnSnow.setText("停止下雪");
+            }
+        });
+
+        // 5. 星光闪烁 (从中心发射点)
+        binding.btnStarEmit.setOnClickListener(v -> {
+            new ParticleSystem(this, 100, R.drawable.ic_star, 2000)
+                    .setSpeedModuleAndAngleRange(0.1f, 0.25f, 0, 360)
+                    .setRotationSpeed(144)
+                    .setScaleRange(0.2f, 1.5f)
+                    .setFadeOut(1000)
+                    .emit(binding.rootLayout.getWidth() / 2, binding.rootLayout.getHeight() / 2, 30, 2000);
+        });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onAttachedToWindow();
+        if (mSnowSystem != null) {
+            mSnowSystem.cancel();
+        }
     }
 }
