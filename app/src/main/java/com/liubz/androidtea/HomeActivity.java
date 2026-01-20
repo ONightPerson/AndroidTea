@@ -52,6 +52,7 @@ import com.liubz.androidtea.view.SameDirectionConflictActivity;
 import com.liubz.androidtea.view.ScrollerTestActivity;
 import com.liubz.androidtea.view.VelocityTrackerActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
+import com.liubz.androidtea.view.WaveDemoActivity;
 import com.liubz.androidtea.window.WindowActivity;
 
 public class HomeActivity extends BaseActivity {
@@ -108,6 +109,7 @@ public class HomeActivity extends BaseActivity {
         binding.scrollerTest.setOnClickListener(v -> scrollerTest());
         binding.scrollConflictTest.setOnClickListener(v -> scrollConflictTest());
         binding.sameDirectionConflict.setOnClickListener(v -> launchSameDirectionConflictTest());
+        binding.waveViewTest.setOnClickListener(v -> launchWaveDemo());
     }
 
     private void launchConstraintDemo() {
@@ -355,5 +357,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchSameDirectionConflictTest() {
         startActivity(new Intent(this, SameDirectionConflictActivity.class));
+    }
+
+    private void launchWaveDemo() {
+        startActivity(new Intent(this, WaveDemoActivity.class));
     }
 }

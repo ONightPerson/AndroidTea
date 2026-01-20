@@ -279,5 +279,12 @@
             android:layout_height="wrap_content"
             android:text="同向滑动冲突解决"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/wave_view_test"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="波纹滚动效果"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
