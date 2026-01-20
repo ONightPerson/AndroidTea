@@ -1,9 +1,8 @@
 package com.liubz.androidtea.anim.leonids;
 
 import android.animation.Animator;
-import android.animation.Animator.AnimatorListener;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
-import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,8 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
-
-import androidx.annotation.NonNull;
 
 import com.liubz.androidtea.anim.leonids.initializers.AccelerationInitializer;
 import com.liubz.androidtea.anim.leonids.initializers.ParticleInitializer;
@@ -97,12 +94,11 @@ public class ParticleSystem {
 
         mMaxParticles = maxParticles;
         // Create the particles
-
         mParticles = new ArrayList<>();
         mTimeToLive = timeToLive;
 
         DisplayMetrics displayMetrics = parentView.getContext().getResources().getDisplayMetrics();
-        mDpToPxScale = (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT);
+        mDpToPxScale = displayMetrics.density;
     }
 
     /**
@@ -121,7 +117,7 @@ public class ParticleSystem {
                 mParticles.add(new AnimatedParticle(animation));
             }
         } else {
-            Bitmap bitmap = null;
+            Bitmap bitmap;
             if (drawable instanceof BitmapDrawable) {
                 bitmap = ((BitmapDrawable) drawable).getBitmap();
             } else {
@@ -414,14 +410,12 @@ public class ParticleSystem {
      * needs to allow displaying an arbitrary sized view on top of its other content.
      *
      * @param viewGroup The view group to use.
-     * @return This.
      */
-    public ParticleSystem setParentViewGroup(ViewGroup viewGroup) {
+    private void setParentViewGroup(ViewGroup viewGroup) {
         mParentView = viewGroup;
         if (mParentView != null) {
             mParentView.getLocationInWindow(mParentLocation);
         }
-        return this;
     }
 
     public ParticleSystem setStartTime(long time) {
@@ -432,11 +426,11 @@ public class ParticleSystem {
     /**
      * Configures a fade out for the particles when they disappear
      *
-     * @param milisecondsBeforeEnd fade out duration in milliseconds
-     * @param interpolator         the interpolator for the fade out (default is linear)
+     * @param millisecondsBeforeEnd fade out duration in milliseconds
+     * @param interpolator          the interpolator for the fade out (default is linear)
      */
-    public ParticleSystem setFadeOut(long milisecondsBeforeEnd, Interpolator interpolator) {
-        mModifiers.add(new AlphaModifier(255, 0, mTimeToLive - milisecondsBeforeEnd, mTimeToLive, interpolator));
+    public ParticleSystem setFadeOut(long millisecondsBeforeEnd, Interpolator interpolator) {
+        mModifiers.add(new AlphaModifier(255, 0, mTimeToLive - millisecondsBeforeEnd, mTimeToLive, interpolator));
         return this;
     }
 
@@ -589,25 +583,14 @@ public class ParticleSystem {
         startAnimator(interpolator, mTimeToLive);
     }
 
-    private void startAnimator(Interpolator interpolator, long animnationTime) {
-        mAnimator = ValueAnimator.ofInt(0, (int) animnationTime);
-        mAnimator.setDuration(animnationTime);
-        mAnimator.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(@NonNull ValueAnimator animation) {
-                int miliseconds = (Integer) animation.getAnimatedValue();
-                onUpdate(miliseconds);
-            }
+    private void startAnimator(Interpolator interpolator, long animationTime) {
+        mAnimator = ValueAnimator.ofInt(0, (int) animationTime);
+        mAnimator.setDuration(animationTime);
+        mAnimator.addUpdateListener(animation -> {
+            int milliseconds = (Integer) animation.getAnimatedValue();
+            onUpdate(milliseconds);
         });
-        mAnimator.addListener(new AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-            }
-
+        mAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 cleanupAnimation();
@@ -622,8 +605,17 @@ public class ParticleSystem {
         mAnimator.start();
     }
 
+    /**
+     * location[0]: 是发射源 emitter (按钮等) 在窗口中的绝对 X 坐标。
+     * mParentLocation[0]: 是粒子系统舞台 ParticleField 所寄生的父容器（通常是 android.R.id.content）在窗口中的绝对 X 坐标。
+     * 相减的目的: ParticleField 是添加在父容器里的，它的绘图坐标系是从父容器左上角 (0,0) 开始的。
+     * 为了让粒子准确地从按钮位置飞出来，必须将按钮的“窗口绝对坐标”转换成“相对于父容器的相对坐标”。
+     *
+     * @param emitter
+     * @param gravity
+     */
     private void configureEmitter(View emitter, int gravity) {
-        // It works with an emision range
+        // It works with an emission range
         int[] location = new int[2];
         emitter.getLocationInWindow(location);
 
@@ -689,16 +681,16 @@ public class ParticleSystem {
         }
     }
 
-    private void onUpdate(long miliseconds) {
-        while (((mEmittingTime > 0 && miliseconds < mEmittingTime) || mEmittingTime == -1) && // This point should emit
+    private void onUpdate(long milliseconds) {
+        while (((mEmittingTime > 0 && milliseconds < mEmittingTime) || mEmittingTime == -1) && // This point should emit
                 !mParticles.isEmpty() && // We have particles in the pool
-                mActivatedParticles < mParticlesPerMillisecond * miliseconds) { // and we are under the number of particles that should be launched
+                mActivatedParticles < mParticlesPerMillisecond * milliseconds) { // and we are under the number of particles that should be launched
             // Activate a new particle
-            activateParticle(miliseconds);
+            activateParticle(milliseconds);
         }
         synchronized (mActiveParticles) {
             for (int i = 0; i < mActiveParticles.size(); i++) {
-                boolean active = mActiveParticles.get(i).update(miliseconds);
+                boolean active = mActiveParticles.get(i).update(milliseconds);
                 if (!active) {
                     Particle p = mActiveParticles.remove(i);
                     i--; // Needed to keep the index at the right position

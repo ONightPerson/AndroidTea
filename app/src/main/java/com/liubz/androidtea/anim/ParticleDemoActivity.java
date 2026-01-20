@@ -22,7 +22,7 @@ import java.util.List;
 public class ParticleDemoActivity extends AppCompatActivity {
 
     private ActivityParticleDemoBinding binding;
-    private List<ParticleSystem> mSnowSystems = new ArrayList<>();
+    private final List<ParticleSystem> mSnowSystems = new ArrayList<>();
     private boolean mIsSnowing = false;
 
     @Override
