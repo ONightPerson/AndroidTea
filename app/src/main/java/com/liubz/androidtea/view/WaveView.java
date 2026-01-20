@@ -28,6 +28,8 @@ public class WaveView extends View {
     private float mWaveLength;          // 波长
     private float mOffset = 0f;         // 偏移量 (实现滚动)
 
+    private ValueAnimator mAnimator;
+
     public WaveView(Context context) {
         this(context, null);
     }
@@ -45,15 +47,14 @@ public class WaveView extends View {
         mPath = new Path();
 
         // 开启无限循环动画
-        ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
-        animator.setDuration(2000);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.addUpdateListener(animation -> {
+        mAnimator = ValueAnimator.ofFloat(0, 1);
+        mAnimator.setDuration(2000);
+        mAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mAnimator.setInterpolator(new LinearInterpolator());
+        mAnimator.addUpdateListener(animation -> {
             mOffset = (float) animation.getAnimatedValue();
-            postInvalidate();
+            postInvalidateOnAnimation();
         });
-        animator.start();
     }
 
     @Override
@@ -62,6 +63,18 @@ public class WaveView extends View {
         mWidth = w;
         mHeight = h;
         mWaveLength = w; // 设置一个周期为一个屏幕宽
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mAnimator.start();
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mAnimator.cancel();
     }
 
     @Override
