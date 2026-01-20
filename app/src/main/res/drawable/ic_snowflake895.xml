@@ -1,0 +1,70 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- 模拟图片中第7个（895号）：典型的树枝状星形雪花 (Stellar Dendrite) -->
+    <group android:pivotX="12" android:pivotY="12">
+        <!-- 定义一个完整的分支模板 -->
+        <group android:id="@+id/branch" android:pivotX="12" android:pivotY="12">
+            <!-- 0度方向主轴 -->
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <!-- 第一对长侧枝 (底部) -->
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <!-- 第二对中侧枝 (中部) -->
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <!-- 第三对短侧枝 (顶部) -->
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+
+        <!-- 旋转复制生成 6 个分支 -->
+        <group android:rotation="60" android:pivotX="12" android:pivotY="12">
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+        <group android:rotation="120" android:pivotX="12" android:pivotY="12">
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+        <group android:rotation="180" android:pivotX="12" android:pivotY="12">
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+        <group android:rotation="240" android:pivotX="12" android:pivotY="12">
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+        <group android:rotation="300" android:pivotX="12" android:pivotY="12">
+            <path android:fillColor="#FFFFFF" android:pathData="M11.85,12 h0.3 v-10 h-0.3 z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L15,7 L15.2,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,9.5 L9,7 L8.8,7.3 L12,10 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L14.5,4.5 L14.7,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,7 L9.5,4.5 L9.3,4.8 L12,7.5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L13.5,3 L13.7,3.3 L12,5 Z" />
+            <path android:fillColor="#FFFFFF" android:pathData="M12,4.5 L10.5,3 L10.3,3.3 L12,5 Z" />
+        </group>
+    </group>
+</vector>

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Desc: Leonids 粒子特效演示页面 (深度优化雪花效果)
+ * @Desc: Leonids 粒子特效演示页面 (集成仙女散花效果)
  * @Author: liubaozhu
  */
 public class ParticleDemoActivity extends AppCompatActivity {
@@ -37,9 +37,9 @@ public class ParticleDemoActivity extends AppCompatActivity {
 
     @SuppressLint("ClickableViewAccessibility")
     private void initListeners() {
-        // 1. 屏幕撒花效果
+        // 1. 屏幕撒花效果 (星星)
         binding.btnConfetti.setOnClickListener(v -> {
-            new ParticleSystem(this, 80, R.drawable.ic_star, 5000)
+            new ParticleSystem(this, 80, R.drawable.ic_flower, 5000)
                     .setSpeedModuleAndAngleRange(0.1f, 0.2f, 0, 180)
                     .setRotationSpeedRange(90, 180)
                     .setAcceleration(0.00015f, 90)
@@ -47,19 +47,19 @@ public class ParticleDemoActivity extends AppCompatActivity {
                     .emitWithGravity(binding.rootLayout, Gravity.TOP, 20, 3000); 
         });
 
-        // 2. 跟随手指效果
+        // 2. 跟随手指效果 (小花朵)
         binding.btnFollow.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_MOVE) {
-                new ParticleSystem(this, 100, R.drawable.ic_snowflake, 800)
+                new ParticleSystem(this, 50, R.drawable.ic_star, 800)
                         .setSpeedModuleAndAngleRange(0.05f, 0.15f, 0, 360)
-                        .setScaleRange(0.3f, 0.8f)
+                        .setScaleRange(0.3f, 0.6f)
                         .setFadeOut(300)
-                        .emit((int) event.getRawX(), (int) event.getRawY(), 50, 50);
+                        .emit((int) event.getRawX(), (int) event.getRawY(), 40, 50);
             }
             return true;
         });
 
-        // 3. 一触即发 (按钮爆炸效果)
+        // 3. 一触即发 (爆炸效果)
         binding.btnExplosion.setOnClickListener(v -> {
             new ParticleSystem(this, 50, R.drawable.ic_star, 1500)
                     .setSpeedModuleAndAngleRange(0.1f, 0.3f, 0, 360)
@@ -67,7 +67,7 @@ public class ParticleDemoActivity extends AppCompatActivity {
                     .oneShot(v, 50);
         });
 
-        // 4. 漫天飞雪 (重新实现：双层叠加模拟景深)
+        // 4. 漫天飞雪 (精细雪花)
         binding.btnSnow.setOnClickListener(v -> {
             if (mIsSnowing) {
                 stopSnowing();
@@ -76,7 +76,7 @@ public class ParticleDemoActivity extends AppCompatActivity {
             }
         });
 
-        // 5. 星光闪烁
+        // 5. 星光闪烁 (中心放射)
         binding.btnStarEmit.setOnClickListener(v -> {
             new ParticleSystem(this, 100, R.drawable.ic_star, 2000)
                     .setSpeedModuleAndAngleRange(0.1f, 0.25f, 0, 360)
@@ -85,21 +85,31 @@ public class ParticleDemoActivity extends AppCompatActivity {
                     .setFadeOut(1000)
                     .emit(binding.rootLayout.getWidth() / 2, binding.rootLayout.getHeight() / 2, 30, 2000);
         });
+
+        // 6. 仙女散花效果：从屏幕顶部中心放射状喷发大花朵
+        binding.btnFlowerScatter.setOnClickListener(v -> {
+            new ParticleSystem(this, 100, R.drawable.ic_flower, 5000)
+                    .setSpeedModuleAndAngleRange(0.1f, 0.4f, 0, 360) // 360度喷射
+                    .setRotationSpeedRange(90, 270)                 // 高速随机旋转
+                    .setAcceleration(0.00012f, 90)                  // 模拟重力下落
+                    .setScaleRange(0.6f, 1.2f)                      // 花朵大小不一
+                    .setFadeOut(1500)                               // 消失前缓慢淡出
+                    .emit(binding.rootLayout.getWidth() / 2, 50, 40, 3000); // 坐标发射
+        });
     }
 
     private void startSnowing() {
         mIsSnowing = true;
         binding.btnSnow.setText("停止下雪");
 
-        // 层级 1：远景 (更小、更慢、更透)
-        ParticleSystem layer1 = new ParticleSystem(this, 60, R.drawable.ic_snowflake, 12000);
-        layer1.setSpeedByComponentsRange(-0.02f, 0.02f, 0.02f, 0.05f) // 轻微横向风
+        // 使用 899 号高精度雪花进行渲染
+        ParticleSystem layer1 = new ParticleSystem(this, 60, R.drawable.ic_snowflake899, 12000);
+        layer1.setSpeedByComponentsRange(-0.02f, 0.02f, 0.02f, 0.05f)
                 .setScaleRange(0.2f, 0.4f)
                 .setAcceleration(0.00001f, 90)
                 .emitWithGravity(binding.rootLayout, Gravity.TOP, 8);
         
-        // 层级 2：中景 (标准大小)
-        ParticleSystem layer2 = new ParticleSystem(this, 40, R.drawable.ic_snowflake, 8000);
+        ParticleSystem layer2 = new ParticleSystem(this, 40, R.drawable.ic_snowflake899, 8000);
         layer2.setSpeedByComponentsRange(-0.03f, 0.03f, 0.05f, 0.1f)
                 .setScaleRange(0.5f, 0.8f)
                 .setAcceleration(0.00003f, 90)
