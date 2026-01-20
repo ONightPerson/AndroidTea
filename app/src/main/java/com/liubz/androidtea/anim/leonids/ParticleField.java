@@ -7,7 +7,11 @@ import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 class ParticleField extends View {
+
+    private final Object mLock = new Object();
 
 	private ArrayList<Particle> mParticles;
 
@@ -24,14 +28,16 @@ class ParticleField extends View {
 	}
 
 	public void setParticles(ArrayList<Particle> particles) {
-		mParticles = particles;
+        synchronized (mLock) {
+            mParticles = particles;
+        }
 	}
 	
 	@Override
-	protected void onDraw(Canvas canvas) {
+	protected void onDraw(@NonNull Canvas canvas) {
 		super.onDraw(canvas);
 		// Draw all the particles
-		synchronized (mParticles) {
+		synchronized (mLock) {
 			for (int i = 0; i < mParticles.size(); i++) {
 				mParticles.get(i).draw(canvas);
 			}
