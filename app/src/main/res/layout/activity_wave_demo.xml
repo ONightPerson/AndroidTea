@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 自定义波纹 View -->
-    <com.liubz.androidtea.view.WaveView
+    <com.liubz.androidtea.view.ShaderWaveView
         android:id="@+id/wave_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
