@@ -24,12 +24,12 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class RetrofitActivity extends BaseActivity {
 
     private static final String TAG = "RetrofitActivity";
-    
+
     @Inject
     SuggestService mSuggestService;
-    
+
     private ActivityRetrofitBinding binding;
-    
+
     // 管理 RxJava 订阅关系，防止内存泄漏
     private final CompositeDisposable mDisposable = new CompositeDisposable();
 
@@ -45,18 +45,19 @@ public class RetrofitActivity extends BaseActivity {
 
     private void dictSuggest() {
         // 使用 RxJava 3 链式调用
-//        mDisposable.add();
-        mSuggestService.getSuggest("中国")
+        mDisposable.add(mSuggestService.getSuggest("中国")
                 .subscribeOn(Schedulers.io())               // 1. 在 IO 线程发起网络请求
                 .observeOn(AndroidSchedulers.mainThread())  // 2. 在主线程处理结果
-                .subscribe(suggest -> {
+                .subd .
+                gscribe(suggest -> {
                     // 3. 成功回调
                     Log.i(TAG, "RxJava --> suggest: " + suggest.toString());
                     // 在此处更新 UI，例如：binding.tvResult.setText(suggest.toString());
                 }, throwable -> {
                     // 4. 失败回调
                     Log.e(TAG, "RxJava --> Error: ", throwable);
-                });
+                }));
+
     }
 
     @Override
