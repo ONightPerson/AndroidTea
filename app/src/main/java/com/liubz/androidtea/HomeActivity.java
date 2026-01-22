@@ -112,6 +112,7 @@ public class HomeActivity extends BaseActivity {
         binding.sameDirectionConflict.setOnClickListener(v -> launchSameDirectionConflictTest());
         binding.waveViewTest.setOnClickListener(v -> launchWaveDemo());
         binding.particleDemo.setOnClickListener(v -> launchParticleDemo());
+        binding.composeDemo.setOnClickListener(v -> launchComposeActivity());
     }
 
     private void launchConstraintDemo() {
@@ -367,5 +368,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchParticleDemo() {
         startActivity(new Intent(this, ParticleDemoActivity.class));
+    }
+
+    private void launchComposeActivity() {
+        startActivity(new Intent(this, ComposeDemoActivity.class));
     }
 }

@@ -293,5 +293,12 @@
             android:layout_height="wrap_content"
             android:text="Leonids 粒子特效"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/compose_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compose Demo"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

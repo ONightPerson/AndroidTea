@@ -64,6 +64,9 @@
 
         <activity android:name=".view.WaveDemoActivity" />
 
+        <activity android:name=".ComposeDemoActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+
         <activity android:name=".broadcast.BroadcastTestActivity" />
         <activity android:name=".broadcast.InteractiveStateActivity" />
         <activity android:name=".modules.accessibility.AccessibilityTestActivity" />
