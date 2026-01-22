@@ -48,8 +48,7 @@ public class RetrofitActivity extends BaseActivity {
         mDisposable.add(mSuggestService.getSuggest("中国")
                 .subscribeOn(Schedulers.io())               // 1. 在 IO 线程发起网络请求
                 .observeOn(AndroidSchedulers.mainThread())  // 2. 在主线程处理结果
-                .subd .
-                gscribe(suggest -> {
+                .subscribe(suggest -> {
                     // 3. 成功回调
                     Log.i(TAG, "RxJava --> suggest: " + suggest.toString());
                     // 在此处更新 UI，例如：binding.tvResult.setText(suggest.toString());
