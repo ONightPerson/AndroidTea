@@ -1,5 +1,7 @@
 package com.liubz.androidtea.network.retrofit.data;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +19,15 @@ public class Suggest {
     public static class Result {
         public String msg;
         public int code;
+
+        @NonNull
+        @Override
+        public String toString() {
+            return "Result{" +
+              "msg='" + msg + '\'' +
+              ", code=" + code +
+              '}';
+        }
     }
 
     public static class Data {
@@ -37,5 +48,24 @@ public class Suggest {
     public static class Entry {
         public String explain;
         public String entry;
+
+        @NonNull
+        @Override
+        public String toString() {
+            return "Entry{" +
+              "explain='" + explain + '\'' +
+              ", entry='" + entry + '\'' +
+              '}';
+        }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Suggest{" +
+          "result=" + result +
+          ", data=" + data +
+          '}';
+
     }
 }
