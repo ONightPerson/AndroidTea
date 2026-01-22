@@ -7,13 +7,6 @@
     tools:context="com.liubz.androidtea.HomeActivity">
 
     <Button
-        android:id="@+id/list_repo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="listRepo" />
-
-    <Button
         android:id="@+id/dict_suggest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

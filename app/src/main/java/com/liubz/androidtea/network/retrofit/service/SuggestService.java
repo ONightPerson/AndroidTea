@@ -2,20 +2,16 @@ package com.liubz.androidtea.network.retrofit.service;
 
 import com.liubz.androidtea.network.retrofit.data.Suggest;
 
-import retrofit2.Call;
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 /**
- * JSON API 免费接口 https://www.bejson.com/knownjson/webInterface/
- * 有道词典：https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le=en&q=查词
- * @Desc:
+ * @Desc: 优化后的 SuggestService，支持 RxJava 3
  * @Author: liubaozhu
- * @Date: 2023/5/12 4:57 PM
  */
 public interface SuggestService {
 
-
     @GET("https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le=en")
-    Call<Suggest> getCall(@Query("q") String q);
+    Observable<Suggest> getSuggest(@Query("q") String q);
 }
