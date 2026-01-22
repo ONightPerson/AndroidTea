@@ -26,6 +26,7 @@ import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.contentprovider.BookProviderTestActivity;
 import com.liubz.androidtea.databinding.ActivityHomeBinding;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
+import com.liubz.androidtea.hilt.HiltDemoActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.material.ConstraintDemoActivity;
@@ -113,6 +114,7 @@ public class HomeActivity extends BaseActivity {
         binding.waveViewTest.setOnClickListener(v -> launchWaveDemo());
         binding.particleDemo.setOnClickListener(v -> launchParticleDemo());
         binding.composeDemo.setOnClickListener(v -> launchComposeActivity());
+        binding.hiltDemo.setOnClickListener(v -> launchHiltDemoActivity());
     }
 
     private void launchConstraintDemo() {
@@ -372,5 +374,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchComposeActivity() {
         startActivity(new Intent(this, ComposeDemoActivity.class));
+    }
+
+    private void launchHiltDemoActivity() {
+        startActivity(new Intent(this, HiltDemoActivity.class));
     }
 }

@@ -300,5 +300,12 @@
             android:layout_height="wrap_content"
             android:text="Compose Demo"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/hilt_demo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hilt 依赖注入"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

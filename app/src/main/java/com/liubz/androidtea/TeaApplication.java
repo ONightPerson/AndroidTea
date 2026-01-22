@@ -14,9 +14,14 @@ import com.liubz.androidtea.network.websocket.WebSocketHelper;
 import com.liubz.androidtea.utils.ApplicationUtils;
 import com.liubz.androidtea.utils.CrashHandler;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+/**
+ * @Desc: 应用程序入口，标注 @HiltAndroidApp 触发 Hilt 的代码生成
+ */
+@HiltAndroidApp
 public class TeaApplication extends Application {
     private static final String TAG = "TeaApplication";
-
 
     @Override
     protected void attachBaseContext(Context base) {
@@ -39,34 +44,17 @@ public class TeaApplication extends Application {
             }
 
             @Override
-            public void onActivityStarted(@NonNull Activity activity) {
-                Log.i(TAG, activity.getClass().getSimpleName() + " onStart");
-            }
-
+            public void onActivityStarted(@NonNull Activity activity) {}
             @Override
-            public void onActivityResumed(@NonNull Activity activity) {
-                Log.i(TAG, activity.getClass().getSimpleName() + " onResume");
-            }
-
+            public void onActivityResumed(@NonNull Activity activity) {}
             @Override
-            public void onActivityPaused(@NonNull Activity activity) {
-                Log.i(TAG, activity.getClass().getSimpleName() + " onPause");
-            }
-
+            public void onActivityPaused(@NonNull Activity activity) {}
             @Override
-            public void onActivityStopped(@NonNull Activity activity) {
-                Log.i(TAG, activity.getClass().getSimpleName() + " onStop");
-            }
-
+            public void onActivityStopped(@NonNull Activity activity) {}
             @Override
-            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
-
-            }
-
+            public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
             @Override
-            public void onActivityDestroyed(@NonNull Activity activity) {
-                Log.i(TAG, activity.getClass().getSimpleName() + " onDestroy");
-            }
+            public void onActivityDestroyed(@NonNull Activity activity) {}
         });
     }
 
