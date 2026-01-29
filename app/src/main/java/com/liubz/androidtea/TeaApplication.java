@@ -5,12 +5,10 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-
+g
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.liubz.androidtea.network.websocket.WebSocketConfig;
-import com.liubz.androidtea.network.websocket.WebSocketHelper;
 import com.liubz.androidtea.utils.ApplicationUtils;
 import com.liubz.androidtea.utils.CrashHandler;
 
@@ -33,8 +31,6 @@ public class TeaApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        initHelper();
-        initConfig();
         CrashHandler.getInstance().init(this);
 
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
@@ -56,13 +52,5 @@ public class TeaApplication extends Application {
             @Override
             public void onActivityDestroyed(@NonNull Activity activity) {}
         });
-    }
-
-    private void initHelper() {
-        WebSocketHelper.init(new WebSocketConfig());
-    }
-
-    private void initConfig() {
-        WebSocketHelper.initConfig();
     }
 }

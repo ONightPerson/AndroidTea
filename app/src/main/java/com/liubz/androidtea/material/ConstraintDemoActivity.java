@@ -16,15 +16,12 @@ import com.liubz.androidtea.databinding.ActivityConstraintDemoBinding;
 public class ConstraintDemoActivity extends AppCompatActivity {
 
     private ActivityConstraintDemoBinding binding;
-    private static Context sContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityConstraintDemoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        sContext = this;
 
         setTitle("ConstraintLayout 示例");
 
