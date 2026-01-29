@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 public class InstrumentationProxy extends Instrumentation {
     private static final String TAG = "InstrumentationProxy";
 
-    private Instrumentation mInstrumentation;
+    private final Instrumentation mInstrumentation;
 
     public InstrumentationProxy(Instrumentation instrumentation) {
         mInstrumentation = instrumentation;
@@ -30,7 +30,8 @@ public class InstrumentationProxy extends Instrumentation {
         Log.d(TAG, "execStartActivity: wait for a second");
         // 通过反射找到 Instrumentation的 execStartActivity 方法
         try {
-            Method method = Class.forName("android.app.Instrumentation").getDeclaredMethod("execStartActivity",
+            Class<?> instrumentationClazz = Class.forName("android.app.Instrumentation");
+            Method method = instrumentationClazz.getDeclaredMethod("execStartActivity",
                     Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, int.class, Bundle.class);
             return (ActivityResult) method.invoke(mInstrumentation, who, contextThread, token, target, intent, requestCode, options);
         } catch (NoSuchMethodException e) {

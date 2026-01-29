@@ -26,35 +26,37 @@ public class MusicPlayActivity extends Activity implements View.OnClickListener 
     private Button mNext;
     private IMusicManagerService mMusicManager;
 
-    private IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
+    private final IBinder.DeathRecipient mDeathRecipient = new IBinder.DeathRecipient() {
         @Override
         public void binderDied() {
-            Log.i(TAG, "binderDied: ");
+            Log.i(TAG, "binderDied: 远程服务已断开");
             if (mMusicManager == null) {
                 return;
             }
             mMusicManager.asBinder().unlinkToDeath(mDeathRecipient, 0);
             mMusicManager = null;
-            // 重新绑定
+            // TODO: 可以在此处尝试重新绑定服务
         }
     };
 
-    private ServiceConnection mConnection = new ServiceConnection() {
+    private final ServiceConnection mConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-
             try {
                 service.linkToDeath(mDeathRecipient, 0);
                 mMusicManager = IMusicManagerService.Stub.asInterface(service);
-                mMusicManager.startPlay();
+                if (mMusicManager != null) {
+                    mMusicManager.startPlay();
+                }
             } catch (RemoteException e) {
-                e.printStackTrace();
+                Log.e(TAG, "onServiceConnected error", e);
             }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-
+            Log.i(TAG, "onServiceDisconnected");
+            mMusicManager = null;
         }
     };
 
@@ -85,36 +87,31 @@ public class MusicPlayActivity extends Activity implements View.OnClickListener 
 
     @Override
     protected void onDestroy() {
-        unbindService(mConnection);
+        if (mConnection != null) {
+            unbindService(mConnection);
+        }
         super.onDestroy();
     }
 
     @Override
     public void onClick(View v) {
-        if (v == mPlay) {
-            try {
+        if (mMusicManager == null) {
+            Log.w(TAG, "onClick: MusicManager is null, service may not be connected.");
+            return;
+        }
+
+        try {
+            if (v == mPlay) {
                 mMusicManager.startPlay();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        } else if (v == mStop) {
-            try {
+            } else if (v == mStop) {
                 mMusicManager.stopPlay();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        } else if (v == mPrevious) {
-            try {
+            } else if (v == mPrevious) {
                 mMusicManager.previous();
-            } catch (RemoteException e) {
-                e.printStackTrace();
-            }
-        } else if (v == mNext) {
-            try {
+            } else if (v == mNext) {
                 mMusicManager.next();
-            } catch (RemoteException e) {
-                e.printStackTrace();
             }
+        } catch (RemoteException e) {
+            Log.e(TAG, "onClick action error for view: " + v.getId(), e);
         }
     }
 }
