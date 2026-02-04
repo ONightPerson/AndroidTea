@@ -57,15 +57,18 @@ public class RepoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
         mShopCartView = findViewById(R.id.shopcart_view);
         SwipeRefreshLayout spl = findViewById(R.id.swipe_refresh_layout);
         spl.setOnRefreshListener(this);
-        RepoViewModel viewModel = new ViewModelProvider(getViewModelStore(), new RepoViewModelFactory()).get(RepoViewModel.class);
-        mViewModel = viewModel;
+        
+        mViewModel = new ViewModelProvider(getViewModelStore(), new RepoViewModelFactory()).get(RepoViewModel.class);
+        
         RecyclerView rv = findViewById(R.id.repo_recycler_view);
-        final RepoAdapter adapter = new RepoAdapter(this, viewModel);
+        // 修复点1：RepoAdapter 现在使用无参构造函数
+        final RepoAdapter adapter = new RepoAdapter();
         adapter.setRepoSelectListener(this);
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
+        
         final ProcessHandler processHandler = new ProcessHandler(this);
-        viewModel.showLoading.observe(this, showLoading -> {
+        mViewModel.showLoading.observe(this, showLoading -> {
             if (showLoading) {
                 processHandler.showProcessDialog();
             } else {
@@ -73,8 +76,11 @@ public class RepoActivity extends BaseActivity implements SwipeRefreshLayout.OnR
                 spl.setRefreshing(false);
             }
         });
-        viewModel.data.observe(this, repoList -> adapter.notifyDataSetChanged());
-        viewModel.fetchData();
+        
+        // 修复点2：使用 submitList 进行增量更新，而不是 notifyDataSetChanged
+        mViewModel.data.observe(this, adapter::submitList);
+        
+        mViewModel.fetchData();
     }
 
     @Override

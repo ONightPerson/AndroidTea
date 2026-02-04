@@ -2,7 +2,7 @@ ext.configs = [:]
 
 def versions = [:]
 versions.appcompat = '1.2.0'
-versions.recyclerview = '1.1.0'
+versions.recyclerview = '1.2.0'
 versions.cardview = '1.0.0'
 versions.palette = '1.0.0'
 versions.percentlayout = '1.0.0'

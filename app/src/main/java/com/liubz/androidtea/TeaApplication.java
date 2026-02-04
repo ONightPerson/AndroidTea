@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-g
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
