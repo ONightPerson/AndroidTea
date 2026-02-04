@@ -11,7 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.liubz.androidtea.R;
+import com.liubz.androidtea.network.retrofit.data.Repo;
 import com.liubz.androidtea.repo.viewmodel.RepoViewModel;
+
+import java.util.List;
 
 /**
  * @Desc:
@@ -20,8 +23,8 @@ import com.liubz.androidtea.repo.viewmodel.RepoViewModel;
  */
 public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder> {
 
-    private Context mContext;
-    private RepoViewModel mViewModel;
+    private final Context mContext;
+    private final RepoViewModel mViewModel;
     private RepoSelectListener mListener;
 
     public interface RepoSelectListener {
@@ -41,32 +44,37 @@ public class RepoAdapter extends RecyclerView.Adapter<RepoAdapter.RepoViewHolder
     @Override
     public RepoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View root = LayoutInflater.from(mContext).inflate(R.layout.layout_repo_item, parent, false);
-        return new RepoViewHolder(root);
+        RepoViewHolder holder = new RepoViewHolder(root);
+        holder.repoSelectView.setOnClickListener(v -> {
+            if (mListener != null) {
+                mListener.onSelectAnim(v);
+            }
+        });
+        return holder;
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull RepoViewHolder holder, int position) {
-         holder.repoNameView.setText(mViewModel.data.getValue().get(position).fullName);
+        List<Repo> data = mViewModel.data.getValue();
+        if (data != null && position < data.size()) {
+            holder.repoNameView.setText(data.get(position).fullName);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mViewModel.data.getValue().size();
+        List<Repo> data = mViewModel.data.getValue();
+        return data == null ? 0 : data.size();
     }
 
-    class RepoViewHolder extends RecyclerView.ViewHolder {
+    public static class RepoViewHolder extends RecyclerView.ViewHolder {
         TextView repoNameView;
         ImageView repoSelectView;
         public RepoViewHolder(@NonNull View itemView) {
             super(itemView);
             repoNameView = itemView.findViewById(R.id.repo_name);
             repoSelectView = itemView.findViewById(R.id.repo_select);
-            repoSelectView.setOnClickListener(v -> {
-                if (mListener != null) {
-                    mListener.onSelectAnim(repoSelectView);
-                }
-            });
         }
     }
 }
