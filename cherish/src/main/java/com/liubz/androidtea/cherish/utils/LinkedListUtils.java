@@ -4,11 +4,11 @@ import com.liubz.androidtea.cherish.datastructure.bean.Node;
 
 public class LinkedListUtils {
 
-    public static void print(Node<?> head) {
+    public static void print(Node<Integer> head) {
         if (head == null) {
             return;
         }
-        Node p = head;
+        Node<Integer> p = head;
         while (p != null) {
             System.out.print(p.data + " ");
             p = p.next;
@@ -16,11 +16,11 @@ public class LinkedListUtils {
         System.out.println();
     }
 
-    public static Node reverse(Node head) {
-        Node cur = head;
-        Node pre = null;
+    public static Node<Integer> reverse(Node<Integer> head) {
+        Node<Integer> cur = head;
+        Node<Integer> pre = null;
         while (cur != null) {
-            Node next = cur.next;
+            Node<Integer> next = cur.next;
             cur.next = pre;
             pre = cur;
             cur = next;
@@ -28,9 +28,9 @@ public class LinkedListUtils {
         return pre;
     }
 
-    public static boolean hasCycle(Node<?> head) {
-        Node slow = head;
-        Node fast = head.next;
+    public static boolean hasCycle(Node<Integer> head) {
+        Node<Integer> slow = head;
+        Node<Integer> fast = head.next;
         while (slow != fast) {
             if (fast == null || fast.next == null) {
                 return false;
@@ -70,14 +70,14 @@ public class LinkedListUtils {
      * @param n
      * @return
      */
-    public static Node removeNthFromEnd(Node head, int n) {
+    public static Node<Integer> removeNthFromEnd(Node<Integer> head, int n) {
         if (head == null) {
             return null;
         }
-        Node dummy = new Node(-1);
+        Node<Integer> dummy = new Node<>(-1);
         dummy.next = head; // 哑结点指向头结点
-        Node slow = dummy;
-        Node fast = dummy;
+        Node<Integer> slow = dummy;
+        Node<Integer> fast = dummy;
         for (int i = 0; i <= n; i++) {
             fast = fast.next;
         }
@@ -85,7 +85,7 @@ public class LinkedListUtils {
             fast = fast.next;
             slow = slow.next;
         }
-        Node removeNode = slow.next;
+        Node<Integer> removeNode = slow.next;
         slow.next = slow.next.next;
         removeNode.next = null;
         return dummy.next;
@@ -99,12 +99,12 @@ public class LinkedListUtils {
      * @param head
      * @return
      */
-    public static Node findMiddleNode(Node head) {
+    public static Node<Integer> findMiddleNode(Node<Integer> head) {
         if (head == null || head.next == null) {
             return head;
         }
-        Node slow = head;
-        Node fast = head;
+        Node<Integer> slow = head;
+        Node<Integer> fast = head;
         while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
@@ -112,12 +112,12 @@ public class LinkedListUtils {
         return slow;
     }
 
-    public static boolean isPalindrome(Node head) {
-        Node center = findMiddleNode(head);
-        Node reversedSecondHalf = reverse(center);
+    public static boolean isPalindrome(Node<Integer> head) {
+        Node<Integer> center = findMiddleNode(head);
+        Node<Integer> reversedSecondHalf = reverse(center);
 
-        Node p1 = reversedSecondHalf;
-        Node p2 = head;
+        Node<Integer> p1 = reversedSecondHalf;
+        Node<Integer> p2 = head;
         while (p1 != null) {
             if (p1.data != p2.data) {
                 return false;
