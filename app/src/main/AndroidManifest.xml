@@ -34,18 +34,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
-        <activity android:name=".HomeActivity"
+        <activity
+            android:name=".HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <activity
             android:name=".network.socket.SocketTestActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name=".network.socket.TCPChatService"
@@ -59,15 +60,17 @@
         <activity android:name=".binderpool.BinderPoolActivity" />
 
         <activity android:name=".view.ConflictTestActivity" />
-        
+
         <activity android:name=".view.SameDirectionConflictActivity" />
 
         <activity android:name=".view.WaveDemoActivity" />
 
-        <activity android:name=".ComposeDemoActivity"
+        <activity
+            android:name=".ComposeDemoActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
 
-        <activity android:name=".hilt.HiltDemoActivity"
+        <activity
+            android:name=".hilt.HiltDemoActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
 
         <activity android:name=".broadcast.BroadcastTestActivity" />
@@ -82,9 +85,11 @@
         <activity android:name=".material.MaterialTestActivity" />
         <activity android:name=".material.tablayout.TabLayoutActivity" />
         <activity android:name=".material.CoordinatorLayoutTestActivity" />
-        <activity android:name=".material.CollapsingToolbarLayoutTestActivity"
-            android:exported="false"/>
-        <activity android:name=".material.CustomBehaviorTestActivity"
+        <activity
+            android:name=".material.CollapsingToolbarLayoutTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".material.CustomBehaviorTestActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -98,7 +103,8 @@
                     android:scheme="zhuzi" />
             </intent-filter>
         </activity>
-        <activity android:name=".notification.LaunchOtherAppActivity"
+        <activity
+            android:name=".notification.LaunchOtherAppActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -167,10 +173,12 @@
 
         <activity android:name=".view.EditTextActivity" />
 
-        <activity android:name=".expandablelist.MyExpandableListActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".expandablelist.MyExpandableListActivity"
+            android:exported="false" />
 
-        <activity android:name=".window.WindowActivity"
+        <activity
+            android:name=".window.WindowActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -188,11 +196,11 @@
 
         <activity
             android:name=".modules.launcher.Launcher"
-            android:exported="false"
             android:clearTaskOnLaunch="true"
             android:configChanges="mcc|mnc|keyboard|keyboardHidden|navigation|orientation|screenLayout|screenSize|smallestScreenSize|fontScale"
             android:enabled="true"
             android:excludeFromRecents="true"
+            android:exported="false"
             android:launchMode="singleInstance"
             android:resizeableActivity="false"
             android:resumeWhilePausing="true"
@@ -218,8 +226,9 @@
 
         <activity android:name=".view.ViewStubActivity" />
 
-        <activity android:name=".repo.RepoActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".repo.RepoActivity"
+            android:exported="false" />
 
         <activity android:name=".anim.AnimActivity" />
 
@@ -230,6 +239,8 @@
         <activity android:name=".view.GestureDetectorActivity" />
 
         <activity android:name=".view.ScrollerTestActivity" />
+
+        <activity android:name=".anim.opengl.GLParticleActivity" />
 
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
@@ -268,8 +279,8 @@
         <provider
             android:name=".contentprovider.BookProvider"
             android:authorities="com.liubz.androidtea.book.provider"
-            android:process=":provider"
-            android:exported="true" />
+            android:exported="true"
+            android:process=":provider" />
 
         <service
             android:name=".music.MusicPlayService"

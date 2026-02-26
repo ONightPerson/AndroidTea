@@ -28,15 +28,13 @@ public class RetrofitActivity extends BaseActivity {
     @Inject
     SuggestService mSuggestService;
 
-    private ActivityRetrofitBinding binding;
-
     // 管理 RxJava 订阅关系，防止内存泄漏
     private final CompositeDisposable mDisposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityRetrofitBinding.inflate(getLayoutInflater());
+        ActivityRetrofitBinding binding = ActivityRetrofitBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setTitle("Retrofit + RxJava3");
 

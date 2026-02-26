@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 
 import com.liubz.androidtea.anim.AnimActivity;
 import com.liubz.androidtea.anim.ParticleDemoActivity;
+import com.liubz.androidtea.anim.opengl.GLParticleActivity;
 import com.liubz.androidtea.base.BaseActivity;
 import com.liubz.androidtea.binderpool.BinderPoolActivity;
 import com.liubz.androidtea.broadcast.SimStateReceiver;
@@ -115,6 +116,8 @@ public class HomeActivity extends BaseActivity {
         binding.particleDemo.setOnClickListener(v -> launchParticleDemo());
         binding.composeDemo.setOnClickListener(v -> launchComposeActivity());
         binding.hiltDemo.setOnClickListener(v -> launchHiltDemoActivity());
+        binding.glParticle.setOnClickListener(v -> launchGLParticleDemo());
+
     }
 
     private void launchConstraintDemo() {
@@ -378,5 +381,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchHiltDemoActivity() {
         startActivity(new Intent(this, HiltDemoActivity.class));
+    }
+
+    private void launchGLParticleDemo() {
+        startActivity(new Intent(this, GLParticleActivity.class));
     }
 }

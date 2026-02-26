@@ -307,5 +307,12 @@
             android:layout_height="wrap_content"
             android:text="Hilt 依赖注入"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/gl_particle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="opengl 粒子特效"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
