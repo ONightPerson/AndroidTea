@@ -17,7 +17,7 @@ class InfraredFragment : Fragment() {
     private var _binding: FragmentInfraredBinding? = null
     private val binding get() = _binding!!
     
-    // 使用 activityViewModels 确保与 Activity 共享同一个实例，从而在隐藏时保持状态
+    // 使用 activityViewModels 确保与 Activity 共享同一个实例
     private val viewModel: SwitchPageViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -31,17 +31,9 @@ class InfraredFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        // 观察连接状态并更新 UI
+        // 观察连接状态并更新 UI。数据由 Activity 在启动时统一拉取。
         viewModel.infraredStatus.observe(viewLifecycleOwner) { status ->
             updateStatusUi(status)
-        }
-    }
-
-    override fun onHiddenChanged(hidden: Boolean) {
-        super.onHiddenChanged(hidden)
-        if (!hidden) {
-            // 页面展示时获取连接状态
-            viewModel.fetchInfraredStatus()
         }
     }
 

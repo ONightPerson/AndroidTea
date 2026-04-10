@@ -44,8 +44,9 @@ class SwitchPageActivity : AppCompatActivity() {
             deformationFragment?.let { switchToFragment(it, "DEFORMATION") }
         }
         
-        // Activity 启动时可以统一触发一次初始状态获取
+        // Activity 启动时并行拉取所有设备的连接状态
         viewModel.fetchInfraredStatus()
+        viewModel.fetchDeformationStatus()
     }
 
     private fun switchToFragment(fragment: Fragment, tag: String) {
