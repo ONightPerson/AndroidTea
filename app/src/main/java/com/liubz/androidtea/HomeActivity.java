@@ -57,6 +57,7 @@ import com.liubz.androidtea.view.ScrollerTestActivity;
 import com.liubz.androidtea.view.VelocityTrackerActivity;
 import com.liubz.androidtea.view.ViewStubActivity;
 import com.liubz.androidtea.view.WaveDemoActivity;
+import com.liubz.androidtea.viewpager.BannerPagerActivity;
 import com.liubz.androidtea.window.WindowActivity;
 
 public class HomeActivity extends BaseActivity {
@@ -119,7 +120,7 @@ public class HomeActivity extends BaseActivity {
         binding.hiltDemo.setOnClickListener(v -> launchHiltDemoActivity());
         binding.glParticle.setOnClickListener(v -> launchGLParticleDemo());
         binding.switchPage.setOnClickListener(v -> launchSwitchPageActivity());
-
+        binding.fragmentViewPager.setOnClickListener(v -> launchFragmentViewPager());
     }
 
     private void launchConstraintDemo() {
@@ -391,5 +392,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchSwitchPageActivity() {
         startActivity(new Intent(this, SwitchPageActivity.class));
+    }
+
+    private void launchFragmentViewPager() {
+        startActivity(new Intent(this, BannerPagerActivity.class));
     }
 }

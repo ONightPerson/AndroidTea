@@ -319,7 +319,14 @@
             android:id="@+id/switch_page"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="opengl 粒子特效"
+            android:text="切换fragment页面"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/fragment_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滑动fragment页面"
             android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>
