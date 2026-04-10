@@ -1,8 +1,6 @@
 package com.liubz.androidtea.coroutine
 
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -12,24 +10,21 @@ import kotlin.time.Duration.Companion.milliseconds
  * Created by liubaozhu on 2026/4/2
  */
 class CoroutineDemo {
-
-    suspend fun printL() = coroutineScope {
-        repeat(5000) {
-            this.launch {
-                println("liubaozhu")
-            }
+    suspend fun ll() = withContext(Dispatchers.Default) {
+        launch {
+            delay(1000.milliseconds)
         }
     }
 
-    fun hello() {
-        repeat(5000) {
-            Thread {
-                println("liubaozhu")
-            }.start()
+    suspend fun dd() = withContext(Dispatchers.IO) {
+        launch {
+
         }
     }
 
-    fun Ddd() {
+    suspend fun lf() = withContext(Dispatchers.Main) {
+        launch {
 
+        }
     }
 }

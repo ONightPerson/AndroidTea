@@ -242,6 +242,8 @@
 
         <activity android:name=".anim.opengl.GLParticleActivity" />
 
+        <activity android:name=".switchpage.SwitchPageActivity" />
+
         <service
             android:name=".modules.accessibility.MyAccessibilityService"
             android:exported="false"

@@ -41,6 +41,7 @@ import com.liubz.androidtea.rx.RxActivity;
 import com.liubz.androidtea.stack.launchmode.DialogActivity;
 import com.liubz.androidtea.stack.launchmode.LaunchModeActivity;
 import com.liubz.androidtea.stack.launchmode.TransparentActivity;
+import com.liubz.androidtea.switchpage.SwitchPageActivity;
 import com.liubz.androidtea.utils.CommonDialog;
 import com.liubz.androidtea.utils.NdkUtils;
 import com.liubz.androidtea.utils.ReflectionUtils;
@@ -117,6 +118,7 @@ public class HomeActivity extends BaseActivity {
         binding.composeDemo.setOnClickListener(v -> launchComposeActivity());
         binding.hiltDemo.setOnClickListener(v -> launchHiltDemoActivity());
         binding.glParticle.setOnClickListener(v -> launchGLParticleDemo());
+        binding.switchPage.setOnClickListener(v -> launchSwitchPageActivity());
 
     }
 
@@ -385,5 +387,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchGLParticleDemo() {
         startActivity(new Intent(this, GLParticleActivity.class));
+    }
+
+    private void launchSwitchPageActivity() {
+        startActivity(new Intent(this, SwitchPageActivity.class));
     }
 }

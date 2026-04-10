@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-kapt' // Hilt 需要 kapt 插件
-    id 'com.google.dagger.hilt.android' // 应用 Hilt 插件
+    id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -77,7 +77,6 @@ dependencies {
     implementation configs.retrofit.adapter_rxjava
     implementation configs.gson.gson
     implementation configs.okhttp.okhttp
-//    implementation configs.okhttp.okhttp_mockwebserver
     implementation configs.rxjava.rxjava
     implementation configs.rxAndroid.rxAndroid
 
@@ -89,8 +88,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3'
     implementation 'androidx.core:core-ktx:1.12.0'
+    
+    // 升级版本以确保兼容性
+    implementation "androidx.fragment:fragment-ktx:1.8.5"
 
-    // Compose 相关
     def composeBom = platform('androidx.compose:compose-bom:2023.10.01')
     implementation composeBom
     implementation 'androidx.compose.ui:ui'
@@ -99,14 +100,10 @@ dependencies {
     implementation 'androidx.compose.material3:material3'
     implementation 'androidx.activity:activity-compose:1.8.2'
 
-    // 关键：Hilt 核心依赖
     implementation "com.google.dagger:hilt-android:2.48"
     kapt "com.google.dagger:hilt-android-compiler:2.48"
-    
-    // Hilt 与 Compose 的集成支持
     implementation 'androidx.hilt:hilt-navigation-compose:1.1.0'
 
-    // 内存泄漏检测
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
 }
 
