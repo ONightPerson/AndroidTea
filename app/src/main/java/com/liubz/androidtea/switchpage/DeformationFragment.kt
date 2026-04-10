@@ -27,7 +27,8 @@ class DeformationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+
         // 观察连接状态。数据由 Activity 在进入页面时统一并行拉取。
         viewModel.deformationStatus.observe(viewLifecycleOwner) { status ->
             updateStatusUi(status)
