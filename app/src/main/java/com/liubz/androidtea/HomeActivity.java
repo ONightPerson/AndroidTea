@@ -26,8 +26,9 @@ import com.liubz.androidtea.communicate.CommunicationActivity;
 import com.liubz.androidtea.container.ContainerActivity;
 import com.liubz.androidtea.contentprovider.BookProviderTestActivity;
 import com.liubz.androidtea.databinding.ActivityHomeBinding;
+import com.liubz.androidtea.di.koin.view.UserActivity;
 import com.liubz.androidtea.expandablelist.MyExpandableListActivity;
-import com.liubz.androidtea.hilt.HiltDemoActivity;
+import com.liubz.androidtea.di.hilt.HiltDemoActivity;
 import com.liubz.androidtea.imageloader.GlideActivity;
 import com.liubz.androidtea.immersive.ImmersiveActivity;
 import com.liubz.androidtea.material.ConstraintDemoActivity;
@@ -121,6 +122,7 @@ public class HomeActivity extends BaseActivity {
         binding.glParticle.setOnClickListener(v -> launchGLParticleDemo());
         binding.switchPage.setOnClickListener(v -> launchSwitchPageActivity());
         binding.fragmentViewPager.setOnClickListener(v -> launchFragmentViewPager());
+        binding.koinModuleUser.setOnClickListener(v -> launchUserActivity());
     }
 
     private void launchConstraintDemo() {
@@ -396,5 +398,9 @@ public class HomeActivity extends BaseActivity {
 
     private void launchFragmentViewPager() {
         startActivity(new Intent(this, BannerPagerActivity.class));
+    }
+
+    private void launchUserActivity() {
+        startActivity(new Intent(this, UserActivity.class));
     }
 }

@@ -328,5 +328,12 @@
             android:layout_height="wrap_content"
             android:text="滑动fragment页面"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/koin_module_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用koin module"
+            android:textAllCaps="false" />
     </LinearLayout>
 </ScrollView>

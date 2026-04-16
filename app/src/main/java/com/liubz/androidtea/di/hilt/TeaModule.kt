@@ -1,4 +1,4 @@
-package com.liubz.androidtea.hilt
+package com.liubz.androidtea.di.hilt
 
 import dagger.Module
 import dagger.Provides

@@ -1,4 +1,4 @@
-package com.liubz.androidtea.hilt
+package com.liubz.androidtea.di.hilt
 
 import android.content.Context
 import com.liubz.androidtea.contentprovider.BookDbHelper
