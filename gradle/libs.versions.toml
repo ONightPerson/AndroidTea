@@ -1,6 +1,0 @@
-[versions]
-koin = "4.2.1"  # 定义版本号
-
-[libraries]
-koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
-koin-android = { module = "io.insert-koin:koin-android" }

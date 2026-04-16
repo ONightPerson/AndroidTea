@@ -1,4 +1,4 @@
-package com.liubz.androidtea.di.hilt
+package com.liubz.androidtea.hilt
 
 import com.liubz.androidtea.network.retrofit.service.SuggestService
 import dagger.Module

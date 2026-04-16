@@ -6,10 +6,10 @@ plugins {
 }
 
 android {
-    compileSdkVersion 36
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.liubz.androidtea"
-        minSdkVersion 28
+        minSdkVersion 22
         targetSdkVersion 34
         buildToolsVersion '28.0.3'
 
@@ -79,10 +79,6 @@ dependencies {
     implementation configs.okhttp.okhttp
     implementation configs.rxjava.rxjava
     implementation configs.rxAndroid.rxAndroid
-
-    // 使用koin依赖注入
-    implementation(platform(libs.koin.bom))
-    implementation(libs.koin.android)
 
     implementation 'org.greenrobot:eventbus:3.2.0'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
